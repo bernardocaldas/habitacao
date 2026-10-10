@@ -172,12 +172,19 @@ function fitScale(w: number, h: number) {
   return Math.min((w - 2 * m.x) / (CITY.x1 - CITY.x0), (h - m.top - m.bottom) / (CITY.y1 - CITY.y0));
 }
 
-function clampView(v: View, w: number, h: number): View {
+/**
+ * Keep the world in the frame. `inset` is the part of the frame a sheet covers at the bottom:
+ * only the band above it has to stay on the map, so a site near the river can sit above a sheet.
+ */
+function clampView(v: View, w: number, h: number, inset = 0): View {
   const fit = fitScale(w, h);
   const k = Math.max(fit * 0.8, Math.min(fit * MAX_ZOOM, v.k));
-  const hw = w / 2 / k, hh = h / 2 / k;
+  const hv = Math.max(60, h - inset);
+  const hw = w / 2 / k, hh = hv / 2 / k;
   const span = (lo: number, hi: number, half: number, c: number) => (hi - lo <= 2 * half ? (lo + hi) / 2 : Math.max(lo + half, Math.min(hi - half, c)));
-  return { k, cx: span(WORLD.x0, WORLD.x1, hw, v.cx), cy: span(WORLD.y0, WORLD.y1, hh, v.cy) };
+  // The visible band's centre sits (h - hv) / 2 pixels above the frame's centre.
+  const shift = (h - hv) / 2 / k;
+  return { k, cx: span(WORLD.x0, WORLD.x1, hw, v.cx), cy: span(WORLD.y0, WORLD.y1, hh, v.cy - shift) + shift };
 }
 
 function home(w: number, h: number): View {
@@ -187,12 +194,16 @@ function home(w: number, h: number): View {
   return clampView({ k, cx: (CITY.x0 + CITY.x1) / 2, cy: (CITY.y0 + CITY.y1) / 2 - (m.top - m.bottom) / 2 / k }, w, h);
 }
 
-export function MapView({ s, selected, onSelect, layer, names }: {
+export function MapView({ s, selected, onSelect, layer, names, inset: sheetH = 0, focus }: {
   s: GameState;
   selected: { site?: string; project?: number };
   onSelect: (siteId: string) => void;
   layer: Layer;
   names: boolean;
+  /** Height of a sheet rising from the bottom of the game's frame (phones). */
+  inset?: number;
+  /** A site to keep in view above the sheet. */
+  focus?: string;
 }) {
   const { t, lang } = useT();
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -209,18 +220,26 @@ export function MapView({ s, selected, onSelect, layer, names }: {
 
   // Measure the frame; the first measurement frames the city, later ones keep the centre.
   const last = useRef({ w: 0, h: 0 });
+  // How far below the map the game's frame ends (the news line, the bottom buttons): a sheet
+  // covers the map only by what it rises above that.
+  const [below, setBelow] = useState(0);
+  const inset = Math.max(0, sheetH - below);
+  const insetRef = useRef(inset);
+  insetRef.current = inset;
   useLayoutEffect(() => {
     const el = wrapRef.current;
     if (!el) return;
     const measure = () => {
       const r = el.getBoundingClientRect();
       const w = Math.round(r.width), h = Math.round(r.height);
+      const shell = el.closest('.hab-app');
+      setBelow(shell ? Math.max(0, Math.round(shell.getBoundingClientRect().bottom - r.bottom)) : 0);
       const prev = last.current;
       if (!w || !h || (prev.w === w && prev.h === h)) return;
       last.current = { w, h };
       setSize({ w, h });
       // Keep the same zoom relative to the city as the frame changes size.
-      setView((v) => (v && prev.w ? clampView({ ...v, k: v.k * (fitScale(w, h) / fitScale(prev.w, prev.h)) }, w, h) : home(w, h)));
+      setView((v) => (v && prev.w ? clampView({ ...v, k: v.k * (fitScale(w, h) / fitScale(prev.w, prev.h)) }, w, h, insetRef.current) : home(w, h)));
     };
     measure();
     const ro = new ResizeObserver(measure);
@@ -245,6 +264,28 @@ export function MapView({ s, selected, onSelect, layer, names }: {
 
   const { w, h } = size;
   const v = view ?? (w && h ? home(w, h) : { cx: 0, cy: 0, k: 1 });
+
+  // On a phone, a sheet covers the bottom of the map: bring the chosen site into the part left.
+  useEffect(() => {
+    if (!focus || !w || !h) return;
+    const site = SITES.find((x) => x.id === focus);
+    if (!site) return;
+    const [wx, wy] = toWorld(site.lon, site.lat);
+    setView((old) => {
+      const cur = old ?? home(w, h);
+      const sx = (wx - cur.cx) * cur.k + w / 2, sy = (wy - cur.cy) * cur.k + h / 2;
+      const bottom = h - inset - 24;
+      if (sx > 24 && sx < w - 24 && sy > 40 && sy < bottom) return clampView(cur, w, h, inset);
+      // Put it in the middle of what stays visible.
+      const ty = Math.max(40, (h - inset) / 2);
+      return clampView({ k: cur.k, cx: wx, cy: wy - (ty - h / 2) / cur.k }, w, h, inset);
+    });
+  }, [focus, inset, w, h]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // When the sheet closes, the whole frame is map again.
+  useEffect(() => {
+    if (!inset && w && h) setView((old) => (old ? clampView(old, w, h, 0) : old));
+  }, [inset, w, h]);
   const tx = w / 2 - v.cx * v.k, ty = h / 2 - v.cy * v.k;
   const screen = (p: Pos): Pos => [p[0] * v.k + tx, p[1] * v.k + ty];
   const zoomRatio = w && h ? v.k / fitScale(w, h) : 1;
@@ -254,7 +295,7 @@ export function MapView({ s, selected, onSelect, layer, names }: {
     const k = cur.k * f;
     // Keep the world point under (sx, sy) where it is.
     const wx = cur.cx + (sx - w / 2) / cur.k, wy = cur.cy + (sy - h / 2) / cur.k;
-    return clampView({ k, cx: wx - (sx - w / 2) / k, cy: wy - (sy - h / 2) / k }, w, h);
+    return clampView({ k, cx: wx - (sx - w / 2) / k, cy: wy - (sy - h / 2) / k }, w, h, insetRef.current);
   });
 
   const local = (e: { clientX: number; clientY: number }) => {
@@ -296,7 +337,7 @@ export function MapView({ s, selected, onSelect, layer, names }: {
     }
     // The world point that was under the gesture's centre follows it.
     const wx = g.view.cx + (g.x - w / 2) / g.view.k, wy = g.view.cy + (g.y - h / 2) / g.view.k;
-    setView(clampView({ k, cx: wx - (cx - w / 2) / k, cy: wy - (cy - h / 2) / k }, w, h));
+    setView(clampView({ k, cx: wx - (cx - w / 2) / k, cy: wy - (cy - h / 2) / k }, w, h, insetRef.current));
   };
   const onUp = (e: RPE) => {
     pointers.current.delete(e.pointerId);
@@ -393,6 +434,17 @@ export function MapView({ s, selected, onSelect, layer, names }: {
           onPointerMove={onMove}
           onPointerUp={onUp}
           onPointerCancel={onUp}
+          onClick={(e) => {
+            // A tap that misses every marker takes the nearest one within reach (fingers are wide).
+            if (moved.current) return;
+            const { x, y } = local(e);
+            let best: { id: string; d: number } | null = null;
+            for (const m of marks) {
+              const d = Math.hypot(m.x - x, m.y - y - (m.tall ? -m.tall / 2 : 0));
+              if (d <= 26 && (!best || d < best.d)) best = { id: m.site.id, d };
+            }
+            if (best) onSelect(best.id);
+          }}
           onPointerLeave={(e) => { if (!pointers.current.has(e.pointerId)) { setHover(null); setHoverFr(null); } }}
         >
           <rect x={0} y={0} width={w} height={h} fill={WATER} />

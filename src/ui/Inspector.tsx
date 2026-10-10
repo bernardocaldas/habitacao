@@ -251,7 +251,7 @@ export function SiteSheet({ game, site, onFiled }: { game: Game; site: Site; onF
         {keepsBuilding(site) && <p className="hab-note" style={{ marginTop: 6 }}>{lang === 'pt' ? 'Reabilitação em área de reabilitação urbana: IVA a 6%.' : 'Rehabilitation inside an urban rehabilitation area: 6% VAT.'}</p>}
       </div>
 
-      <div style={{ display: 'grid', gap: 6 }}>
+      <div className="hab-file" style={{ display: 'grid', gap: 6 }}>
         <button className="hab-btn primary" disabled={!pv.canFile} onClick={file}>
           {lang === 'pt' ? `Assinar contrato-promessa · sinal de ${fmtM(pv.depositM, 'pt')}` : `Sign the promissory contract · ${fmtM(pv.depositM, 'en')} deposit`}
         </button>
@@ -363,7 +363,7 @@ export function ProjectSheet({ game, p, openDecision }: { game: Game; p: Project
 
 // ── The city, when nothing is selected ───────────────────────────────────────────────────
 
-export function CityOverview({ s }: { s: GameState }) {
+export function CityOverview({ s, compact }: { s: GameState; compact?: boolean }) {
   const { lang } = useT();
   const md = mandateAt(s.month);
   const seats = councilAt(s.month);
@@ -373,11 +373,11 @@ export function CityOverview({ s }: { s: GameState }) {
   const avgKeys = s.stats.monthsToKeys.length ? s.stats.monthsToKeys.reduce((a, b) => a + b, 0) / s.stats.monthsToKeys.length : null;
   return (
     <div className="hab-sheet">
-      <div>
+      {!compact && <div>
         <div className="kicker">{lang === 'pt' ? 'Lisboa, hoje' : 'Lisbon, today'}</div>
         <h2>{lang === 'pt' ? 'Escolhe um terreno no mapa' : 'Pick a site on the map'}</h2>
         <p className="muted" style={{ marginTop: 6 }}>{lang === 'pt' ? 'Os quadrados com uma cruz estão disponíveis. Clica para desenhar uma proposta e ver o caminho, as probabilidades e as contas.' : 'Squares with a cross are available. Click one to draft a proposal and see the road, the odds and the numbers.'}</p>
-      </div>
+      </div>}
       <div className="hab-block">
         <h3>{lang === 'pt' ? 'Câmara Municipal' : 'City council'}</h3>
         <p style={{ fontWeight: 600 }}>{md.mayor} · {BLOCS[md.mayorBloc].name}</p>

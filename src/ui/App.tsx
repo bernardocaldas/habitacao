@@ -8,6 +8,7 @@ import { LangContext, STRINGS } from './i18n';
 import { CityOverview, ProjectSheet, SiteSheet } from './Inspector';
 import { ProjectsList, SitesList, TeamsFoot } from './Lists';
 import { LAYERS, MapView, type Layer } from './MapView';
+import { CompactTop, MenuBody, Sheet, useCompact } from './Mobile';
 import { Title } from './Title';
 import { pref, setPref, useGame, type Speed } from './useGame';
 
@@ -37,6 +38,11 @@ export function App({ lang: hostLang, embedded = false }: { lang?: Lang; embedde
   const [tab, setTab] = useState<'projects' | 'sites'>('sites');
   const [mobile, setMobile] = useState<'list' | 'details'>('details');
   const [decisionOpen, setDecisionOpen] = useState(true);
+  const compact = useCompact();
+  // Phones: what the bottom sheet shows, how tall it is, and how much of the map it covers.
+  const [sheet, setSheet] = useState<null | 'detail' | 'list' | 'menu'>(null);
+  const [sheetSize, setSheetSize] = useState<'half' | 'full'>('half');
+  const [sheetPx, setSheetPx] = useState(0);
   const topRef = useRef<HTMLElement>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const s = game.s;
@@ -55,7 +61,7 @@ export function App({ lang: hostLang, embedded = false }: { lang?: Lang; embedde
     const ro = new ResizeObserver(() => rootRef.current?.style.setProperty('--chrome-h', `${el.offsetHeight}px`));
     ro.observe(el);
     return () => ro.disconnect();
-  }, [s != null]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [s != null, compact]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const decision = s?.decisions[0];
   const showDecision = !!decision && decisionOpen && !modal && game.paper == null;
@@ -82,8 +88,11 @@ export function App({ lang: hostLang, embedded = false }: { lang?: Lang; embedde
     const p = pid != null ? projectById(s, pid) : s.projects.filter((x) => x.site === id && x.stage === 'done').at(-1);
     setSel(p ? { project: p.id, site: id } : { site: id });
     setMobile('details');
+    setSheet('detail');
+    setSheetSize('half');
   }, [s]);
-  const selectProject = (p: Project) => { setSel({ project: p.id, site: p.site }); setMobile('details'); };
+  const selectProject = (p: Project) => { setSel({ project: p.id, site: p.site }); setMobile('details'); setSheet('detail'); setSheetSize('half'); };
+  const closeSheet = useCallback(() => { setSheet(null); setSel({}); }, []);
 
   if (!s) {
     return (
@@ -98,6 +107,88 @@ export function App({ lang: hostLang, embedded = false }: { lang?: Lang; embedde
   const selProject = sel.project != null ? projectById(s, sel.project) : undefined;
   const selSite = !selProject && sel.site ? SITES_BY_ID[sel.site] : undefined;
   const lastNews = s.news.at(-1);
+  const onQuit = () => { if (window.confirm(lang === 'pt' ? 'Começar de novo? Perdes este jogo.' : 'Start over? This game will be lost.')) { game.quit(); setSel({}); setSheet(null); } };
+  const live = s.projects.filter((p) => !['done', 'dead', 'sold'].includes(p.stage));
+  const waiting = new Set(s.decisions.map((d) => d.project).filter((x) => x != null)).size;
+
+  const detail = selProject ? (
+    <ProjectSheet key={selProject.id} game={game} p={selProject} openDecision={() => setDecisionOpen(true)} />
+  ) : selSite ? (
+    <SiteSheet key={selSite.id} game={game} site={selSite} onFiled={(p) => { setSel({ project: p.id, site: p.site }); setTab('projects'); if (!game.speed) game.setSpeed(1); setSheetSize('half'); }} />
+  ) : null;
+
+  const dialogs = (
+    <>
+      {showDecision && decision && (
+        <DecisionDialog s={s} d={decision} onChoose={(k) => { game.act((st) => resolve(st, decision.id, k)); if (decision.project != null) setSel({ project: decision.project, site: projectById(s, decision.project)?.site }); }} />
+      )}
+      {game.paper != null && s.news[game.paper] && <PaperDialog s={s} item={s.news[game.paper]} onClose={() => game.setPaper(null)} />}
+      {modal === 'rules' && <RulesDialog s={s} onClose={() => setModal(null)} />}
+      {modal === 'camara' && <CamaraDialog s={s} onClose={() => setModal(null)} />}
+      {modal === 'log' && <LogDialog s={s} onClose={() => setModal(null)} />}
+      {modal === 'help' && <HelpDialog onClose={() => setModal(null)} />}
+      {s.over && !s.decisions.length && !modal && game.paper == null && <EndDialog s={s} onNew={() => { game.quit(); setSel({}); setSheet(null); }} />}
+    </>
+  );
+
+  if (compact) {
+    const sheetTitle = sheet === 'detail' ? undefined : sheet === 'menu' ? (lang === 'pt' ? 'Lisboa, hoje' : 'Lisbon, today') : undefined;
+    return (
+      <LangContext.Provider value={lang}>
+        <div className={`hab hab-app${embedded ? ' embedded' : ''}`} ref={rootRef}>
+          <header className="hab-ctop" ref={topRef}>
+            <CompactTop s={s} speed={game.speed} setSpeed={game.setSpeed} onMenu={() => { setSheet('menu'); setSheetSize('full'); }} />
+          </header>
+          <div className="hab-chips" role="group" aria-label={lang === 'pt' ? 'Camada do mapa' : 'Map layer'}>
+            {LAYERS.map((l) => <button key={l.key} aria-pressed={layer === l.key} onClick={() => setLayer(l.key)}>{l.label[lang]}</button>)}
+            <button aria-pressed={names} onClick={() => setNames(!names)}>{STRINGS.names[lang]}</button>
+          </div>
+          <section className="hab-stage" id="hab-map" aria-label={lang === 'pt' ? 'Mapa' : 'Map'}>
+            <MapView s={s} selected={sel} onSelect={selectSite} layer={layer} names={names} inset={sheet ? sheetPx : 0} focus={sheet === 'detail' ? sel.site : undefined} />
+            <NewsBar item={lastNews} onOpen={() => lastNews && game.setPaper(s.news.length - 1)} pause={game.pauseForNews} setPause={game.setPauseForNews} />
+          </section>
+          <nav className="hab-bnav" aria-label={lang === 'pt' ? 'Listas' : 'Lists'}>
+            <button onClick={() => { setTab('projects'); setSheet('list'); setSheetSize('half'); }}>
+              {STRINGS.yourProjects[lang]} <b className="num">{live.length}</b>
+              {waiting > 0 && <span className="dot" aria-label={lang === 'pt' ? `${waiting} à tua espera` : `${waiting} waiting for you`} />}
+            </button>
+            <button onClick={() => { setTab('sites'); setSheet('list'); setSheetSize('half'); }}>{STRINGS.sites[lang]}</button>
+          </nav>
+          {sheet && (
+            <Sheet
+              key={sheet === 'detail' ? `d-${sel.project ?? sel.site}` : sheet}
+              label={sheet === 'menu' ? 'Menu' : sheet === 'list' ? (lang === 'pt' ? 'Listas' : 'Lists') : (lang === 'pt' ? 'Detalhe' : 'Details')}
+              title={sheetTitle}
+              size={sheetSize}
+              setSize={setSheetSize}
+              onClose={closeSheet}
+              onHeight={setSheetPx}
+            >
+              {sheet === 'detail' && (detail ?? <CityOverview s={s} />)}
+              {sheet === 'list' && (
+                <div className="hab-clist">
+                  <div className="hab-tabs" role="tablist">
+                    <button role="tab" aria-selected={tab === 'projects'} onClick={() => setTab('projects')}>{STRINGS.yourProjects[lang]} ({live.length})</button>
+                    <button role="tab" aria-selected={tab === 'sites'} onClick={() => setTab('sites')}>{STRINGS.sites[lang]}</button>
+                  </div>
+                  {tab === 'projects'
+                    ? <ProjectsList s={s} selected={sel.project} onSelect={selectProject} />
+                    : <SitesList s={s} selected={sel.site} onSelect={selectSite} />}
+                  <TeamsFoot game={game} />
+                </div>
+              )}
+              {sheet === 'menu' && (
+                <MenuBody s={s} openModal={setModal} onQuit={onQuit} lang={lang} setLang={setLang}>
+                  <CityOverview s={s} compact />
+                </MenuBody>
+              )}
+            </Sheet>
+          )}
+          {dialogs}
+        </div>
+      </LangContext.Provider>
+    );
+  }
 
   return (
     <LangContext.Provider value={lang}>
@@ -111,7 +202,7 @@ export function App({ lang: hostLang, embedded = false }: { lang?: Lang; embedde
             openModal={setModal}
             lang={lang}
             setLang={setLang}
-            onQuit={() => { if (window.confirm(lang === 'pt' ? 'Começar de novo? Perdes este jogo.' : 'Start over? This game will be lost.')) { game.quit(); setSel({}); } }}
+            onQuit={onQuit}
           />
           <GoalBar s={s} />
         </header>
@@ -147,13 +238,7 @@ export function App({ lang: hostLang, embedded = false }: { lang?: Lang; embedde
           </section>
           <aside className={`hab-panel right${mobile === 'details' ? ' on' : ''}`} aria-label={lang === 'pt' ? 'Detalhe' : 'Details'}>
             <div className="hab-panel-body">
-              {selProject ? (
-                <ProjectSheet key={selProject.id} game={game} p={selProject} openDecision={() => setDecisionOpen(true)} />
-              ) : selSite ? (
-                <SiteSheet key={selSite.id} game={game} site={selSite} onFiled={(p) => { setSel({ project: p.id, site: p.site }); setTab('projects'); if (!game.speed) game.setSpeed(1); }} />
-              ) : (
-                <CityOverview s={s} />
-              )}
+              {detail ?? <CityOverview s={s} />}
               {(selProject || selSite) && (
                 <button className="hab-btn text" style={{ marginTop: 16 }} onClick={() => setSel({})}>{lang === 'pt' ? '← Voltar à cidade' : '← Back to the city'}</button>
               )}
@@ -161,15 +246,7 @@ export function App({ lang: hostLang, embedded = false }: { lang?: Lang; embedde
           </aside>
         </div>
 
-        {showDecision && decision && (
-          <DecisionDialog s={s} d={decision} onChoose={(k) => { game.act((st) => resolve(st, decision.id, k)); if (decision.project != null) setSel({ project: decision.project, site: projectById(s, decision.project)?.site }); }} />
-        )}
-        {game.paper != null && s.news[game.paper] && <PaperDialog s={s} item={s.news[game.paper]} onClose={() => game.setPaper(null)} />}
-        {modal === 'rules' && <RulesDialog s={s} onClose={() => setModal(null)} />}
-        {modal === 'camara' && <CamaraDialog s={s} onClose={() => setModal(null)} />}
-        {modal === 'log' && <LogDialog s={s} onClose={() => setModal(null)} />}
-        {modal === 'help' && <HelpDialog onClose={() => setModal(null)} />}
-        {s.over && !s.decisions.length && !modal && game.paper == null && <EndDialog s={s} onNew={() => { game.quit(); setSel({}); }} />}
+        {dialogs}
       </div>
     </LangContext.Provider>
   );
