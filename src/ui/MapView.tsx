@@ -280,7 +280,7 @@ export function MapView({ s, selected, onSelect, layer, names, inset: sheetH = 0
       const ty = Math.max(40, (h - inset) / 2);
       return clampView({ k: cur.k, cx: wx, cy: wy - (ty - h / 2) / cur.k }, w, h, inset);
     });
-  }, [focus, inset, w, h]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [focus, inset, w, h]);
 
   // When the sheet closes, the whole frame is map again.
   useEffect(() => {
