@@ -119,7 +119,7 @@ export function NewsBar({ item, onOpen, pause, setPause }: { item?: NewsItem; on
   const { t, s: str, lang } = useT();
   return (
     <div className="hab-newsbar">
-      <span className="mast">O Parecer</span>
+      <span className="mast">{item?.paper ?? 'O Parecer'}</span>
       {item ? (
         <>
           <span className={`hab-stamp ${item.real ? 'real' : 'fic'}`}>{item.real ? str('real') : str('fiction')}</span>

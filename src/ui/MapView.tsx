@@ -1,7 +1,11 @@
-// Lisbon's 24 parishes as an SVG atlas, with the plots on top. Pan with a drag, zoom with
-// the wheel or the buttons; every site is focusable and opens with Enter.
-import { useMemo, useRef, useState, type PointerEvent as RPE, type WheelEvent as RWE } from 'react';
-import geo from '../data/lisboa-freguesias.json';
+// Lisbon's 24 parishes as an SVG atlas, with the plots on top. Drag to pan, wheel or pinch to
+// zoom, or use the buttons; every site is focusable and opens with Enter.
+//
+// The geography is drawn in world kilometres inside one transformed group; names and markers
+// are drawn in screen pixels on top, so they keep their size (never below 11px) at any zoom
+// and on any screen. Parish names that would collide with a marker or another name are left
+// out until there is room.
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type PointerEvent as RPE, type WheelEvent as RWE } from 'react';
 import { FREGUESIAS } from '../data/freguesias';
 import { PROVENANCE_LABEL, rawPrice } from '../data/precos';
 import { SITES } from '../data/sites';
@@ -11,54 +15,13 @@ import { yearFrac } from '../sim/time';
 import type { GameState, L, Project, Site } from '../sim/types';
 import { STAGE, eurM2, num } from './format';
 import { useT } from './i18n';
+import { CITY, LAND_D, NEIGHBOURS, PARISHES, PLACE_LABELS, RIVER_LABELS, WORLD, toWorld, type Pos } from './map-geo';
 
-type Ring = [number, number][];
-interface Feature { properties: { code: string; name: string }; geometry: { coordinates: Ring[] } }
-const FEATURES = (geo as unknown as { features: Feature[] }).features;
+const DENSITY: Record<string, number> = Object.fromEntries(PARISHES.map((p) => [p.code, FREGUESIAS[p.code].pop / p.area]));
 
-// Equirectangular projection, scaled by cos(latitude) so the city keeps its shape.
-const LAT0 = 38.74;
-const KX = Math.cos((LAT0 * Math.PI) / 180);
-const PAD = 0.006;
-const lons = FEATURES.flatMap((f) => f.geometry.coordinates[0].map((p) => p[0]));
-const lats = FEATURES.flatMap((f) => f.geometry.coordinates[0].map((p) => p[1]));
-const X0 = Math.min(...lons) - PAD, X1 = Math.max(...lons) + PAD;
-const Y0 = Math.min(...lats) - PAD, Y1 = Math.max(...lats) + PAD;
-const W = 1000;
-const S = W / ((X1 - X0) * KX);
-const H = Math.round((Y1 - Y0) * S);
-export const project = (lon: number, lat: number): [number, number] => [(lon - X0) * KX * S, (Y1 - lat) * S];
-
-const pathOf = (ring: Ring) => 'M' + ring.map(([x, y]) => project(x, y).map((v) => v.toFixed(1)).join(',')).join('L') + 'Z';
-const PATHS = FEATURES.map((f) => ({ code: f.properties.code, d: pathOf(f.geometry.coordinates[0]) }));
-
-function areaKm2(ring: Ring) {
-  let a = 0;
-  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
-    const [xi, yi] = ring[i], [xj, yj] = ring[j];
-    a += (xj + xi) * (yj - yi);
-  }
-  return Math.abs(a / 2) * 111.32 * 111.32 * KX;
-}
-function centroid(ring: Ring): [number, number] {
-  let x = 0, y = 0, a = 0;
-  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
-    const [xi, yi] = ring[i], [xj, yj] = ring[j];
-    const f = xj * yi - xi * yj;
-    x += (xi + xj) * f; y += (yi + yj) * f; a += f;
-  }
-  return [x / (3 * a), y / (3 * a)];
-}
-const DENSITY: Record<string, number> = Object.fromEntries(FEATURES.map((f) => [f.properties.code, FREGUESIAS[f.properties.code].pop / areaKm2(f.geometry.coordinates[0])]));
-const LABELS = FEATURES.map((f) => ({ code: f.properties.code, at: project(...centroid(f.geometry.coordinates[0])) }));
-
-// The Tejo, drawn under the parishes (whose official boundaries reach into the estuary).
-const TEJO = [
-  [-9.32, 38.693], [-9.237, 38.697], [-9.2, 38.7035], [-9.17, 38.712], [-9.14, 38.716], [-9.12, 38.716],
-  [-9.11, 38.73], [-9.1, 38.75], [-9.093, 38.77], [-9.0885, 38.79], [-9.0875, 38.797], [-9.083, 38.805],
-  [-9.06, 38.82], [-8.95, 38.84], [-8.95, 38.6], [-9.32, 38.6],
-] as Ring;
-const TEJO_D = pathOf(TEJO);
+const WATER = '#d5ddef';
+const LAND = '#ece9dc';
+const RIVER_INK = '#4a5a94';
 
 export type Layer = 'mapa' | 'preco' | 'pop' | 'al' | 'viz' | 'hab' | 'patrimonio';
 export const LAYERS: { key: Layer; label: L }[] = [
@@ -119,7 +82,7 @@ function layerSpec(layer: Layer, s: GameState, lang: 'pt' | 'en'): LayerSpec | n
       const vals = codes.map(f);
       return {
         value: f, fill: norm(f, 'green'), fmt: (c) => `${num(f(c), lang)} ${lang === 'pt' ? 'hab./km²' : 'per km²'} · ${num(FREGUESIAS[c].pop, lang)} ${lang === 'pt' ? 'residentes' : 'residents'}`,
-        legend: { ramp: 'green', lo: num(Math.min(...vals), lang), hi: num(Math.max(...vals), lang), title: { pt: 'Residentes por km², Censos 2021', en: 'Residents per km², 2021 Census' } },
+        legend: { ramp: 'green', lo: num(Math.min(...vals), lang), hi: num(Math.max(...vals), lang), title: { pt: 'Residentes por km² de terra, Censos 2021', en: 'Residents per km² of land, 2021 Census' } },
       };
     }
     case 'al': {
@@ -163,6 +126,67 @@ const MARK = {
   dead: { fill: '#dadccf', stroke: '#7f9284' },
 };
 
+// ── Text measurement, for label collisions ───────────────────────────────────────────────
+
+const LABEL_FONT = '600 11px Manrope, system-ui, sans-serif';
+const PLACE_FONT = '700 11px Manrope, system-ui, sans-serif';
+const widthCache = new Map<string, number>();
+let ctx: CanvasRenderingContext2D | null | undefined;
+function textWidth(text: string, font: string, spacing = 0) {
+  const key = font + '|' + text;
+  const hit = widthCache.get(key);
+  if (hit != null) return hit;
+  if (ctx === undefined) {
+    try { ctx = document.createElement('canvas').getContext('2d'); } catch { ctx = null; }
+  }
+  let w = text.length * 6.3;
+  if (ctx) { ctx.font = font; w = ctx.measureText(text).width; }
+  w += spacing * text.length;
+  widthCache.set(key, w);
+  return w;
+}
+
+/** Long names on two lines, split at the space nearest the middle. */
+function linesOf(name: string): string[] {
+  if (name.length <= 13 || !name.includes(' ')) return [name];
+  const mid = name.length / 2;
+  let best = -1;
+  for (let i = 0; i < name.length; i++) if (name[i] === ' ' && (best < 0 || Math.abs(i - mid) < Math.abs(best - mid))) best = i;
+  return [name.slice(0, best), name.slice(best + 1)];
+}
+
+interface Box { x0: number; y0: number; x1: number; y1: number }
+const overlaps = (a: Box, b: Box) => a.x0 < b.x1 && b.x0 < a.x1 && a.y0 < b.y1 && b.y0 < a.y1;
+
+// ── View ─────────────────────────────────────────────────────────────────────────────────
+
+interface View { cx: number; cy: number; k: number }
+const MAX_ZOOM = 8;
+
+/** Room kept clear around the city in the first view: the attribution sits at the top. */
+const margin = (w: number) => (w < 560 ? { x: 8, top: 26, bottom: 10 } : { x: 28, top: 30, bottom: 24 });
+
+/** The scale at which the whole city fits the frame, with a margin. */
+function fitScale(w: number, h: number) {
+  const m = margin(w);
+  return Math.min((w - 2 * m.x) / (CITY.x1 - CITY.x0), (h - m.top - m.bottom) / (CITY.y1 - CITY.y0));
+}
+
+function clampView(v: View, w: number, h: number): View {
+  const fit = fitScale(w, h);
+  const k = Math.max(fit * 0.8, Math.min(fit * MAX_ZOOM, v.k));
+  const hw = w / 2 / k, hh = h / 2 / k;
+  const span = (lo: number, hi: number, half: number, c: number) => (hi - lo <= 2 * half ? (lo + hi) / 2 : Math.max(lo + half, Math.min(hi - half, c)));
+  return { k, cx: span(WORLD.x0, WORLD.x1, hw, v.cx), cy: span(WORLD.y0, WORLD.y1, hh, v.cy) };
+}
+
+function home(w: number, h: number): View {
+  const k = fitScale(w, h);
+  const m = margin(w);
+  // Centre the city in the space left between the top and bottom margins.
+  return clampView({ k, cx: (CITY.x0 + CITY.x1) / 2, cy: (CITY.y0 + CITY.y1) / 2 - (m.top - m.bottom) / 2 / k }, w, h);
+}
+
 export function MapView({ s, selected, onSelect, layer, names }: {
   s: GameState;
   selected: { site?: string; project?: number };
@@ -171,13 +195,47 @@ export function MapView({ s, selected, onSelect, layer, names }: {
   names: boolean;
 }) {
   const { t, lang } = useT();
-  const [view, setView] = useState({ x: 0, y: 0, k: 1 });
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const [size, setSize] = useState({ w: 0, h: 0 });
+  const [view, setView] = useState<View | null>(null);
   const [hover, setHover] = useState<{ x: number; y: number; title: string; lines: string[] } | null>(null);
   const [hoverFr, setHoverFr] = useState<string | null>(null);
-  const drag = useRef<{ x: number; y: number; vx: number; vy: number; moved: boolean } | null>(null);
-  const svgRef = useRef<SVGSVGElement>(null);
+  const [dragging, setDragging] = useState(false);
+  const pointers = useRef(new Map<number, { x: number; y: number }>());
+  const gesture = useRef<{ view: View; x: number; y: number; dist?: number; moved: boolean } | null>(null);
+  const moved = useRef(false);
   const spec = layerSpec(layer, s, lang);
   const pending = new Set(s.decisions.map((d) => d.project).filter((x) => x != null));
+
+  // Measure the frame; the first measurement frames the city, later ones keep the centre.
+  const last = useRef({ w: 0, h: 0 });
+  useLayoutEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const measure = () => {
+      const r = el.getBoundingClientRect();
+      const w = Math.round(r.width), h = Math.round(r.height);
+      const prev = last.current;
+      if (!w || !h || (prev.w === w && prev.h === h)) return;
+      last.current = { w, h };
+      setSize({ w, h });
+      // Keep the same zoom relative to the city as the frame changes size.
+      setView((v) => (v && prev.w ? clampView({ ...v, k: v.k * (fitScale(w, h) / fitScale(prev.w, prev.h)) }, w, h) : home(w, h)));
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // The browser scrolls the page on a wheel unless the listener is active (not passive).
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const stop = (e: WheelEvent) => e.preventDefault();
+    el.addEventListener('wheel', stop, { passive: false });
+    return () => el.removeEventListener('wheel', stop);
+  }, []);
 
   const views: SiteView[] = useMemo(() => SITES.map((site) => {
     const id = s.taken[site.id];
@@ -185,95 +243,191 @@ export function MapView({ s, selected, onSelect, layer, names }: {
     return { site, p: p && (p.stage === 'done' || id != null) ? p : undefined, state: siteState(s, site) };
   }), [s, s.month, s.projects.length, s.taken]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const toSvg = (cx: number, cy: number) => {
-    const el = svgRef.current!;
-    const r = el.getBoundingClientRect();
-    const sc = Math.min(r.width / W, r.height / H);
-    const ox = (r.width - W * sc) / 2, oy = (r.height - H * sc) / 2;
-    return [(cx - r.left - ox) / sc, (cy - r.top - oy) / sc];
+  const { w, h } = size;
+  const v = view ?? (w && h ? home(w, h) : { cx: 0, cy: 0, k: 1 });
+  const tx = w / 2 - v.cx * v.k, ty = h / 2 - v.cy * v.k;
+  const screen = (p: Pos): Pos => [p[0] * v.k + tx, p[1] * v.k + ty];
+  const zoomRatio = w && h ? v.k / fitScale(w, h) : 1;
+
+  const zoomAt = (f: number, sx = w / 2, sy = h / 2) => setView((old) => {
+    const cur = old ?? home(w, h);
+    const k = cur.k * f;
+    // Keep the world point under (sx, sy) where it is.
+    const wx = cur.cx + (sx - w / 2) / cur.k, wy = cur.cy + (sy - h / 2) / cur.k;
+    return clampView({ k, cx: wx - (sx - w / 2) / k, cy: wy - (sy - h / 2) / k }, w, h);
+  });
+
+  const local = (e: { clientX: number; clientY: number }) => {
+    const r = wrapRef.current!.getBoundingClientRect();
+    return { x: e.clientX - r.left, y: e.clientY - r.top };
   };
-  const zoomAt = (f: number, sx = W / 2, sy = H / 2) => setView((v) => {
-    const k = Math.max(1, Math.min(6, v.k * f));
-    const x = sx - ((sx - v.x) * k) / v.k, y = sy - ((sy - v.y) * k) / v.k;
-    return clampView({ x, y, k });
-  });
-  const clampView = (v: { x: number; y: number; k: number }) => ({
-    k: v.k,
-    x: Math.min(0, Math.max(W - W * v.k, v.x)),
-    y: Math.min(0, Math.max(H - H * v.k, v.y)),
-  });
 
   const onWheel = (e: RWE) => {
-    const [sx, sy] = toSvg(e.clientX, e.clientY);
-    zoomAt(e.deltaY < 0 ? 1.2 : 1 / 1.2, sx, sy);
+    const { x, y } = local(e);
+    zoomAt(Math.exp(-e.deltaY * (e.deltaMode === 1 ? 0.05 : 0.0018)), x, y);
+  };
+  const startGesture = () => {
+    const pts = [...pointers.current.values()];
+    const cx = pts.reduce((a, p) => a + p.x, 0) / pts.length, cy = pts.reduce((a, p) => a + p.y, 0) / pts.length;
+    const dist = pts.length > 1 ? Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y) : undefined;
+    gesture.current = { view: v, x: cx, y: cy, dist, moved: gesture.current?.moved ?? false };
   };
   const onDown = (e: RPE) => {
-    drag.current = { x: e.clientX, y: e.clientY, vx: view.x, vy: view.y, moved: false };
+    if (e.button !== 0 && e.pointerType === 'mouse') return;
+    pointers.current.set(e.pointerId, local(e));
+    moved.current = false;
+    startGesture();
   };
   const onMove = (e: RPE) => {
-    const d = drag.current;
-    if (!d) return;
-    const el = svgRef.current!.getBoundingClientRect();
-    const sc = Math.min(el.width / W, el.height / H);
-    const dx = (e.clientX - d.x) / sc, dy = (e.clientY - d.y) / sc;
-    if (Math.abs(dx) + Math.abs(dy) > 4) d.moved = true;
-    if (d.moved) setView((v) => clampView({ ...v, x: d.vx + dx, y: d.vy + dy }));
+    if (!pointers.current.has(e.pointerId)) return;
+    pointers.current.set(e.pointerId, local(e));
+    const g = gesture.current;
+    if (!g) return;
+    const pts = [...pointers.current.values()];
+    const cx = pts.reduce((a, p) => a + p.x, 0) / pts.length, cy = pts.reduce((a, p) => a + p.y, 0) / pts.length;
+    const k = g.dist && pts.length > 1 ? g.view.k * (Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y) / g.dist) : g.view.k;
+    if (!g.moved && Math.hypot(cx - g.x, cy - g.y) < 5 && k === g.view.k) return;
+    if (!g.moved) {
+      g.moved = true;
+      moved.current = true;
+      setDragging(true);
+      setHover(null);
+      (e.currentTarget as Element).setPointerCapture?.(e.pointerId);
+    }
+    // The world point that was under the gesture's centre follows it.
+    const wx = g.view.cx + (g.x - w / 2) / g.view.k, wy = g.view.cy + (g.y - h / 2) / g.view.k;
+    setView(clampView({ k, cx: wx - (cx - w / 2) / k, cy: wy - (cy - h / 2) / k }, w, h));
   };
-  const onUp = () => { setTimeout(() => (drag.current = null), 0); };
+  const onUp = (e: RPE) => {
+    pointers.current.delete(e.pointerId);
+    if (pointers.current.size) { startGesture(); return; }
+    gesture.current = null;
+    setDragging(false);
+    // A drag must not end in a click on whatever is under the pointer.
+    setTimeout(() => { moved.current = false; }, 0);
+  };
 
   const tipAt = (e: { clientX: number; clientY: number }, title: string, lines: string[]) => {
-    const r = svgRef.current!.parentElement!.getBoundingClientRect();
-    setHover({ x: e.clientX - r.left + 14, y: e.clientY - r.top + 14, title, lines });
+    if (gesture.current?.moved) return;
+    const { x, y } = local(e);
+    setHover({ x: Math.min(x + 14, w - 200), y: y + 14 > h - 70 ? y - 70 : y + 14, title, lines });
   };
 
-  const k = view.k;
+  // Markers, in screen pixels.
+  const marks = views.flatMap(({ site, p, state }) => {
+    if (!p && state !== 'open') return [];
+    const [x, y] = screen(toWorld(site.lon, site.lat));
+    const units = p?.units ?? Math.round((site.lot * site.cov * site.floors) / 95);
+    const kind = !p ? 'open' : p.stage === 'done' ? 'done' : p.stage === 'obra' ? 'obra' : p.stage === 'fin' ? 'fin' : p.stage === 'dead' || p.stage === 'sold' ? 'dead' : 'review';
+    const small = w < 560 && zoomRatio < 1.6;
+    const size = kind === 'open' ? (small ? 12 : 14) : Math.max(small ? 11 : 12, Math.min(small ? 18 : 22, 10 + Math.sqrt(units) / 1.6));
+    const floors = p?.prog.floors ?? site.floors;
+    const tall = kind === 'obra' || kind === 'done' ? Math.max(8, Math.min(34, floors * 2.5)) : 0;
+    return [{ site, p, kind, x, y, size, tall, units }];
+  });
+
+  // Labels: parishes, biggest first, then the neighbours' names, each only where it fits.
+  const labels = useMemo(() => {
+    if (!w || !h) return { parishes: [], places: [], river: null };
+    const taken: Box[] = marks.map((m) => ({ x0: m.x - m.size / 2 - 3, y0: m.y - m.size / 2 - m.tall - 3, x1: m.x + m.size / 2 + 3, y1: m.y + m.size / 2 + 3 }));
+    const frame: Box = { x0: 4, y0: 22, x1: w - 4, y1: h - 4 }; // the attribution line sits at the top
+    const inFrame = (b: Box) => b.x0 >= frame.x0 && b.y0 >= frame.y0 && b.x1 <= frame.x1 && b.y1 <= frame.y1;
+    const parishes: { code: string; x: number; y: number; lines: string[] }[] = [];
+    if (names) {
+      for (const pr of [...PARISHES].sort((a, b) => b.area - a.area)) {
+        const lines = linesOf(FREGUESIAS[pr.code].name);
+        const bw = Math.max(...lines.map((l) => textWidth(l, LABEL_FONT))) + 6;
+        const bh = lines.length * 13 + 2;
+        const [ax, ay] = screen(pr.label);
+        // The parish must be wide enough on screen to hold most of its name.
+        if ((pr.box.x1 - pr.box.x0) * v.k < bw * 0.7) continue;
+        // Try the label's best spot, then nearby ones, keeping its centre inside the parish.
+        const steps = [[0, 0], [0, -1], [0, 1], [-1, 0], [1, 0], [-1, -1], [1, -1], [-1, 1], [1, 1], [0, -2], [0, 2]];
+        for (const [i, j] of steps) {
+          const x = ax + i * bw * 0.45, y = ay + j * bh * 0.8;
+          const b: Box = { x0: x - bw / 2, y0: y - bh / 2, x1: x + bw / 2, y1: y + bh / 2 };
+          if (!inFrame(b) || taken.some((o) => overlaps(o, b))) continue;
+          if ((i || j) && !pr.contains([(x - tx) / v.k, (y - ty) / v.k])) continue;
+          taken.push(b);
+          parishes.push({ code: pr.code, x, y, lines });
+          break;
+        }
+      }
+    }
+    const places: { name: string; x: number; y: number }[] = [];
+    for (const pl of PLACE_LABELS) {
+      const [x, y] = screen(pl.at);
+      const bw = textWidth(pl.name.toUpperCase(), PLACE_FONT, 0.66) + 6;
+      const b: Box = { x0: x - bw / 2, y0: y - 8, x1: x + bw / 2, y1: y + 8 };
+      if (!inFrame(b) || taken.some((o) => overlaps(o, b))) continue;
+      taken.push(b);
+      places.push({ name: pl.name, x, y });
+    }
+    // The river's name goes in the first stretch of open water inside the frame.
+    let river: Pos | null = null;
+    const rw = textWidth(lang === 'pt' ? 'RIO TEJO' : 'RIVER TAGUS', PLACE_FONT, 0.96) + 8;
+    for (const at of RIVER_LABELS) {
+      const [x, y] = screen(at);
+      const b: Box = { x0: x - rw / 2, y0: y - 9, x1: x + rw / 2, y1: y + 9 };
+      if (!inFrame(b) || taken.some((o) => overlaps(o, b))) continue;
+      river = [x, y];
+      break;
+    }
+    return { parishes, places, river };
+  }, [lang, w, h, v.k, v.cx, v.cy, names, marks.map((m) => `${m.site.id}${m.kind}${m.size}${m.tall}`).join()]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const ready = w > 0 && h > 0;
+
   return (
-    <div className="hab-map-wrap">
-      <svg
-        ref={svgRef}
-        className={`hab-map${drag.current?.moved ? ' dragging' : ''}`}
-        viewBox={`0 0 ${W} ${H}`}
-        role="img"
-        aria-label={lang === 'pt' ? 'Mapa das freguesias de Lisboa com os terrenos' : 'Map of Lisbon’s parishes with the sites'}
-        onWheel={onWheel}
-        onPointerDown={onDown}
-        onPointerMove={onMove}
-        onPointerUp={onUp}
-        onPointerLeave={() => { drag.current = null; setHover(null); setHoverFr(null); }}
-      >
-        <rect x={0} y={0} width={W} height={H} fill="#ece9dc" />
-        <g transform={`translate(${view.x} ${view.y}) scale(${k})`}>
-          <path d={TEJO_D} fill="#d7def3" />
-          {PATHS.map(({ code, d }) => (
-            <path
-              key={code}
-              d={d}
-              className={`fr${hoverFr === code ? ' hover' : ''}`}
-              fill={spec ? spec.fill(code) : FREGUESIAS[code].centro ? '#f7f4e8' : '#fcfbf5'}
-              onPointerMove={(e) => {
-                if (drag.current?.moved) return;
-                setHoverFr(code);
-                const fr = FREGUESIAS[code];
-                tipAt(e, fr.name, spec ? [spec.fmt(code)] : [`${num(fr.pop, lang)} ${lang === 'pt' ? 'residentes (2021)' : 'residents (2021)'}`]);
-              }}
-            />
+    <div className="hab-map-wrap" ref={wrapRef}>
+      {ready && (
+        <svg
+          className={`hab-map${dragging ? ' dragging' : ''}`}
+          width={w}
+          height={h}
+          viewBox={`0 0 ${w} ${h}`}
+          role="img"
+          aria-label={lang === 'pt' ? 'Mapa das freguesias de Lisboa com os terrenos' : 'Map of Lisbon’s parishes with the sites'}
+          onWheel={onWheel}
+          onPointerDown={onDown}
+          onPointerMove={onMove}
+          onPointerUp={onUp}
+          onPointerCancel={onUp}
+          onPointerLeave={(e) => { if (!pointers.current.has(e.pointerId)) { setHover(null); setHoverFr(null); } }}
+        >
+          <rect x={0} y={0} width={w} height={h} fill={WATER} />
+          <g transform={`translate(${tx.toFixed(2)} ${ty.toFixed(2)}) scale(${v.k.toFixed(4)})`}>
+            <path d={LAND_D} fill={LAND} />
+            {NEIGHBOURS.map((n) => <path key={n.code} d={n.d} className="nb" />)}
+            {PARISHES.map(({ code, d }) => (
+              <path
+                key={code}
+                d={d}
+                className={`fr${hoverFr === code ? ' hover' : ''}`}
+                fill={spec ? spec.fill(code) : FREGUESIAS[code].centro ? '#f7f4e8' : '#fcfbf5'}
+                onPointerMove={(e) => {
+                  if (gesture.current?.moved) return;
+                  setHoverFr(code);
+                  const fr = FREGUESIAS[code];
+                  tipAt(e, fr.name, spec ? [spec.fmt(code)] : [`${num(fr.pop, lang)} ${lang === 'pt' ? 'residentes (2021)' : 'residents (2021)'}`]);
+                }}
+              />
+            ))}
+          </g>
+          {labels.river && <text className="river-label" x={labels.river[0]} y={labels.river[1] + 4} textAnchor="middle" fill={RIVER_INK}>{lang === 'pt' ? 'RIO TEJO' : 'RIVER TAGUS'}</text>}
+          {labels.places.map((pl) => (
+            <text key={pl.name} className="place-label" x={pl.x} y={pl.y + 4} textAnchor="middle">{pl.name.toUpperCase()}</text>
           ))}
-          {names && LABELS.map(({ code, at }) => (
-            <text key={code} className="fr-label" x={at[0]} y={at[1]} textAnchor="middle" style={{ fontSize: 11 / k }}>
-              {FREGUESIAS[code].name}
+          {labels.parishes.map((lb) => (
+            <text key={lb.code} className="fr-label" x={lb.x} y={lb.y - ((lb.lines.length - 1) * 13) / 2 + 4} textAnchor="middle">
+              {lb.lines.map((l, i) => <tspan key={i} x={lb.x} dy={i ? 13 : 0}>{l}</tspan>)}
             </text>
           ))}
-          {views.map(({ site, p, state }) => {
-            if (!p && state !== 'open') return null;
-            const [x, y] = project(site.lon, site.lat);
-            const units = p?.units ?? Math.round((site.lot * site.cov * site.floors) / 95);
-            const r = (4 + Math.sqrt(units) / 1.7) / Math.sqrt(k);
-            const kind = !p ? 'open' : p.stage === 'done' ? 'done' : p.stage === 'obra' ? 'obra' : p.stage === 'fin' ? 'fin' : p.stage === 'dead' || p.stage === 'sold' ? 'dead' : 'review';
-            const m = MARK[kind];
+          {marks.map(({ site, p, kind, x, y, size, tall, units }) => {
+            const m = MARK[kind as keyof typeof MARK];
+            const r = size / 2;
             const sel = selected.site === site.id || (p && selected.project === p.id);
             const alert = p && pending.has(p.id);
-            const floors = p?.prog.floors ?? site.floors;
-            const tall = (kind === 'obra' || kind === 'done') ? (floors * 2.6) / Math.sqrt(k) : 0;
             const progress = kind === 'obra' && p ? Math.min(1, p.inStage / Math.max(1, p.inStage + p.left)) : 1;
             const label = `${t(site.name)} · ${FREGUESIAS[site.fr].name} · ${p ? t(STAGE[p.stage]) : lang === 'pt' ? 'disponível' : 'available'}`;
             return (
@@ -283,32 +437,34 @@ export function MapView({ s, selected, onSelect, layer, names }: {
                 tabIndex={0}
                 role="button"
                 aria-label={label}
-                onClick={(e) => { e.stopPropagation(); if (!drag.current?.moved) onSelect(site.id); }}
+                onClick={(e) => { e.stopPropagation(); if (!moved.current) onSelect(site.id); }}
                 onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelect(site.id); } }}
                 onPointerMove={(e) => {
+                  if (gesture.current?.moved) return;
                   e.stopPropagation();
                   setHoverFr(null);
                   tipAt(e, t(site.name), [FREGUESIAS[site.fr].name, p ? `${t(STAGE[p.stage])} · ${p.units} ${lang === 'pt' ? 'casas' : 'homes'}` : `${units} ${lang === 'pt' ? 'casas possíveis' : 'possible homes'}`]);
                 }}
               >
+                <rect x={x - 14} y={y - 14 - tall} width={28} height={28 + tall} fill="transparent" />
                 {tall > 0 && (
                   <g>
-                    <rect x={x - r * 0.9} y={y - tall} width={r * 1.8} height={tall} fill="none" stroke={m.stroke} strokeWidth={1 / k} strokeDasharray={kind === 'obra' ? `${3 / k} ${2 / k}` : undefined} />
-                    <rect x={x - r * 0.9} y={y - tall * progress} width={r * 1.8} height={tall * progress} fill={m.fill} opacity={0.9} />
-                    <rect x={x - r * 0.9} y={y - tall * progress} width={r * 1.8} height={1.6 / k} fill={kind === 'done' && p && p.affUnits / p.units >= 0.25 ? '#e5b958' : '#fcfbf5'} />
+                    <rect x={x - r * 0.9} y={y - r - tall} width={r * 1.8} height={tall} fill="#fcfbf5" fillOpacity={0.6} stroke={m.stroke} strokeWidth={1} strokeDasharray={kind === 'obra' ? '3 2' : undefined} />
+                    <rect x={x - r * 0.9} y={y - r - tall * progress} width={r * 1.8} height={tall * progress} fill={m.fill} opacity={0.92} />
+                    <rect x={x - r * 0.9} y={y - r - tall * progress} width={r * 1.8} height={2} fill={kind === 'done' && p && p.affUnits / p.units >= 0.25 ? '#e5b958' : '#fcfbf5'} />
                   </g>
                 )}
-                {alert && <circle cx={x} cy={y} r={r + 5 / k} fill="none" stroke="#a3543a" strokeWidth={2.5 / k} />}
-                <rect className="mark" x={x - r} y={y - r} width={r * 2} height={r * 2} rx={r * 0.35} fill={m.fill} stroke={sel ? '#16362e' : m.stroke} strokeWidth={(sel ? 3 : 1.5) / k} strokeDasharray={kind === 'fin' ? `${3 / k} ${2 / k}` : undefined} />
-                {kind === 'open' && <path d={`M${x - r * 0.5},${y}H${x + r * 0.5}M${x},${y - r * 0.5}V${y + r * 0.5}`} stroke="#234c40" strokeWidth={1.5 / k} />}
-                {kind === 'dead' && <path d={`M${x - r * 0.5},${y - r * 0.5}L${x + r * 0.5},${y + r * 0.5}M${x + r * 0.5},${y - r * 0.5}L${x - r * 0.5},${y + r * 0.5}`} stroke="#7f9284" strokeWidth={1.5 / k} />}
+                {alert && <circle cx={x} cy={y} r={r + 6} fill="none" stroke="#a3543a" strokeWidth={2.5} className="alert" />}
+                <rect className="mark" x={x - r} y={y - r} width={size} height={size} rx={r * 0.35} fill={m.fill} stroke={sel ? '#16362e' : m.stroke} strokeWidth={sel ? 3 : 1.5} strokeDasharray={kind === 'fin' ? '3 2' : undefined} />
+                {kind === 'open' && <path d={`M${x - r * 0.5},${y}H${x + r * 0.5}M${x},${y - r * 0.5}V${y + r * 0.5}`} stroke="#234c40" strokeWidth={1.5} />}
+                {kind === 'dead' && <path d={`M${x - r * 0.5},${y - r * 0.5}L${x + r * 0.5},${y + r * 0.5}M${x + r * 0.5},${y - r * 0.5}L${x - r * 0.5},${y + r * 0.5}`} stroke="#5f7062" strokeWidth={1.5} />}
               </g>
             );
           })}
-        </g>
-      </svg>
+        </svg>
+      )}
       {hover && (
-        <div className="hab-tip" style={{ left: hover.x, top: hover.y }}>
+        <div className="hab-tip" style={{ left: Math.max(4, hover.x), top: Math.max(4, hover.y) }}>
           <strong>{hover.title}</strong>
           {hover.lines.map((l, i) => <div key={i}>{l}</div>)}
         </div>
@@ -329,8 +485,14 @@ export function MapView({ s, selected, onSelect, layer, names }: {
         </div>
       )}
       <div className="hab-zoom">
-        <button className="hab-btn" onClick={() => zoomAt(1.4)} aria-label={lang === 'pt' ? 'Aproximar' : 'Zoom in'}>+</button>
-        <button className="hab-btn" onClick={() => zoomAt(1 / 1.4)} aria-label={lang === 'pt' ? 'Afastar' : 'Zoom out'}>−</button>
+        <button className="hab-btn" onClick={() => zoomAt(1.5)} aria-label={lang === 'pt' ? 'Aproximar' : 'Zoom in'} disabled={zoomRatio >= MAX_ZOOM - 0.01}>+</button>
+        <button className="hab-btn" onClick={() => zoomAt(1 / 1.5)} aria-label={lang === 'pt' ? 'Afastar' : 'Zoom out'}>−</button>
+        <button className="hab-btn" onClick={() => setView(home(w, h))} aria-label={lang === 'pt' ? 'Ver a cidade inteira' : 'Show the whole city'} title={lang === 'pt' ? 'Ver a cidade inteira' : 'Show the whole city'}>
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4" fill="none" stroke="currentColor" strokeWidth="1.6" /></svg>
+        </button>
+      </div>
+      <div className="hab-attrib">
+        CAOP 2021 · DGT (CC BY 4.0) · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">© OpenStreetMap contributors</a> (ODbL)
       </div>
     </div>
   );

@@ -1,15 +1,17 @@
 // Every modal: decisions, the newspaper, the rulebook, the Câmara, the log, help, the end.
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { FREGUESIAS } from '../data/freguesias';
-import { BLOCS, MANDATES } from '../data/politics';
+import { AGREEMENTS, BLOCS, MANDATES, PRE_ELECTION } from '../data/politics';
 import { LAST_DATA, SCENARIO, lisboaPriceM2 } from '../data/precos';
 import { SITES_BY_ID } from '../data/sites';
 import { TIMELINE } from '../data/timeline';
 import { econAt } from '../sim/econ';
 import { DIFFICULTY, REVIEWS, targetOf } from '../sim/goals';
+import { appetite } from '../sim/press';
 import { councilAt, mandateAt } from '../sim/rules';
+import { likely, nextElection } from '../sim/votes';
 import { END_MONTH, fmtMonth, fmtMonthLong, monthOf } from '../sim/time';
-import type { Decision, GameState, NewsItem } from '../sim/types';
+import type { Ballot, Decision, GameState, NewsItem, Stance } from '../sim/types';
 import { fmtM, num, pct } from './format';
 import { STRINGS, useT } from './i18n';
 
@@ -47,9 +49,20 @@ export function DecisionDialog({ s, d, onChoose }: { s: GameState; d: Decision; 
   return (
     <Dialog label={t(d.title)} tone={d.tone} title={t(d.title)}>
       {site && <div className="kicker" style={{ marginTop: -6 }}>{t(site.name)} · {FREGUESIAS[site.fr].name} · {fmtMonth(s.month, lang)}</div>}
+      {d.press && (
+        <div className="hab-front">
+          <div className="mast">
+            <b>{d.press.paper}</b>
+            <span className="hab-stamp fic">{str('fiction')}</span>
+          </div>
+          <h3 className="head">{t(d.press.head)}</h3>
+          <p className="lede">{t(d.press.lede)}</p>
+        </div>
+      )}
       <div className="lines">{d.lines.map((l, i) => <p key={i}>{t(l)}</p>)}</div>
-      {d.vote && <Seats vote={d.vote} />}
-      {d.odds && !d.vote && (
+      {d.vote && <RollCall vote={d.vote} />}
+      {d.stances && !d.vote && <Stances st={d.stances} />}
+      {d.odds && !d.vote && !d.stances && (
         <div className="hab-odds">
           {d.odds.map((o, i) => (
             <div className="hab-odd" key={i}>
@@ -77,23 +90,73 @@ export function DecisionDialog({ s, d, onChoose }: { s: GameState; d: Decision; 
   );
 }
 
-function Seats({ vote }: { vote: NonNullable<Decision['vote']> }) {
+const BALLOT: Record<Ballot, { pt: string; en: string; cls: string; mark: string }> = {
+  sim: { pt: 'a favor', en: 'for', cls: 'sim', mark: '✓' },
+  abst: { pt: 'abstenção', en: 'abstains', cls: 'abst', mark: '–' },
+  nao: { pt: 'contra', en: 'against', cls: 'nao', mark: '✕' },
+};
+
+function ListName({ bloc, seats, mayor }: { bloc: string; seats: number; mayor: boolean }) {
   const { lang } = useT();
-  const blocs = [...new Set(vote.seats.map((x) => x.bloc))];
   return (
-    <div>
-      <div className="hab-seats" role="img" aria-label={lang === 'pt' ? `${vote.yes} votos a favor em 17; eram precisos ${vote.need}` : `${vote.yes} votes in favour of 17; ${vote.need} needed`}>
-        {vote.seats.map((x, i) => (
-          <span key={i} className={`hab-seat${x.yes ? '' : ' no'}`} style={{ background: BLOCS[x.bloc].color, color: x.yes ? '#fff' : BLOCS[x.bloc].color }} title={`${BLOCS[x.bloc].name}: ${pct(x.p)}`}>
-            {x.yes ? '✓' : '✕'}
+    <span className="who">
+      <span className="nm"><i style={{ background: BLOCS[bloc].color }} aria-hidden="true" /><b>{BLOCS[bloc].name}</b></span>
+      <span className="muted sub">{seats} {lang === 'pt' ? (seats === 1 ? 'lugar' : 'lugares') : seats === 1 ? 'seat' : 'seats'}{mayor ? (lang === 'pt' ? ' · presidente' : ' · mayor') : ''}</span>
+    </span>
+  );
+}
+
+/** Each list's likely vote before the meeting, with its reasons. */
+function Stances({ st }: { st: Stance[] }) {
+  const { t, lang } = useT();
+  return (
+    <div className="hab-stances">
+      <table className="hab-table">
+        <thead>
+          <tr><th>{lang === 'pt' ? 'Lista e porquê' : 'List and why'}</th><th className="n">{lang === 'pt' ? 'Voto provável' : 'Likely vote'}</th></tr>
+        </thead>
+        <tbody>
+          {st.map((x) => {
+            const lk = likely(x);
+            return (
+              <tr key={x.bloc}>
+                <td>
+                  <ListName bloc={x.bloc} seats={x.seats} mayor={x.mayor} />
+                  <div className="why">{x.why.slice(0, 3).map((r, i) => <span key={i} className={r.w > 0 ? 'up' : 'down'}>{r.w > 0 ? '+' : '−'} {t(r.label)}</span>)}</div>
+                </td>
+                <td className="n">
+                  <span className="bar3" role="img" aria-label={lang === 'pt' ? `a favor ${pct(x.pYes)}, abstenção ${pct(x.pAbst)}, contra ${pct(x.pNo)}` : `for ${pct(x.pYes)}, abstain ${pct(x.pAbst)}, against ${pct(x.pNo)}`}>
+                    <span className="sim" style={{ width: pct(x.pYes) }} /><span className="abst" style={{ width: pct(x.pAbst) }} /><span className="nao" style={{ width: pct(x.pNo) }} />
+                  </span>
+                  <span className={`lk ${lk.ballot}`}>{BALLOT[lk.ballot][lang]} {pct(lk.p)}</span>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      <div className="hab-seat-legend" aria-hidden="true">
+        {(['sim', 'abst', 'nao'] as Ballot[]).map((b) => <span key={b}><i className={`k ${b}`} />{BALLOT[b][lang]}</span>)}
+        <span className="muted">{lang === 'pt' ? 'Posições: simplificação do jogo.' : 'Positions: a game simplification.'}</span>
+      </div>
+    </div>
+  );
+}
+
+/** The roll call: each list votes as one. */
+function RollCall({ vote }: { vote: NonNullable<Decision['vote']> }) {
+  const { lang } = useT();
+  return (
+    <div className="hab-rollcall" role="table" aria-label={lang === 'pt' ? `Votação: ${vote.yes} a favor, ${vote.abst} abstenções, ${vote.no} contra` : `Vote: ${vote.yes} for, ${vote.abst} abstaining, ${vote.no} against`}>
+      {vote.blocs.map((x) => (
+        <div key={x.bloc} className="row" role="row">
+          <span role="cell"><ListName bloc={x.bloc} seats={x.seats} mayor={x.mayor} /></span>
+          <span role="cell" className="seats">
+            {Array.from({ length: x.seats }, (_, i) => <span key={i} className={`hab-seat ${BALLOT[x.ballot].cls}`} aria-hidden="true">{BALLOT[x.ballot].mark}</span>)}
+            <b className={`lk ${x.ballot}`}>{BALLOT[x.ballot][lang]}</b>
           </span>
-        ))}
-      </div>
-      <div className="hab-seat-probs" aria-hidden="true">{vote.seats.map((x, i) => <span key={i}>{Math.round(x.p * 100)}</span>)}</div>
-      <div className="hab-seat-legend">
-        {blocs.map((b) => <span key={b}><i style={{ background: BLOCS[b].color }} />{BLOCS[b].name}</span>)}
-        <span className="muted">{lang === 'pt' ? 'Números: probabilidade de cada voto a favor, em %.' : 'Numbers: each seat’s chance of a yes, in %.'}</span>
-      </div>
+        </div>
+      ))}
     </div>
   );
 }
@@ -109,7 +172,7 @@ export function PaperDialog({ s, item, onClose }: { s: GameState; item: NewsItem
     <Dialog label={t(item.head)} onClose={onClose} wide>
       <div className="hab-paper" style={{ display: 'grid', gap: 12, margin: -4, padding: 4 }}>
         <div className="mast">
-          <b>O Parecer</b>
+          <b>{item.paper ?? 'O Parecer'}</b>
           <span className="muted">{fmtMonthLong(item.m, lang)}</span>
         </div>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
@@ -183,15 +246,17 @@ export function RulesDialog({ s, onClose }: { s: GameState; onClose: () => void 
           'Prices: INE parish medians (sales per m², rents of new leases), smoothed over three years for the game; after 2025, a scenario of +5% a year for sales and +3% for rents. Construction costs: INE’s index. Euribor: ECB averages. A new home sells above the median (which includes old homes).')}
         {P('Terrenos: o vendedor pede o que sobra depois de custos e margem, por isso só ganha quem compra antes de os preços subirem ou constrói mais depressa. O IVA da construção nova é custo (a venda de casas está isenta); a reabilitação paga 6%.',
           'Land: the seller asks for what is left after costs and margin, so you only win by buying before prices rise or by building faster. VAT on new build is a cost (home sales are exempt); rehabilitation pays 6%.')}
-        {P('Votos: cada vereador vota a favor com uma probabilidade que depende da lista, da oposição ao projeto, das casas a renda acessível, do alojamento local e dos despejos. As inclinações das listas são uma simplificação do jogo, não uma medição do comportamento de ninguém. O número de lugares de cada lista é o resultado oficial.',
-          'Votes: each councillor votes yes with a probability that depends on their list, the opposition to the project, affordable homes, short lets and evictions. The lists’ leanings are a game simplification, not a measurement of anyone’s record. The number of seats per list is the official result.')}
+        {P('Votos: na Câmara, cada lista vota em bloco, a favor, contra ou abstendo-se. Uma proposta passa com mais votos a favor do que contra; as abstenções não contam e, num empate, decide o voto de qualidade do presidente (é a regra real). Antes disso, é o presidente quem faz a ordem de trabalhos: a lista dele só leva a votos o que votaria a favor, os novos executivos levam dois meses a agendar urbanismo e, nos quatro meses antes de eleições, os projetos polémicos ficam na gaveta. Os lugares de cada lista e os acordos (PS–BE em 2017, Chega com a coligação em 2025) são reais; o peso que cada partido dá à renda acessível, aos despejos, ao alojamento local e aos moradores é uma simplificação do jogo, não uma medição do comportamento de ninguém.',
+          'Votes: at the Câmara, each list votes as one, for, against or abstaining. A proposal passes with more votes for than against; abstentions do not count, and a tie goes to the mayor’s casting vote (the real rule). Before that, the mayor sets the agenda: the mayor’s list only tables what it would vote for, a new executive takes two months to schedule planning, and in the four months before an election contested projects stay in the drawer. The seats and the agreements (PS–BE in 2017, Chega with the coalition in 2025) are real; how much each party weighs affordable homes, evictions, short lets and the neighbours is a game simplification, not a measurement of anyone’s record.')}
+        {P('Imprensa: despejos, alojamento local, um antigo vereador na folha de pagamentos, contrapartidas na semana de uma votação ou uma licença pelo silêncio deixam rasto. Um jornal pode pegar nisso: a história custa reputação e, enquanto corre, os vereadores afastam-se do projeto. Responder bem encurta-a; negar o que é verdade pode trazer uma segunda notícia ou um inquérito do Ministério Público. Os jornais e as histórias são inventados; o caso Robles (2018) e o movimento Casa para Viver (2023), que tornam a imprensa mais atenta, são reais.',
+          'The press: evictions, short lets, a former councillor on the payroll, public benefits offered the week of a vote or a licence obtained by the city’s silence leave a trail. A paper may pick it up: the story costs standing and, while it runs, councillors keep their distance from the project. A good answer shortens it; denying what is true can bring a second story or a prosecutor’s inquiry. The papers and the stories are invented; the Robles case (2018) and the Casa para Viver movement (2023), which make the press more watchful, are real.')}
         {P('Oposição: a força dos moradores, do movimento pela habitação e do património em cada freguesia é um juízo editorial. Os terrenos são inventados.',
           'Opposition: the strength of residents, the housing movement and heritage in each parish is an editorial judgement. The sites are invented.')}
       </section>
       <section style={{ display: 'grid', gap: 6, fontSize: 12 }} className="muted">
         <h3 className="kicker">{lang === 'pt' ? 'Fontes' : 'Sources'}</h3>
         <p>INE: {lang === 'pt' ? 'valor mediano das vendas por m² (0010033, 0012255, 0012234), rendas de novos contratos (0009631, 0014698, 0014696), índice de custos de construção de habitação nova (0011748), alojamentos (0012501).' : 'median sale value per m² (0010033, 0012255, 0012234), rents of new leases (0009631, 0014698, 0014696), construction cost index for new housing (0011748), dwellings (0012501).'}</p>
-        <p>{lang === 'pt' ? 'BCE: Euribor a 12 meses. Turismo de Portugal: Registo Nacional de Alojamento Local (contagens). Freguesias: CAOP 2021 (DGT, CC BY 4.0) e Censos 2021 (INE, CC BY 4.0), via população sintética do estimador.pt v1.0.3. Cronologia: 129 acontecimentos datados, cada um com fonte (Diário da República, CML, Assembleia Municipal, imprensa).' : 'ECB: 12-month Euribor. Turismo de Portugal: national short-let register (counts). Parishes: CAOP 2021 (DGT, CC BY 4.0) and 2021 Census (INE, CC BY 4.0), via estimador.pt’s synthetic population v1.0.3. Timeline: 129 dated events, each sourced (Diário da República, the city council, the Municipal Assembly, the press).'}</p>
+        <p>{lang === 'pt' ? 'BCE: Euribor a 12 meses. Turismo de Portugal: Registo Nacional de Alojamento Local (contagens). Freguesias: Censos 2021 (INE, CC BY 4.0), via população sintética do estimador.pt v1.0.3. Mapa: limites da CAOP 2021 (DGT, CC BY 4.0), modificados, e linha de costa © contribuidores do OpenStreetMap (ODbL); a geometria do mapa é distribuída sob a ODbL. Cronologia: 129 acontecimentos datados, cada um com fonte (Diário da República, CML, Assembleia Municipal, imprensa).' : 'ECB: 12-month Euribor. Turismo de Portugal: national short-let register (counts). Parishes: 2021 Census (INE, CC BY 4.0), via estimador.pt’s synthetic population v1.0.3. Map: CAOP 2021 boundaries (DGT, CC BY 4.0), modified, and shoreline © OpenStreetMap contributors (ODbL); the map geometry is distributed under the ODbL. Timeline: 129 dated events, each sourced (Diário da República, the city council, the Municipal Assembly, the press).'}</p>
         <p>{lang === 'pt' ? `Dados de preços até ${Math.floor(LAST_DATA.sale)}; cenário depois (+${pct(SCENARIO.sale)} ao ano).` : `Price data to ${Math.floor(LAST_DATA.sale)}; scenario after (+${pct(SCENARIO.sale)} a year).`}</p>
       </section>
     </Dialog>
@@ -204,6 +269,9 @@ export function CamaraDialog({ s, onClose }: { s: GameState; onClose: () => void
   const { lang } = useT();
   const md = mandateAt(s.month);
   const seats = councilAt(s.month);
+  const election = nextElection(s.month);
+  const press = appetite(s.month);
+  const agreements = AGREEMENTS.filter((a) => s.month >= monthOf(...a.from) && (!a.until || s.month < monthOf(...a.until)));
   const years: number[] = [];
   for (let y = 2015; y <= Math.floor(2015 + s.month / 12); y++) years.push(y);
   const lean = (x: number) => (lang === 'pt' ? (x > 0.4 ? 'aprova quase tudo' : x > 0 ? 'inclinado a aprovar' : x > -0.3 ? 'depende do projeto' : 'desconfiado') : x > 0.4 ? 'approves almost anything' : x > 0 ? 'inclined to approve' : x > -0.3 ? 'depends on the project' : 'sceptical');
@@ -211,7 +279,8 @@ export function CamaraDialog({ s, onClose }: { s: GameState; onClose: () => void
     <Dialog label={lang === 'pt' ? 'Câmara' : 'City Hall'} title={lang === 'pt' ? 'Paços do Concelho' : 'City Hall'} onClose={onClose} wide>
       <section style={{ display: 'grid', gap: 8 }}>
         <h3 className="kicker">{lang === 'pt' ? 'O executivo' : 'The executive'}</h3>
-        <p><strong>{md.mayor}</strong> · {BLOCS[md.mayorBloc].name}. {lang === 'pt' ? md.note.pt : md.note.en}</p>
+        <p><strong>{md.mayor}</strong> · {BLOCS[md.mayorBloc].name}. {lang === 'pt' ? md.note.pt : md.note.en} {lang === 'pt' ? `Urbanismo: ${md.urbanismo}.` : `Planning: ${md.urbanismo}.`}</p>
+        <p className="hab-note">{lang === 'pt' ? 'Uma proposta passa com mais votos a favor do que contra; as abstenções não contam e, num empate, decide o voto de qualidade do presidente. Cada lista vota em bloco.' : 'A proposal passes with more votes for than against; abstentions do not count, and a tie goes to the mayor’s casting vote. Each list votes as one.'}</p>
         <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>{seats.map((x, i) => <span key={i} title={BLOCS[x.bloc].name} style={{ width: 18, height: 18, borderRadius: '50%', background: BLOCS[x.bloc].color, display: 'inline-block' }} />)}</div>
         <table className="hab-table">
           <thead><tr><th>{lang === 'pt' ? 'Lista' : 'List'}</th><th className="n">{lang === 'pt' ? 'Lugares' : 'Seats'}</th><th>{lang === 'pt' ? 'No jogo' : 'In the game'}</th><th>{lang === 'pt' ? 'Sensível a' : 'Moved by'}</th></tr></thead>
@@ -226,7 +295,18 @@ export function CamaraDialog({ s, onClose }: { s: GameState; onClose: () => void
             ))}
           </tbody>
         </table>
-        <p className="hab-note">{lang === 'pt' ? 'Lugares: resultados oficiais. Inclinações: simplificação do jogo.' : 'Seats: official results. Leanings: a game simplification.'}</p>
+        {agreements.length > 0 && <p>{agreements.map((a) => `${BLOCS[a.bloc].name}: ${lang === 'pt' ? a.label.pt : a.label.en}.`).join(' ')}</p>}
+        <p className="hab-note">{lang === 'pt' ? 'Lugares e acordos: factos. Inclinações: simplificação do jogo.' : 'Seats and agreements: facts. Leanings: a game simplification.'}</p>
+      </section>
+      <section style={{ display: 'grid', gap: 8 }}>
+        <h3 className="kicker">{lang === 'pt' ? 'Calendário e imprensa' : 'Calendar and press'}</h3>
+        <dl className="hab-kv">
+          <dt>{lang === 'pt' ? 'Próximas autárquicas' : 'Next local election'}</dt>
+          <dd>{election ? `${fmtMonth(election.m, lang)}${election.months <= PRE_ELECTION ? (lang === 'pt' ? ' · projetos polémicos na gaveta' : ' · contested projects on hold') : ''}` : '—'}</dd>
+          <dt>{lang === 'pt' ? 'Histórias sobre ti' : 'Stories about you'}</dt>
+          <dd>{s.stats.stories}{s.stats.inquiries ? (lang === 'pt' ? ` · ${s.stats.inquiries} inquérito(s)` : ` · ${s.stats.inquiries} inquiry(ies)`) : ''}</dd>
+        </dl>
+        {press.why.map((w, i) => <p key={i} className="hab-note">{lang === 'pt' ? w.pt : w.en}</p>)}
       </section>
       <section style={{ display: 'grid', gap: 8 }}>
         <h3 className="kicker">{lang === 'pt' ? 'Mandatos' : 'Terms'}</h3>

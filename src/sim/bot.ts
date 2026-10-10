@@ -33,6 +33,15 @@ function bestProgram(s: GameState, siteId: string, strategy: Strategy): { prog: 
   return best;
 }
 
+/** The first deal on offer whose terms still leave the margin the bank wants. */
+function sensibleDeal(d: Decision, ok: Decision['options']): string | undefined {
+  return ok.find((o) => {
+    if (!o.key.startsWith('deal:')) return false;
+    const m = Number(d.data?.[`m_${o.key.slice(5)}`] ?? 1);
+    return m >= Number(d.data?.required ?? 0) - 0.01;
+  })?.key;
+}
+
 function choose(s: GameState, d: Decision, strategy: Strategy): string {
   const open = d.options.filter((o) => !o.disabled);
   const affordable = open.filter((o) => (o.costM ?? 0) <= s.cash + 0.5);
@@ -41,8 +50,10 @@ function choose(s: GameState, d: Decision, strategy: Strategy): string {
   switch (d.kind) {
     case 'camara': {
       const pd = d.odds?.[1]?.p ?? 0, pa = d.odds?.[0]?.p ?? 0;
-      return (pd > pa + 0.05 && has('deal')) || has('votar') || ok[0].key;
+      return (pd > pa + 0.05 && sensibleDeal(d, ok)) || has('votar') || ok[0].key;
     }
+    case 'agenda': return sensibleDeal(d, ok) || has('esperar') || ok[0].key;
+    case 'hold': return has('esperar') || ok[0].key;
     case 'tenants': return (strategy === 'denso' ? has('despejo') : has('negociar')) || ok[0].key;
     case 'pencil': return has('ve') || has('esperar') || ok[0].key;
     case 'capital': return has('socio') || has('esperar') || ok[0].key;
@@ -54,7 +65,16 @@ function choose(s: GameState, d: Decision, strategy: Strategy): string {
     case 'vote': return has('voltar') || ok[0].key;
     case 'annulled': return has('refazer') || ok[0].key;
     case 'card:fundo': return has('recusar') || ok[0].key;
-    default: return ok[0]?.key ?? d.options[0].key;
+    default:
+      // Stories: the dense player stands firm; the others answer, but only the affordable
+      // player gives up homes or margin to make a story go away.
+      if (d.kind.startsWith('story:')) {
+        if (strategy === 'denso') return has('calar') || has('manter') || has('defender') || ok[0].key;
+        const changes = ['acessivel', 'cortar', 'desistir'];
+        const pickable = strategy === 'acessivel' ? ok : ok.filter((o) => !changes.includes(o.key));
+        return pickable[0]?.key ?? ok[0].key;
+      }
+      return ok[0]?.key ?? d.options[0].key;
   }
 }
 

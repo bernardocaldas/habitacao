@@ -16,7 +16,7 @@ export interface Forecast {
 }
 
 const DEFAULT: Record<string, string[]> = {
-  pip: ['avancar'], heritage: ['aceitar'], refused: ['rever'], tacit: ['esperar'], camara: ['votar'],
+  pip: ['avancar'], heritage: ['aceitar'], refused: ['rever'], tacit: ['esperar'], camara: ['votar'], agenda: ['esperar'], hold: ['esperar'],
   vote: ['ok', 'voltar'], suit: ['tribunal'], annulled: ['refazer'], tenants: ['negociar'],
   pencil: ['esperar'], capital: ['esperar'],
 };

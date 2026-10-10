@@ -6,11 +6,12 @@ import { TIMELINE, UNMATCHED_EFFECTS } from '../data/timeline';
 import { SITES } from '../data/sites';
 import { autoplay } from './bot';
 import { landPrice, proForma, unitsOf } from './econ';
-import type { Program } from './types';
+import type { Program, Stance } from './types';
 import { councilAt, rulesAt } from './rules';
 import { defaultProgram, newGame, preview, fileProject, tick, resolve } from './sim';
 import { END_MONTH, monthOf } from './time';
-import { passProb } from './votes';
+import { PAPERS, pressMonth } from './press';
+import { agendaHold, passProb, stances } from './votes';
 
 type Ring = number[][];
 function inside(x: number, y: number, ring: Ring) {
@@ -56,11 +57,94 @@ describe('data', () => {
 });
 
 describe('votes', () => {
-  it('computes the chance of a majority exactly', () => {
-    expect(passProb(new Array(17).fill(1), 9)).toBeCloseTo(1);
-    expect(passProb(new Array(17).fill(0), 9)).toBeCloseTo(0);
-    expect(passProb(new Array(17).fill(0.5), 9)).toBeCloseTo(0.5);
-    expect(passProb([0.5, 0.5], 1)).toBeCloseTo(0.75);
+  const st = (bloc: string, seats: number, pYes: number, pAbst: number, mayor = false): Stance => ({ bloc, seats, mayor, x: 0, pYes, pAbst, pNo: 1 - pYes - pAbst, why: [] });
+
+  it('passes with more yes than no; abstentions do not count; the mayor breaks a tie', () => {
+    expect(passProb([st('a', 7, 1, 0, true), st('b', 10, 0, 1)])).toBeCloseTo(1);
+    expect(passProb([st('a', 7, 1, 0, true), st('b', 10, 0, 0)])).toBeCloseTo(0);
+    expect(passProb([st('a', 8, 1, 0, true), st('b', 8, 0, 0), st('c', 1, 0, 1)])).toBeCloseTo(1);
+    expect(passProb([st('a', 9, 0, 1, true), st('b', 4, 1, 0), st('c', 4, 0, 0)])).toBeCloseTo(0);
+    expect(passProb([st('a', 7, 1, 0, true), st('b', 7, 0, 0), st('c', 3, 0.5, 0.5)])).toBeCloseTo(1);
+    expect(passProb([st('a', 7, 1, 0, true), st('b', 10, 0.5, 0)])).toBeCloseTo(0.5);
+    expect(passProb([st('a', 7, 0.5, 0.5, true), st('b', 10, 0, 1)])).toBeCloseTo(0.5);
+  });
+
+  const project = (y: number, mo: number, id: string, prog: Partial<Program> = {}) => {
+    const s = newGame(3);
+    s.month = monthOf(y, mo);
+    const site = SITES.find((x) => x.id === id)!;
+    const p = fileProject(s, site.id, { ...defaultProgram(site), ...prog })!;
+    return { s, p };
+  };
+
+  it('lets every list vote as one, seats adding to 17', () => {
+    for (const md of MANDATES) {
+      const { s, p } = project(Math.max(2015, md.from[0]), md.from[1] + 0, 'arroios-garagem');
+      expect(stances(s, p).reduce((a, x) => a + x.seats, 0)).toBe(17);
+      expect(stances(s, p).filter((x) => x.mayor)).toHaveLength(1);
+    }
+  });
+
+  it('makes an absolute majority easy and a minority executive need the opposition', () => {
+    const a = project(2016, 6, 'arroios-garagem');
+    expect(passProb(stances(a.s, a.p))).toBeGreaterThan(0.9);
+    const b = project(2023, 6, 'arroios-garagem');
+    const plain = passProb(stances(b.s, b.p));
+    const aff = passProb(stances(b.s, b.p, { aff: 0.25 }));
+    const deal = passProb(stances(b.s, b.p, { deals: ['pl'] }));
+    expect(plain).toBeLessThan(0.9);
+    expect(aff).toBeGreaterThan(plain);
+    expect(deal).toBeGreaterThan(plain + 0.1);
+  });
+
+  it('keeps contested projects off the agenda before an election and while a new executive settles', () => {
+    const { s, p } = project(2025, 7, 'arroios-garagem', { scheme: 'plano', floors: 12 });
+    p.mult = { viz: 2, hab: 2 };
+    const hold = agendaHold(s, p);
+    expect(hold?.kind).toBe('election');
+    if (hold?.kind === 'election') expect(hold.until).toBe(monthOf(2025, 11) + 2);
+    const n = project(2021, 11, 'arroios-garagem');
+    expect(agendaHold(n.s, n.p)?.kind).toBe('new');
+  });
+
+  it('turns councillors away from a project in the news', () => {
+    const { s, p } = project(2023, 6, 'arroios-garagem');
+    const before = passProb(stances(s, p));
+    p.story = { kind: 'despejo', m: s.month, until: s.month + 6, sev: 1 };
+    expect(passProb(stances(s, p))).toBeLessThan(before - 0.1);
+  });
+});
+
+describe('press', () => {
+  it('runs a story about evictions, from an invented paper, and lets you answer it', () => {
+    const s = newGame(11);
+    s.month = monthOf(2019, 1);
+    const site = SITES.find((x) => x.tenants)!;
+    const p = fileProject(s, site.id, defaultProgram(site))!;
+    p.once.evicted = true;
+    p.vars.evictedM = s.month;
+    let d;
+    for (let i = 0; i < 36 && !d; i++) {
+      s.month++;
+      pressMonth(s);
+      d = s.decisions.find((x) => x.kind.startsWith('story:'));
+    }
+    expect(d?.kind).toBe('story:despejo');
+    expect(Object.values(PAPERS)).toContain(d!.press!.paper);
+    expect(p.story).toBeDefined();
+    expect(s.news.at(-1)?.paper).toBe(d!.press!.paper);
+    const sev = p.story!.sev;
+    s.cash = 10;
+    resolve(s, d!.id, 'realojar');
+    expect(p.story!.sev).toBeLessThan(sev);
+  });
+
+  it('never runs the same story twice about one project', () => {
+    for (let seed = 1; seed <= 6; seed++) {
+      const g = autoplay(seed, 'denso');
+      const kinds = g.news.filter((n) => n.paper && n.project != null).map((n) => `${n.project}|${n.head.pt}`);
+      expect(new Set(kinds).size).toBe(kinds.length);
+    }
   });
 });
 

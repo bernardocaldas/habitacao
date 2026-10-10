@@ -16,13 +16,14 @@ import { chance, makeRng, rand, randInt } from './rng';
 import { mandateAt, rulesAt } from './rules';
 import { END_MONTH, fmtMonth, monthOf, yearOf } from './time';
 import type {
-  Decision, Difficulty, GameState, L, LogItem, NewsItem, Option, Program, Project, Rules, Scheme, Site, Stage,
+  Decision, Difficulty, GameState, L, LogItem, NewsItem, Option, Program, Project, Rules, Scheme, Site, Stage, Stance,
 } from './types';
 import { LIVE, PRE_CONSTRUCTION } from './types';
-import { NEED, assembleiaProb, castVote, passProb, seatOdds, type VoteContext } from './votes';
+import { pressMonth, resolveStory, stepInquiry } from './press';
+import { agendaHold, assembleiaProb, castVote, passProb, stances, type VoteContext } from './votes';
 import { politicalWeather, resolveCard } from './weather';
 
-export const SAVE_VERSION = 1;
+export const SAVE_VERSION = 2;
 export const START_TEAMS = 3;
 export const MAX_TEAMS = 6;
 export const TEAM_COST = 0.4;
@@ -53,9 +54,10 @@ export function newGame(seed: number, difficulty: Difficulty = 'normal'): GameSt
     log: [],
     review: { i: 0, strikes: 0, passed: 0 },
     weather: { next: 9, last: {} },
+    press: { next: 8 },
     stats: {
       homes: 0, aff: 0, rental: 0, al: 0, completed: 0, killed: 0, sold: 0, lawsuits: 0, asks: 0,
-      votesWon: 0, votesLost: 0, monthsToKeys: [], unitsLost: 0, byYear: {},
+      votesWon: 0, votesLost: 0, stories: 0, inquiries: 0, monthsToKeys: [], unitsLost: 0, byYear: {},
     },
     seen: {},
   };
@@ -155,6 +157,8 @@ export interface Preview {
   depositM: number;
   landM: number;
   camaraP?: number;
+  /** How each list would vote on it today. */
+  camara?: Stance[];
   canFile: boolean;
   why?: L;
 }
@@ -171,9 +175,10 @@ export function preview(s: GameState, siteId: string, prog0: Program): Preview {
   const steps = stepsFor(site, prog, path, rules);
   const depositM = depositFor(site, landM);
   let camaraP: number | undefined;
+  let camara: Stance[] | undefined;
   if (path.camara) {
-    const ghost = ghostProject(s, site, prog, path, units, landM);
-    camaraP = passProb(seatOdds(s, ghost).map((x) => x.p), NEED);
+    camara = stances(s, ghostProject(s, site, prog, path, units, landM));
+    camaraP = passProb(camara);
   }
   let canFile = true;
   let why: L | undefined;
@@ -181,7 +186,7 @@ export function preview(s: GameState, siteId: string, prog0: Program): Preview {
   else if (teamsBusy(s) >= s.teams) { canFile = false; why = T('Todas as equipas estão ocupadas.', 'Every team is busy.'); }
   else if (s.cash < depositM) { canFile = false; why = T('Não tens dinheiro para o sinal.', 'You cannot pay the deposit.'); }
   else if (site.mega && s.stats.completed < 1) { canFile = false; why = T('O fundo só entra num bairro inteiro depois de acabares um projeto.', 'The fund only backs a whole district once you have finished a project.'); }
-  return { units, affUnits: pf.affUnits, pf, heat, path, steps, depositM, landM, camaraP, canFile, why };
+  return { units, affUnits: pf.affUnits, pf, heat, path, steps, depositM, landM, camaraP, camara, canFile, why };
 }
 
 function ghostProject(s: GameState, site: Site, prog: Program, path: Project['path'], units: number, landM: number): Project {
@@ -389,6 +394,7 @@ export function stepProject(s: GameState, p: Project) {
     s.cash -= c;
     p.spent += c;
   }
+  stepInquiry(s, p);
   if (p.suit) {
     p.suit.left--;
     if (p.suit.left <= 0) { settleSuit(s, p); return; }
@@ -612,76 +618,169 @@ function tacitDecision(s: GameState, p: Project) {
 // ---------------------------------------------------------------------------------------------
 // The Câmara
 
-/** What the angriest group asks for before the vote. */
-function dealFor(s: GameState, p: Project): { kind: 'aff' | 'floors' | 'cash'; aff?: number; floors?: number } {
-  const site = SITES_BY_ID[p.site];
-  const h = heatFor(site, p.prog, p.units, s.standing, p.mult);
-  const fr = FREGUESIAS[site.fr];
-  if (h.hab >= h.viz && !site.municipal && p.prog.aff < 0.5) return { kind: 'aff', aff: p.prog.aff < 0.25 ? 0.25 : 0.5 };
-  if (p.prog.floors > Math.max(fr.ctx, 2) && site.kind !== 'reab') return { kind: 'floors', floors: p.prog.floors - 1 };
-  return { kind: 'cash' };
-}
-
-const oppositionBlocs = (s: GameState) => {
-  const md = mandateAt(s.month);
-  return Object.keys(md.seats).filter((b) => b !== md.mayorBloc);
-};
-
 export function contrapartidas(p: Project) {
   return round2(0.25 + p.units * 0.004);
 }
 
-function camaraDecision(s: GameState, p: Project) {
-  const deal = dealFor(s, p);
-  const opp = oppositionBlocs(s);
-  const ctxDeal: VoteContext = { boost: 0.35, with: opp, aff: deal.aff, floors: deal.floors };
-  const ctxCash: VoteContext = { boost: 0.3 };
-  const pAs = passProb(seatOdds(s, p).map((x) => x.p), NEED);
-  const pDeal = passProb(seatOdds(s, p, ctxDeal).map((x) => x.p), NEED);
-  const pCash = passProb(seatOdds(s, p, ctxCash).map((x) => x.p), NEED);
+interface Ask { bloc: string; kind: 'aff' | 'floors' | 'al' | 'cash'; aff?: number; floors?: number; costM?: number; label: L }
+
+/** What one list asks for its support: its own priorities, in order. */
+function askOf(p: Project, st: Stance): Ask {
+  const site = SITES_BY_ID[p.site];
+  const fr = FREGUESIAS[site.fr];
+  const b = BLOCS[st.bloc];
+  const with_ = (pt: string, en: string) => T(`Acordo com ${b.name}: ${pt}`, `Deal with ${b.name}: ${en}`);
+  if (p.prog.exit === 'al' && b.al >= 0.3) return { bloc: b.key, kind: 'al', label: with_('nada de alojamento local, as casas vão para venda', 'no short lets, the homes are sold') };
+  const target = b.aff >= 1.2 ? 0.5 : 0.25;
+  if (b.aff >= 0.6 && !site.municipal && p.prog.aff < target) {
+    const aff = p.prog.aff < 0.25 ? 0.25 : target;
+    return { bloc: b.key, kind: 'aff', aff, label: with_(`${pct(aff)} das casas a renda acessível`, `${pct(aff)} of the homes affordable`) };
+  }
+  if (b.local >= 0.5 && p.prog.floors > Math.max(fr.ctx, 2) && site.kind !== 'reab') {
+    return { bloc: b.key, kind: 'floors', floors: p.prog.floors - 1, label: with_(`um piso a menos (${p.prog.floors - 1})`, `one floor fewer (${p.prog.floors - 1})`) };
+  }
+  return { bloc: b.key, kind: 'cash', costM: round2(contrapartidas(p) * 0.5), label: with_('uma obra no bairro que os seus vereadores pedem', 'a local project its councillors ask for') };
+}
+
+const dealCtx = (a: Ask): VoteContext => ({ deals: [a.bloc], aff: a.aff, floors: a.floors, exit: a.kind === 'al' ? 'venda' : undefined });
+
+/** The margin the bank would see today if the deal's terms were in the licence. */
+function dealMargin(s: GameState, p: Project, a: Ask) {
+  const site = SITES_BY_ID[p.site];
+  const prog = { ...p.prog, aff: a.aff ?? p.prog.aff, floors: a.floors ?? p.prog.floors, exit: a.kind === 'al' ? 'venda' as const : p.prog.exit };
+  const after = financingPf(s, { ...p, prog, units: unitsOf(site, prog.floors) });
+  return { before: financingPf(s, p).margin, after: after.margin, required: after.required };
+}
+
+const dealData = (s: GameState, p: Project, a: Ask) => {
+  const m = dealMargin(s, p, a);
+  return { [`k_${a.bloc}`]: a.kind, [`a_${a.bloc}`]: a.aff ?? -1, [`f_${a.bloc}`]: a.floors ?? -1, [`m_${a.bloc}`]: m.after, required: m.required };
+};
+
+function dealHint(s: GameState, p: Project, a: Ask, pass: number): L {
+  if (a.kind === 'cash') return chanceHint(pass);
+  const m = dealMargin(s, p, a);
+  return T(`${chanceHint(pass).pt}. Margem prevista: ${pct(m.before)} → ${pct(m.after)} (o banco pede ${pct(m.required)}).`,
+    `${chanceHint(pass).en}. Expected margin: ${pct(m.before)} → ${pct(m.after)} (the bank wants ${pct(m.required)}).`);
+}
+
+function applyDeal(s: GameState, p: Project, d: Decision, bloc: string) {
+  const kind = String(d.data?.[`k_${bloc}`]);
+  if (kind === 'aff') reprogram(s, p, { ...p.prog, aff: Number(d.data?.[`a_${bloc}`]) });
+  if (kind === 'floors') cutFloors(s, p, Number(d.data?.[`f_${bloc}`]));
+  if (kind === 'al') reprogram(s, p, { ...p.prog, exit: 'venda' });
+  log(s, inNamed(p, `acordo com ${BLOCS[bloc].name} antes da votação.`, `a deal with ${BLOCS[bloc].name} before the vote.`), p.id);
+}
+
+const chanceHint = (x: number) => T(`Probabilidade de aprovação: ${pct(x)}`, `Chance of approval: ${pct(x)}`);
+
+/** The rule, and what it means for this executive. */
+function camaraLines(s: GameState): L[] {
   const md = mandateAt(s.month);
-  const dealLabel: L = deal.kind === 'aff'
-    ? T(`Aceitar ${Math.round((deal.aff ?? 0) * 100)}% de renda acessível`, `Accept ${Math.round((deal.aff ?? 0) * 100)}% affordable homes`)
-    : deal.kind === 'floors'
-      ? T(`Aceitar cortar um piso (${deal.floors})`, `Accept losing a floor (${deal.floors})`)
-      : T('Aceitar mais cedências para espaço público', 'Accept giving more land to public space');
+  const n = md.seats[md.mayorBloc];
+  const list = BLOCS[md.mayorBloc].name;
+  return [
+    T(`${md.mayor} (${list}) preside. Uma proposta passa com mais votos a favor do que contra: as abstenções não contam e, num empate, decide o voto de qualidade do presidente.`,
+      `${md.mayor} (${list}) chairs. A proposal passes with more votes for than against: abstentions do not count, and a tie goes to the mayor’s casting vote.`),
+    n >= 9
+      ? T(`A lista do presidente tem ${n} dos 17 lugares: se votar a favor, passa.`, `The mayor’s list holds ${n} of the 17 seats: if it votes yes, it passes.`)
+      : T(`A lista do presidente tem ${n} dos 17 lugares: precisa que a oposição se abstenha ou vote a favor.`, `The mayor’s list holds ${n} of the 17 seats: it needs the opposition to abstain or vote yes.`),
+  ];
+}
+
+const RULE_REAL = T(
+  'As deliberações da Câmara tomam-se por maioria dos votos: as abstenções não contam e o presidente tem voto de qualidade em caso de empate. Já no mandato iniciado em 2025, um loteamento municipal de 243 casas no Alto do Lumiar foi aprovado com votos contra do Livre e do BE, abstenção do PS e do PCP e votos a favor do Chega e da coligação.',
+  'Council decisions are taken by a majority of votes cast: abstentions do not count and the mayor has the casting vote on a tie. In the term that began in 2025, a city allotment of 243 homes in Alto do Lumiar passed with Livre and BE against, PS and PCP abstaining, and Chega and the coalition in favour.',
+);
+
+function camaraDecision(s: GameState, p: Project) {
+  const st = stances(s, p);
+  const hold = agendaHold(s, p, st);
+  if (hold && hold.kind !== 'executive') {
+    p.left = Math.max(1, hold.until - s.month);
+    p.vars.holdUntil = hold.until;
+    if (hold.kind === 'new') {
+      log(s, inNamed(p, `o novo executivo ainda não agenda votações de urbanismo (até ${fmtMonth(hold.until, 'pt')}).`, `the new executive is not yet scheduling planning votes (until ${fmtMonth(hold.until, 'en')}).`), p.id);
+      return;
+    }
+    decide(s, {
+      kind: 'hold', project: p.id, tone: 'bad',
+      title: T('Fica para depois das eleições', 'It waits until after the election'),
+      lines: [
+        T(`Há eleições autárquicas em ${fmtMonth(hold.election, 'pt')}. Com moradores e ativistas contra, nenhum executivo leva este projeto a votos agora.`, `There are local elections in ${fmtMonth(hold.election, 'en')}. With residents and activists against it, no executive will table this project now.`),
+        T(`Volta à ordem de trabalhos quando o novo executivo se instalar, por volta de ${fmtMonth(hold.until, 'pt')}. Até lá, pagas os custos de ter a equipa à espera.`, `It returns to the agenda once the new executive settles in, around ${fmtMonth(hold.until, 'en')}. Until then, you pay for a team that waits.`),
+      ],
+      options: [
+        { key: 'esperar', label: T('Esperar', 'Wait') },
+        { key: 'desistir', label: T('Desistir', 'Walk away') },
+      ],
+    });
+    return;
+  }
+  p.vars.holdUntil = -1;
+  if (hold?.kind === 'executive') return executiveDecision(s, p, st);
+
+  const pAs = passProb(st);
+  const deals = st.filter((x) => !x.mayor).map((x) => askOf(p, x))
+    .map((a) => ({ a, p: passProb(stances(s, p, dealCtx(a))) }))
+    .filter((x) => x.p > pAs + 0.03)
+    .sort((a, b) => b.p - a.p)
+    .slice(0, 2);
+  const pBen = passProb(stances(s, p, { benefits: true }));
   const options: Option[] = [
-    { key: 'deal', label: dealLabel, hint: T(`Probabilidade de aprovação: ${pct(pDeal)}`, `Chance of approval: ${pct(pDeal)}`), costM: deal.kind === 'cash' ? round2(contrapartidas(p) * 0.6) : undefined },
-    { key: 'cash', label: T('Oferecer contrapartidas (equipamento, espaço público)', 'Offer public benefits (a facility, public space)'), costM: contrapartidas(p), hint: T(`Probabilidade de aprovação: ${pct(pCash)}`, `Chance of approval: ${pct(pCash)}`) },
-    { key: 'votar', label: T('Ir a votos assim', 'Go to the vote as is'), hint: T(`Probabilidade de aprovação: ${pct(pAs)}`, `Chance of approval: ${pct(pAs)}`) },
+    { key: 'votar', label: T('Ir a votos assim', 'Go to the vote as is'), hint: chanceHint(pAs) },
+    ...deals.map((x) => ({ key: `deal:${x.a.bloc}`, label: x.a.label, costM: x.a.costM, hint: dealHint(s, p, x.a, x.p) })),
+    { key: 'cash', label: T('Oferecer contrapartidas ao bairro (equipamento, espaço público)', 'Offer public benefits (a facility, public space)'), costM: contrapartidas(p), hint: T(`${chanceHint(pBen).pt}. Pode parecer troca de favores.`, `${chanceHint(pBen).en}. It may look like trading favours.`) },
     { key: 'adiar', label: T('Retirar da ordem de trabalhos e negociar', 'Pull it from the agenda and negotiate'), hint: T('Mais 2 meses; acalma os ânimos.', '2 more months; cools tempers.'), disabled: !!p.once.adiado },
   ];
   decide(s, {
-    kind: 'camara', project: p.id, tone: 'neutral', data: { kind: deal.kind, aff: deal.aff ?? -1, floors: deal.floors ?? -1 },
+    kind: 'camara', project: p.id, tone: 'neutral', data: Object.assign({}, ...deals.map((x) => dealData(s, p, x.a))),
     title: T('Vai à reunião de Câmara', 'Up for a Câmara vote'),
-    lines: [
-      T(`${md.mayor} (${BLOCS[md.mayorBloc].name}) preside a uma Câmara de 17. São precisos 9 votos.`, `${md.mayor} (${BLOCS[md.mayorBloc].name}) chairs a Câmara of 17. It takes 9 votes.`),
-      deal.kind === 'aff'
-        ? T('A oposição diz que vota a favor se houver mais casas a renda acessível.', 'The opposition says it will vote yes with more affordable homes.')
-        : deal.kind === 'floors'
-          ? T('A junta de freguesia e os moradores querem um piso a menos.', 'The parish council and the residents want one floor fewer.')
-          : T('Os vereadores pedem contrapartidas para o bairro.', 'Councillors want something for the neighbourhood.'),
-    ],
-    odds: [
-      { label: T('Aprovação, assim', 'Approval, as is'), p: pAs },
-      { label: T('Aprovação, com o acordo', 'Approval, with the deal'), p: pDeal },
-    ],
+    lines: camaraLines(s),
+    stances: st,
+    odds: [{ label: T('Aprovação, assim', 'Approval, as is'), p: pAs }, ...(deals[0] ? [{ label: T('Aprovação, com o melhor acordo', 'Approval, with the best deal'), p: deals[0].p }] : [])],
+    real: RULE_REAL,
     options,
   });
 }
 
+/** The mayor's own list would not vote for it, so it does not reach the table. */
+function executiveDecision(s: GameState, p: Project, st: Stance[]) {
+  const mine = st.find((x) => x.mayor)!;
+  const ask = askOf(p, mine);
+  const after = stances(s, p, dealCtx(ask));
+  const tabled = (after.find((x) => x.mayor)?.pYes ?? 0) >= 0.5;
+  const reasons = mine.why.filter((x) => x.w < 0).map((x) => x.label);
+  decide(s, {
+    kind: 'agenda', project: p.id, tone: 'bad', data: dealData(s, p, ask),
+    title: T('O executivo não leva o projeto a votos', 'The executive will not table the project'),
+    lines: [
+      T(`É o presidente quem faz a ordem de trabalhos, e a lista dele (${BLOCS[mine.bloc].name}) não votaria a favor${reasons.length ? `: ${reasons.map((r) => r.pt).join(', ')}` : ''}.`,
+        `The mayor sets the agenda, and the mayor’s list (${BLOCS[mine.bloc].name}) would not vote for it${reasons.length ? `: ${reasons.map((r) => r.en).join(', ')}` : ''}.`),
+    ],
+    stances: st,
+    options: [
+      { key: `deal:${ask.bloc}`, label: ask.label, costM: ask.costM, disabled: !tabled, hint: tabled ? dealHint(s, p, ask, passProb(after)) : T('Nem assim chega.', 'Not even that is enough.') },
+      { key: 'esperar', label: T('Esperar que o ambiente mude', 'Wait for the mood to change'), hint: T('Mais 3 meses; as histórias esquecem-se, os ânimos acalmam.', '3 more months; stories fade, tempers cool.') },
+      { key: 'desistir', label: T('Desistir', 'Walk away') },
+    ],
+  });
+}
+
 function runVote(s: GameState, p: Project, ctx: VoteContext) {
-  const vote = castVote(s.rng, seatOdds(s, p, ctx));
+  const st = stances(s, p, ctx);
+  const vote = castVote(s.rng, st);
   let assembleiaOk = true;
-  const lines: L[] = [T(`${vote.yes} votos a favor, ${17 - vote.yes} contra ou abstenções.`, `${vote.yes} in favour, ${17 - vote.yes} against or abstaining.`)];
+  const lines: L[] = [T(`${vote.yes} a favor, ${vote.abst} ${vote.abst === 1 ? 'abstenção' : 'abstenções'}, ${vote.no} contra.`, `${vote.yes} for, ${vote.abst} ${vote.abst === 1 ? 'abstention' : 'abstentions'}, ${vote.no} against.`)];
+  if (vote.casting) lines.push(T('Empate: decidiu o voto de qualidade do presidente.', 'A tie: the mayor’s casting vote decided it.'));
   if (vote.passed && p.path.assembleia) {
-    const pa = assembleiaProb(passProb(seatOdds(s, p, ctx).map((x) => x.p), NEED));
-    assembleiaOk = chance(s.rng, pa);
+    assembleiaOk = chance(s.rng, assembleiaProb(passProb(st)));
     lines.push(assembleiaOk
       ? T('A Assembleia Municipal aprovou o plano.', 'The Municipal Assembly approved the plan.')
       : T('A Assembleia Municipal chumbou o plano.', 'The Municipal Assembly voted the plan down.'));
   }
   const passed = vote.passed && assembleiaOk;
+  if (passed && ctx.benefits) { p.once.cash = true; p.vars.cashM = s.month; }
   if (passed) s.stats.votesWon++; else s.stats.votesLost++;
   decide(s, {
     kind: 'vote', project: p.id, tone: passed ? 'good' : 'bad', vote, data: { passed },
@@ -810,6 +909,10 @@ export function financingPf(s: GameState, p: Project): ProForma {
 
 function financing(s: GameState, p: Project) {
   if (p.suit) return; // lenders wait for the ruling
+  if (p.inquiry) {
+    if (!p.once.inqBank) { p.once.inqBank = true; log(s, inNamed(p, 'com um inquérito aberto, o banco não assina.', 'with an inquiry open, the bank will not sign.'), p.id, 'bad'); }
+    return;
+  }
   if (p.finWait && p.finWait > 0) { p.finWait--; return; }
   const site = SITES_BY_ID[p.site];
   const pf = financingPf(s, p);
@@ -948,6 +1051,7 @@ export function resolve(s: GameState, id: number, key: string) {
   const p = d.project != null ? projectById(s, d.project) : undefined;
   if (p && opt.costM) p.spent += opt.costM;
   if (d.kind.startsWith('card:')) return resolveCard(s, d, key);
+  if (d.kind.startsWith('story:')) return resolveStory(s, d, key);
   if (d.kind === 'review' || d.kind === 'info') return;
   if (!p || !isLive(p)) return;
   const site = SITES_BY_ID[p.site];
@@ -984,22 +1088,27 @@ export function resolve(s: GameState, id: number, key: string) {
         proceed(s, p);
       }
       return;
-    case 'camara': {
-      const kind = String(d.data?.kind);
+    case 'camara':
+    case 'agenda': {
       if (key === 'adiar') {
         p.once.adiado = true;
         p.mult.viz *= 0.9; p.mult.hab *= 0.9; s.standing = clamp(s.standing + 1, 0, 100);
         p.left = 2;
         return;
       }
-      if (key === 'deal') {
-        if (kind === 'aff') reprogram(s, p, { ...p.prog, aff: Number(d.data?.aff) });
-        if (kind === 'floors') cutFloors(s, p, Number(d.data?.floors));
-        return runVote(s, p, { boost: 0.35, with: oppositionBlocs(s) });
+      if (key === 'esperar') { p.mult.viz *= 0.92; p.mult.hab *= 0.92; p.left = 3; return; }
+      if (key === 'desistir') return kill(s, p, T('o executivo nunca o levou a votos.', 'the executive never tabled it.'));
+      if (key.startsWith('deal:')) {
+        const bloc = key.slice(5);
+        applyDeal(s, p, d, bloc);
+        return runVote(s, p, { deals: [bloc] });
       }
-      if (key === 'cash') return runVote(s, p, { boost: 0.3 });
+      if (key === 'cash') return runVote(s, p, { benefits: true });
       return runVote(s, p, {});
     }
+    case 'hold':
+      if (key === 'desistir') kill(s, p, T('cansaste-te de esperar pelas eleições.', 'you tired of waiting for the election.'));
+      return;
     case 'vote':
       if (d.data?.passed) return proceed(s, p);
       if (key === 'voltar') {
@@ -1035,6 +1144,7 @@ export function resolve(s: GameState, id: number, key: string) {
       if (key === 'negociar') { p.mult.hab *= 0.85; p.left += 3; }
       else if (key === 'despejo') {
         p.once.evicted = true;
+        p.vars.evictedM = s.month;
         p.mult.hab *= 1.6;
         s.standing = clamp(s.standing - 6, 0, 100);
         news(s, { head: T(`Despejos em ${fr.name}: ${n} famílias recebem cartas para sair`, `Evictions in ${fr.name}: ${n} households told to leave`), real: false, project: p.id });
@@ -1073,7 +1183,7 @@ export function resolve(s: GameState, id: number, key: string) {
   }
 }
 
-function reprogram(s: GameState, p: Project, prog: Program) {
+export function reprogram(s: GameState, p: Project, prog: Program) {
   const site = SITES_BY_ID[p.site];
   const before = p.units;
   p.prog = prog;
@@ -1082,7 +1192,7 @@ function reprogram(s: GameState, p: Project, prog: Program) {
   if (p.units < before) s.stats.unitsLost += before - p.units;
 }
 
-function cutFloors(s: GameState, p: Project, floors: number) {
+export function cutFloors(s: GameState, p: Project, floors: number) {
   if (floors >= p.prog.floors) return;
   reprogram(s, p, { ...p.prog, floors });
 }
@@ -1105,7 +1215,8 @@ export function tick(s: GameState) {
 
   for (const p of s.projects) if (isLive(p)) stepProject(s, p);
 
-  politicalWeather(s);
+  pressMonth(s);
+  if (!s.decisions.some((d) => d.kind.startsWith('story:'))) politicalWeather(s);
   investorReview(s);
   if (s.cash < DEBT_LIMIT) {
     s.over = { kind: 'broke', m: s.month };

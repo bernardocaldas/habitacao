@@ -1,19 +1,21 @@
 // The right-hand column: a site and the proposal you could file there, a project and where
 // it stands, or, with nothing selected, the city.
-import { useMemo, useState } from 'react';
+import { Fragment, useMemo, useState } from 'react';
 import { FREGUESIAS } from '../data/freguesias';
-import { BLOCS } from '../data/politics';
+import { AGREEMENTS, BLOCS, PRE_ELECTION } from '../data/politics';
 import { AL_COUNTS, PROVENANCE_LABEL, lisboaPriceM2, rawPrice } from '../data/precos';
 import { SITES_BY_ID } from '../data/sites';
 import { econAt, keepsBuilding } from '../sim/econ';
 import { forecastProject, forecastProposal, type Forecast } from '../sim/forecast';
 import { heatFor, heatLevel } from '../sim/heat';
+import { paperOf } from '../sim/press';
 import { mandateAt, rulesAt, councilAt } from '../sim/rules';
+import { likely, nextElection } from '../sim/votes';
 import {
   abandonProject, affOptions, defaultProgram, exitOk, financingPf, floorsFor, isLive, meetResidents, meetingCost,
   normalise, preview, routeStages, saleValue, schemesFor, sellProject, usesTeam, fileProject,
 } from '../sim/sim';
-import { yearFrac, fmtMonth } from '../sim/time';
+import { yearFrac, fmtMonth, monthOf } from '../sim/time';
 import type { Exit, GameState, Program, Project, Scheme, Site } from '../sim/types';
 import { STAGE, eurM2, fmtM, months, num, pct, stageClass } from './format';
 import { useT } from './i18n';
@@ -209,6 +211,26 @@ export function SiteSheet({ game, site, onFiled }: { game: Game; site: Site; onF
             </div>
           </div>
         )}
+        {pv.camara && (
+          <ul className="hab-lists">
+            {pv.camara.map((x) => {
+              const lk = likely(x);
+              const word = { sim: lang === 'pt' ? 'a favor' : 'for', abst: lang === 'pt' ? 'abstenção' : 'abstains', nao: lang === 'pt' ? 'contra' : 'against' }[lk.ballot];
+              return (
+                <li key={x.bloc}>
+                  <span><i style={{ background: BLOCS[x.bloc].color }} aria-hidden="true" />{BLOCS[x.bloc].name} · {x.seats}</span>
+                  <span className={`lk ${lk.ballot}`}>{word} {pct(lk.p)}</span>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+        {pv.camara && (() => {
+          const e = nextElection(s.month);
+          return e && e.months <= PRE_ELECTION + 14 && e.months > 0
+            ? <p className="hab-note" style={{ marginTop: 6 }}>{lang === 'pt' ? `Autárquicas em ${fmtMonth(e.m, lang)}: nos ${PRE_ELECTION} meses antes, um projeto polémico não vai a votos.` : `Local elections in ${fmtMonth(e.m, lang)}: in the ${PRE_ELECTION} months before, a contested project is not tabled.`}</p>
+            : null;
+        })()}
       </div>
 
       <ForecastBlock f={fc} lang={lang} from="filing" />
@@ -289,6 +311,9 @@ export function ProjectSheet({ game, p, openDecision }: { game: Game; p: Project
           </ul>
           {p.suit && <div className="hab-verdict bad" style={{ marginTop: 8 }}>{lang === 'pt' ? `Em tribunal: decisão em ~${p.suit.left} meses${p.suit.suspends ? '; providência cautelar em vigor' : ''}.` : `In court: ruling in ~${p.suit.left} months${p.suit.suspends ? '; injunction in force' : ''}.`}</div>}
           {p.tacit && <p className="hab-note" style={{ marginTop: 6 }}>{lang === 'pt' ? 'Licença por deferimento tácito.' : 'Licence by tacit approval.'}</p>}
+          {p.stage === 'camara' && (p.vars.holdUntil ?? -1) > s.month && <div className="hab-verdict caveat" style={{ marginTop: 8 }}>{lang === 'pt' ? `Fora da ordem de trabalhos até ${fmtMonth(p.vars.holdUntil, lang)}.` : `Off the agenda until ${fmtMonth(p.vars.holdUntil, lang)}.`}</div>}
+          {p.story && p.story.until > s.month && <div className="hab-verdict bad" style={{ marginTop: 8 }}>{lang === 'pt' ? `Nas notícias (${paperOf(p)}) até ${fmtMonth(p.story.until, lang)}: os vereadores mantêm distância.` : `In the news (${paperOf(p)}) until ${fmtMonth(p.story.until, lang)}: councillors keep their distance.`}</div>}
+          {p.inquiry && <div className="hab-verdict bad" style={{ marginTop: 8 }}>{lang === 'pt' ? `Inquérito do Ministério Público: decisão em ~${p.inquiry.left} meses; o banco espera.` : `Prosecutor’s inquiry: decision in ~${p.inquiry.left} months; the bank waits.`}</div>}
         </div>
       )}
       <ForecastBlock f={fc} lang={lang} from="now" />
@@ -360,6 +385,16 @@ export function CityOverview({ s }: { s: GameState }) {
           {seats.map((x, i) => <span key={i} style={{ width: 14, height: 14, borderRadius: '50%', background: BLOCS[x.bloc].color, display: 'inline-block' }} />)}
         </div>
         <p className="hab-note">{lang === 'pt' ? md.note.pt : md.note.en}</p>
+        {(() => {
+          const e = nextElection(s.month);
+          const ag = AGREEMENTS.filter((a) => s.month >= monthOf(...a.from) && (!a.until || s.month < monthOf(...a.until)));
+          return (
+            <dl className="hab-kv" style={{ marginTop: 6 }}>
+              {e && <><dt>{lang === 'pt' ? 'Próximas autárquicas' : 'Next local election'}</dt><dd>{fmtMonth(e.m, lang)}</dd></>}
+              {ag.map((a) => <Fragment key={a.bloc}><dt>{BLOCS[a.bloc].name}</dt><dd style={{ fontWeight: 500, textAlign: 'right' }}>{lang === 'pt' ? a.label.pt : a.label.en}</dd></Fragment>)}
+            </dl>
+          );
+        })()}
       </div>
       <div className="hab-block">
         <h3>{lang === 'pt' ? 'Regras em vigor' : 'Rules in force'}</h3>

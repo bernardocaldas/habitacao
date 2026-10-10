@@ -39,7 +39,7 @@ const CARDS: Card[] = [
       options: [
         { key: 'reunir', label: T('Marcar reunião e ouvir', 'Meet and listen'), hint: T('Mais 2 meses; a oposição acalma.', '2 more months; opposition cools.') },
         { key: 'recusar', label: T('Estás demasiado ocupado', 'You are too busy'), hint: T('Pode correr mal.', 'May go badly.') },
-        { key: 'consultor', label: T('Contratar um antigo vereador como consultor', 'Hire a former councillor as consultant'), costM: 0.15 },
+        { key: 'consultor', label: T('Contratar um antigo vereador como consultor', 'Hire a former councillor as consultant'), costM: 0.15, hint: T('Abre portas na Câmara. Se vier a público, é escândalo.', 'Opens doors at City Hall. If it gets out, it is a scandal.') },
       ],
     }),
   },
@@ -117,20 +117,6 @@ const CARDS: Card[] = [
     },
   },
   {
-    key: 'jornal', every: 26,
-    pick: (s) => (s.projects.filter(isLive).length >= 2 ? true : null),
-    play: (s) => decide(s, {
-      kind: 'card:jornal', tone: 'neutral',
-      title: T('Um jornal prepara uma reportagem sobre ti', 'A newspaper is writing about you'),
-      lines: [T('Quer saber quem são os teus investidores e quanto vão custar as casas.', 'It wants to know who your investors are and what the homes will cost.')],
-      options: [
-        { key: 'responder', label: T('Dar uma entrevista', 'Give an interview'), hint: T('Pode correr bem ou mal.', 'Could go either way.') },
-        { key: 'visita', label: T('Convidar para uma visita à obra', 'Invite them on a site visit'), costM: 0.02 },
-        { key: 'calar', label: T('Sem comentários', 'No comment') },
-      ],
-    }),
-  },
-  {
     key: 'ruido', every: 24,
     pick: (s) => pickWhere(s, (p) => p.stage === 'obra'),
     play: (s, p) => decide(s, {
@@ -171,7 +157,11 @@ export function resolveCard(s: GameState, d: Decision, key: string) {
       if (!p) return;
       if (key === 'reunir') { if (usesTeam(p)) p.left += 2; p.mult.viz *= 0.85; up(2); }
       else if (key === 'recusar') { up(-3); if (chance(s.rng, 0.5) && usesTeam(p)) p.left += 2; }
-      else { up(-1); p.mult.viz *= 0.95; p.mult.hab *= 0.95; }
+      else {
+        p.once.consultor = true;
+        if (usesTeam(p) && p.left > 1) p.left--;
+        log(s, T(`${nm(p).pt}: um antigo vereador passa a trabalhar contigo.`, `${nm(p).en}: a former councillor now works with you.`), p.id);
+      }
       return;
     case 'card:abaixo':
       if (!p) return;
@@ -195,11 +185,6 @@ export function resolveCard(s: GameState, d: Decision, key: string) {
         const before = s.cash;
         if (sellProject(s, p.id)) s.cash = before + v;
       }
-      return;
-    case 'card:jornal':
-      if (key === 'responder') up(chance(s.rng, 0.5) ? 2 : -1);
-      else if (key === 'visita') up(1);
-      else up(-1);
       return;
     case 'card:ruido':
       if (!p) return;

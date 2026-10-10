@@ -175,6 +175,10 @@ export interface Project {
   partner?: number;
   /** Months until the next "does not add up" review. */
   finWait?: number;
+  /** A newspaper story about this project: while it runs, councillors keep their distance. */
+  story?: { kind: string; m: number; until: number; sev: number };
+  /** A prosecutor's inquiry: the bank waits until it closes. */
+  inquiry?: { left: number };
   /** Community sessions held. */
   meetings: number;
 }
@@ -240,12 +244,32 @@ export interface Option {
   disabled?: boolean;
 }
 
+export type Ballot = 'sim' | 'abst' | 'nao';
+
+/** How one party or list is likely to vote on a project, and why. */
+export interface Stance {
+  bloc: string;
+  seats: number;
+  /** The mayor's own list, which also sets the agenda. */
+  mayor: boolean;
+  x: number;
+  pYes: number;
+  pAbst: number;
+  pNo: number;
+  /** The strongest reasons, signed (positive pulls toward yes), strongest first. */
+  why: { label: L; w: number }[];
+}
+
+/** A roll call: each list votes as one; more yes than no passes, the mayor breaks a tie. */
 export interface Vote {
-  body: 'camara' | 'assembleia';
-  seats: { bloc: string; p: number; yes: boolean }[];
-  need: number;
+  body: 'camara';
+  blocs: (Stance & { ballot: Ballot })[];
   yes: number;
+  abst: number;
+  no: number;
   passed: boolean;
+  /** Passed on the mayor's casting vote. */
+  casting: boolean;
 }
 
 export interface Decision {
@@ -258,6 +282,10 @@ export interface Decision {
   /** Probability of the good outcome, shown before the choice when there is one. */
   odds?: { label: L; p: number }[];
   vote?: Vote;
+  /** Each list's likely vote, shown before the choice. */
+  stances?: Stance[];
+  /** A front page: the (invented) paper, its headline and lede. */
+  press?: { paper: string; head: L; lede: L };
   real?: L;
   tone?: 'good' | 'bad' | 'neutral';
   data?: Record<string, number | string | boolean>;
@@ -273,6 +301,8 @@ export interface NewsItem {
   source?: string;
   major?: boolean;
   project?: number;
+  /** The invented paper that ran a story about you. */
+  paper?: string;
 }
 
 export interface LogItem {
@@ -294,6 +324,8 @@ export interface Stats {
   asks: number;
   votesWon: number;
   votesLost: number;
+  stories: number;
+  inquiries: number;
   monthsToKeys: number[];
   unitsLost: number;
   byYear: Record<number, number>;
@@ -319,6 +351,8 @@ export interface GameState {
   log: LogItem[];
   review: { i: number; strikes: number; passed: number };
   weather: { next: number; last: Record<string, number> };
+  /** The next month a newspaper may run a story about you. */
+  press: { next: number };
   stats: Stats;
   over?: { kind: 'fired' | 'broke' | 'survived' | 'won'; m: number };
   seen: Record<string, boolean>;
