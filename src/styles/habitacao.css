@@ -5,6 +5,41 @@
  * none under prefers-reduced-motion.
  */
 .hab {
+  /* estimador.pt tokens (src/app/globals.css), scoped so the game never depends on which
+     theme variables a host page happens to emit. Same values as the site. */
+  --font-sans: 'Manrope', system-ui, sans-serif;
+  --color-paper: #f5f3ea;
+  --color-cream: #fcfbf5;
+  --color-parchment: #ece9dc;
+  --color-line: #dadccf;
+  --color-ink: #234c40;
+  --color-ink-dark: #16362e;
+  --color-ink-muted: #5f7062;
+  --color-faint: #7f9284;
+  --color-forest: #122f2c;
+  --color-gold: #c49536;
+  --color-mustard: #e5b958;
+  --color-mint: #72c8b4;
+  --color-periwinkle: #a9b9ed;
+  --color-coral: #e29a83;
+  --color-mint-soft: #9dcec1;
+  --color-mustard-soft: #e3c994;
+  --color-coral-soft: #dcafa1;
+  --color-periwinkle-soft: #bdc7e7;
+  --color-terracotta: #a3543a;
+  --color-tree: #377455;
+  --color-teal: #245c68;
+  --color-series-1: #159881;
+  --color-positive: #377455;
+  --color-negative: #a3543a;
+  --color-red-50: #fff2ee;
+  --color-red-700: #8c4832;
+  --color-emerald-50: #f1fbf5;
+  --color-emerald-700: #3a6b50;
+  --color-amber-50: #fffaef;
+  --color-amber-700: #8a6a26;
+  /* Height of a host page's sticky header (estimador.pt: 61px); 0 when standalone. */
+  --hab-offset: 0px;
   --top-h: 64px;
   --radius: 16px;
   --radius-sm: 10px;
@@ -14,8 +49,10 @@
   font-size: 14px;
   line-height: 1.45;
   -webkit-font-smoothing: antialiased;
-  min-height: 100svh;
+  min-height: calc(100svh - var(--hab-offset));
 }
+.hab.embedded { --hab-offset: 61px; }
+.hab a { color: var(--color-ink); text-decoration: underline; text-underline-offset: 2px; }
 .hab *, .hab *::before, .hab *::after { box-sizing: border-box; }
 .hab button { font: inherit; color: inherit; }
 .hab :focus-visible { outline: 2px solid var(--color-ink); outline-offset: 2px; box-shadow: 0 0 0 4px var(--color-cream); }
@@ -49,7 +86,7 @@
 
 /* ── Top bar ────────────────────────────────────────────────────────────────────────── */
 .hab-top {
-  position: sticky; top: 0; z-index: 20; background: var(--color-paper);
+  position: sticky; top: var(--hab-offset); z-index: 20; background: var(--color-paper);
   border-bottom: 1px solid var(--color-line);
 }
 .hab-top-row { display: flex; align-items: center; gap: 16px; padding: 8px 16px; min-height: var(--top-h); flex-wrap: wrap; }
@@ -89,7 +126,7 @@
 .hab-status.behind { background: var(--color-red-50); color: var(--color-red-700); }
 
 /* ── Main grid ──────────────────────────────────────────────────────────────────────── */
-.hab-main { display: grid; grid-template-columns: 300px minmax(0, 1fr) 380px; gap: 0; height: calc(100svh - var(--chrome-h, 112px)); min-height: 560px; }
+.hab-main { display: grid; grid-template-columns: 300px minmax(0, 1fr) 380px; gap: 0; height: calc(100svh - var(--chrome-h, 112px) - var(--hab-offset)); min-height: 560px; }
 .hab-panel { background: var(--color-paper); border-right: 1px solid var(--color-line); display: flex; flex-direction: column; min-height: 0; }
 .hab-panel.right { border-right: 0; border-left: 1px solid var(--color-line); }
 .hab-panel-body { overflow: auto; padding: 12px 16px 24px; flex: 1; min-height: 0; }
@@ -146,7 +183,7 @@
 .hab-newsbar .mast { font-weight: 800; letter-spacing: -0.01em; white-space: nowrap; }
 .hab-newsbar .head { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .hab-newsbar .hab-check { min-height: 36px; font-size: 12px; white-space: nowrap; }
-.hab-stamp { font-size: 10.5px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 1px 6px; border-radius: 4px; border: 1.5px solid currentColor; white-space: nowrap; }
+.hab-stamp { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 1px 6px; border-radius: 4px; border: 1.5px solid currentColor; white-space: nowrap; }
 .hab-stamp.real { color: var(--color-tree); }
 .hab-stamp.fic { color: var(--color-ink-muted); }
 .hab-stamp.spec { color: var(--color-amber-700); }
@@ -191,7 +228,7 @@
 .hab-actions { display: flex; flex-wrap: wrap; gap: 8px; }
 
 /* ── Dialogs ────────────────────────────────────────────────────────────────────────── */
-.hab-scrim { position: fixed; inset: 0; background: rgba(18, 47, 44, 0.42); z-index: 40; display: grid; place-items: center; padding: 16px; animation: hab-fade 200ms ease-out; }
+.hab-scrim { position: fixed; inset: 0; background: rgba(18, 47, 44, 0.42); z-index: 60; display: grid; place-items: center; padding: 16px; animation: hab-fade 200ms ease-out; }
 .hab-dialog { background: var(--color-paper); border: 1px solid var(--color-line); border-radius: var(--radius); width: min(640px, 100%); max-height: calc(100svh - 32px); overflow: auto; padding: 20px 20px 16px; display: flex; flex-direction: column; gap: 14px; animation: hab-rise 240ms ease-out; }
 .hab-dialog.wide { width: min(880px, 100%); }
 .hab-dialog-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
@@ -208,12 +245,12 @@
 .hab-option .c { font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
 .hab-option .h { grid-column: 1 / -1; font-size: 12px; color: var(--color-ink-muted); }
 .hab-seats { display: grid; grid-template-columns: repeat(17, 1fr); gap: 4px; }
-.hab-seat { aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; font-size: 10.5px; font-weight: 800; color: #fff; position: relative; }
+.hab-seat { aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; font-size: 11px; font-weight: 800; color: #fff; position: relative; }
 .hab-seat.no { background: var(--color-parchment) !important; color: var(--color-ink-muted); border: 2px solid currentColor; }
 .hab-seat-legend { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; margin-top: 6px; }
 .hab-seat-legend span { display: inline-flex; align-items: center; gap: 5px; }
 .hab-seat-legend i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-.hab-seat-probs { display: grid; grid-template-columns: repeat(17, 1fr); gap: 4px; font-size: 10.5px; text-align: center; color: var(--color-ink-muted); font-variant-numeric: tabular-nums; }
+.hab-seat-probs { display: grid; grid-template-columns: repeat(17, 1fr); gap: 4px; font-size: 11px; text-align: center; color: var(--color-ink-muted); font-variant-numeric: tabular-nums; }
 
 /* Newspaper */
 .hab-paper { background: var(--color-cream); }
@@ -245,7 +282,7 @@
 .hab-bars-x { display: flex; gap: 3px; font-size: 11px; color: var(--color-ink-muted); }
 .hab-bars-x span { flex: 1; text-align: center; }
 
-.hab-toast-stack { position: fixed; right: 16px; bottom: 16px; display: grid; gap: 8px; z-index: 30; width: min(360px, calc(100vw - 32px)); }
+.hab-toast-stack { position: fixed; right: 16px; bottom: 16px; display: grid; gap: 8px; z-index: 55; width: min(360px, calc(100vw - 32px)); }
 .hab-toast { background: var(--color-forest); color: var(--color-paper); border-radius: 12px; padding: 10px 14px; font-size: 13px; cursor: pointer; text-align: left; border: 0; animation: hab-rise 200ms ease-out; }
 
 .hab-mobile-tabs { display: none; }
@@ -270,7 +307,7 @@
   .hab-panel { border: 0; order: 2; }
   .hab-panel.left, .hab-panel.right { display: none; }
   .hab-panel.left.on, .hab-panel.right.on { display: flex; }
-  .hab-mobile-tabs { display: flex; order: 2; border-top: 1px solid var(--color-line); border-bottom: 1px solid var(--color-line); position: sticky; top: var(--top-sticky, 0px); background: var(--color-paper); z-index: 10; }
+  .hab-mobile-tabs { display: flex; order: 2; border-top: 1px solid var(--color-line); border-bottom: 1px solid var(--color-line); position: sticky; top: var(--hab-offset); background: var(--color-paper); z-index: 10; }
   .hab-mobile-tabs button { flex: 1; min-height: 48px; border: 0; background: transparent; font-weight: 700; font-size: 13px; color: var(--color-ink-muted); border-bottom: 2px solid transparent; cursor: pointer; }
   .hab-mobile-tabs button[aria-selected='true'] { color: var(--color-ink); border-bottom-color: var(--color-ink); }
   .hab-panel.left.on, .hab-panel.right.on { order: 3; }

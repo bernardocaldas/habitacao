@@ -29,7 +29,7 @@ export function stageClass(p: Project): string {
   return 'review';
 }
 
-export const pct = (x: number) => `${Math.round(x * 100)}%`;
+export const pct = (x: number) => `${Math.round(x * 100)}%`.replace('-', '\u2212');
 
 export function num(n: number, lang: Lang, digits = 0): string {
   return new Intl.NumberFormat(lang === 'pt' ? 'pt-PT' : 'en-GB', { maximumFractionDigits: digits, minimumFractionDigits: digits })

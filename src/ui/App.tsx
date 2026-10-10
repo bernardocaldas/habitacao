@@ -21,9 +21,15 @@ function initialLang(): Lang {
   return pref('lang', 'pt') === 'en' ? 'en' : 'pt';
 }
 
-export function App() {
+/**
+ * lang: set by a host page that owns the language (estimador.pt routes /pt and /en); the
+ * game then shows no language switch. embedded: the host has its own sticky header,
+ * document title and main landmark.
+ */
+export function App({ lang: hostLang, embedded = false }: { lang?: Lang; embedded?: boolean } = {}) {
   const game = useGame();
-  const [lang, setLangState] = useState<Lang>(initialLang);
+  const [ownLang, setLangState] = useState<Lang>(() => hostLang ?? initialLang());
+  const lang = hostLang ?? ownLang;
   const [sel, setSel] = useState<{ site?: string; project?: number }>({});
   const [layer, setLayer] = useState<Layer>('mapa');
   const [names, setNames] = useState(true);
@@ -32,16 +38,21 @@ export function App() {
   const [mobile, setMobile] = useState<'list' | 'details'>('details');
   const [decisionOpen, setDecisionOpen] = useState(true);
   const topRef = useRef<HTMLElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
   const s = game.s;
 
-  const setLang = (l: Lang) => { setLangState(l); setPref('lang', l); };
-  useEffect(() => { document.documentElement.lang = lang === 'pt' ? 'pt-PT' : 'en-GB'; document.title = `${STRINGS.title[lang]} · estimador.pt`; }, [lang]);
+  const setLang = hostLang ? undefined : (l: Lang) => { setLangState(l); setPref('lang', l); };
+  useEffect(() => {
+    if (embedded) return;
+    document.documentElement.lang = lang === 'pt' ? 'pt-PT' : 'en-GB';
+    document.title = `${STRINGS.title[lang]} · estimador.pt`;
+  }, [lang, embedded]);
 
   // The main grid fills what the header leaves.
   useLayoutEffect(() => {
     const el = topRef.current;
     if (!el) return;
-    const ro = new ResizeObserver(() => document.documentElement.style.setProperty('--chrome-h', `${el.offsetHeight}px`));
+    const ro = new ResizeObserver(() => rootRef.current?.style.setProperty('--chrome-h', `${el.offsetHeight}px`));
     ro.observe(el);
     return () => ro.disconnect();
   }, [s != null]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -77,7 +88,7 @@ export function App() {
   if (!s) {
     return (
       <LangContext.Provider value={lang}>
-        <div className="hab">
+        <div className={`hab${embedded ? ' embedded' : ''}`}>
           <Title saved={game.saved} onStart={(d) => { game.start(d); setModal('help'); setSel({}); }} onResume={() => { game.resume(); setSel({}); }} lang={lang} setLang={setLang} />
         </div>
       </LangContext.Provider>
@@ -90,7 +101,7 @@ export function App() {
 
   return (
     <LangContext.Provider value={lang}>
-      <div className="hab">
+      <div className={`hab${embedded ? ' embedded' : ''}`} ref={rootRef}>
         <a href="#hab-map" className="sr-only">{lang === 'pt' ? 'Saltar para o mapa' : 'Skip to the map'}</a>
         <header className="hab-top" ref={topRef}>
           <TopBar
@@ -121,7 +132,7 @@ export function App() {
             </div>
             <TeamsFoot game={game} />
           </aside>
-          <main className="hab-stage" id="hab-map">
+          <section className="hab-stage" id="hab-map" aria-label={lang === 'pt' ? 'Mapa' : 'Map'}>
             <div className="hab-map-tools">
               <div className="hab-seg" role="group" aria-label={lang === 'pt' ? 'Camada do mapa' : 'Map layer'}>
                 {LAYERS.map((l) => <button key={l.key} aria-pressed={layer === l.key} onClick={() => setLayer(l.key)}>{l.label[lang]}</button>)}
@@ -133,7 +144,7 @@ export function App() {
             </div>
             <MapView s={s} selected={sel} onSelect={selectSite} layer={layer} names={names} />
             <NewsBar item={lastNews} onOpen={() => lastNews && game.setPaper(s.news.length - 1)} pause={game.pauseForNews} setPause={game.setPauseForNews} />
-          </main>
+          </section>
           <aside className={`hab-panel right${mobile === 'details' ? ' on' : ''}`} aria-label={lang === 'pt' ? 'Detalhe' : 'Details'}>
             <div className="hab-panel-body">
               {selProject ? (

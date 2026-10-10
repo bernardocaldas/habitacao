@@ -9,15 +9,16 @@ export function Title({ saved, onStart, onResume, lang, setLang }: {
   onStart: (d: Difficulty) => void;
   onResume: () => void;
   lang: Lang;
-  setLang: (l: Lang) => void;
+  /** Absent when the host page owns the language (estimador.pt's header). */
+  setLang?: (l: Lang) => void;
 }) {
   const { s: str, t } = useT();
   const [d, setD] = useState<Difficulty>('normal');
   return (
-    <main className="hab-title" id="main-content">
+    <div className="hab-title">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <span className="kicker">estimador.pt · {lang === 'pt' ? 'Habitação' : 'Housing'}</span>
-        <button className="hab-btn small" onClick={() => setLang(lang === 'pt' ? 'en' : 'pt')}>{lang === 'pt' ? 'EN, English' : 'PT, Português'}</button>
+        {setLang && <button className="hab-btn small" onClick={() => setLang(lang === 'pt' ? 'en' : 'pt')}>{lang === 'pt' ? 'EN, English' : 'PT, Português'}</button>}
       </div>
       <div style={{ display: 'grid', gap: 12 }}>
         <h1>{str('title')}</h1>
@@ -59,6 +60,6 @@ export function Title({ saved, onStart, onResume, lang, setLang }: {
         </p>
         <p>{lang === 'pt' ? 'O jogo guarda o progresso apenas neste navegador.' : 'The game saves progress in this browser only.'}</p>
       </div>
-    </main>
+    </div>
   );
 }

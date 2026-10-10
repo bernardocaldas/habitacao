@@ -17,7 +17,7 @@ export function TopBar({ s, speed, setSpeed, openModal, lang, setLang, onQuit }:
   setSpeed: (x: Speed) => void;
   openModal: (m: Modal) => void;
   lang: 'pt' | 'en';
-  setLang: (l: 'pt' | 'en') => void;
+  setLang?: (l: 'pt' | 'en') => void;
   onQuit: () => void;
 }) {
   const { s: str } = useT();
@@ -61,7 +61,7 @@ export function TopBar({ s, speed, setSpeed, openModal, lang, setLang, onQuit }:
         <button className="hab-btn" onClick={() => openModal('camara')}>{str('camara')}</button>
         <button className="hab-btn" onClick={() => openModal('log')}>{str('log')}</button>
         <button className="hab-btn" onClick={() => openModal('help')} aria-label={str('help')}>?</button>
-        <button className="hab-btn" onClick={() => setLang(lang === 'pt' ? 'en' : 'pt')} aria-label={lang === 'pt' ? 'English' : 'Português'}>{lang === 'pt' ? 'EN' : 'PT'}</button>
+        {setLang && <button className="hab-btn" onClick={() => setLang(lang === 'pt' ? 'en' : 'pt')} aria-label={lang === 'pt' ? 'English' : 'Português'}>{lang === 'pt' ? 'EN' : 'PT'}</button>}
         <button className="hab-btn" onClick={onQuit} aria-label={str('newGame')}><span className="label-long">{str('newGame')}</span><span className="label-short">{lang === 'pt' ? 'Novo' : 'New'}</span></button>
       </nav>
     </div>

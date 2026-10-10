@@ -1157,7 +1157,7 @@ function investorReview(s: GameState) {
 // ---------------------------------------------------------------------------------------------
 // Formatting helpers shared with the UI
 
-export const pct = (x: number) => `${Math.round(x * 100)}%`;
+export const pct = (x: number) => `${Math.round(x * 100)}%`.replace('-', '\u2212');
 
 export function fmtM(m: number, lang: 'pt' | 'en'): string {
   const a = Math.abs(m);
