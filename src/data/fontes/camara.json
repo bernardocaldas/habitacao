@@ -1,0 +1,257 @@
+{
+ "2013": {
+  "PS": 11,
+  "PSD": 3,
+  "CDS-PP": 1,
+  "CDU": 2,
+  "_lists": {
+   "PS": 11,
+   "Sentir Lisboa (PSD/CDS-PP/MPT)": 4,
+   "CDU (PCP-PEV)": 2,
+   "BE": 0
+  },
+  "_vote_pct": {
+   "PS": 50.91,
+   "Sentir Lisboa": 22.37,
+   "CDU": 9.85,
+   "BE": 4.61
+  },
+  "_election_date": "2013-09-29",
+  "_notes": "PSD/CDS split of the 4 coalition seats (3+1) taken from ECO's 2017 comparison table. Mayor António Costa until 2015-04-06, then Fernando Medina.",
+  "_sources": [
+   "https://pt.wikipedia.org/wiki/Eleições_autárquicas_de_2013_em_Lisboa",
+   "https://eco.sapo.pt/2017/10/02/medina-perde-maioria-absoluta-em-lisboa"
+  ],
+  "_confidence": "high"
+ },
+ "2017": {
+  "PS": 8,
+  "CDS-PP": 4,
+  "PSD": 2,
+  "CDU": 2,
+  "BE": 1,
+  "_vote_pct": {
+   "PS": 42.02,
+   "CDS-PP": 20.57,
+   "PSD": 11.23,
+   "CDU": 9.56,
+   "BE": 7.13
+  },
+  "_election_date": "2017-10-01",
+  "_notes": "PS list included independents (e.g. Cidadãos por Lisboa's Paula Marques). PS-BE governing agreement from Nov 2017 gave Medina 9 of 17.",
+  "_sources": [
+   "https://eco.sapo.pt/2017/10/02/medina-perde-maioria-absoluta-em-lisboa",
+   "https://rr.pt/noticia/politica/2017/11/02/acordo-politico-em-lisboa-bloco-ganha-pelouros-da-educacao-e-saude/97261/"
+  ],
+  "_confidence": "high"
+ },
+ "2021": {
+  "Novos Tempos (PSD/CDS-PP/MPT/PPM/Aliança)": 7,
+  "Mais Lisboa (PS/Livre)": 7,
+  "CDU": 2,
+  "BE": 1,
+  "Chega": 0,
+  "_mais_lisboa_breakdown_dec_2022": {
+   "PS": 5,
+   "Livre": 1,
+   "Cidadãos por Lisboa (independent)": 1
+  },
+  "_mais_lisboa_breakdown_feb_2023": {
+   "PS": 4,
+   "Livre": 1,
+   "Cidadãos por Lisboa": 2
+  },
+  "_vote_pct": {
+   "Novos Tempos": 34.25,
+   "Mais Lisboa": 33.3,
+   "CDU": 10.52,
+   "BE": 6.21,
+   "Chega": 4.41
+  },
+  "_election_date": "2021-09-26",
+  "_notes": "Opposition held 10 of 17; Moedas governed without a majority. Mais Lisboa party breakdown inferred from vote tallies reported by ECO (Dec 2022) and RTP (2023); it changed after substitutions. Party split inside Novos Tempos not verified.",
+  "_sources": [
+   "https://www.noticiasaominuto.com/politica/1840277/social-democrata-carlos-moedas-conquistou-lisboa-ao-ps",
+   "https://eco.sapo.pt/2022/12/14/lisboa-desiste-dos-concursos-para-renda-acessivel-em-benfica-paco-da-rainha-e-parque-das-nacoes/",
+   "https://www.rtp.pt/noticias/pais/cm-lisboa-volta-a-prorrogar-suspensao-de-novos-registos-de-alojamento-local_n1468936"
+  ],
+  "_confidence": "high"
+ },
+ "2025": {
+  "PSD": 4,
+  "CDS-PP": 2,
+  "IL": 2,
+  "PS": 4,
+  "Livre": 1,
+  "BE": 1,
+  "Chega": 2,
+  "CDU": 1,
+  "_lists": {
+   "Por ti, Lisboa (PSD/CDS-PP/IL)": 8,
+   "Viver Lisboa (PS/Livre/BE/PAN)": 6,
+   "Chega": 2,
+   "CDU (PCP-PEV)": 1
+  },
+  "_vote_pct": {
+   "Por ti, Lisboa": 41.69,
+   "Viver Lisboa": 33.95
+  },
+  "_election_date": "2025-10-12",
+  "_took_office": "2025-11-11",
+  "_notes": "PSD's 4 include two independents nominated by PSD (Vasco Moreira Rato, Joana Baptista). Viver Lisboa party split from the Dec 2025 budget vote (4 PS, 1 Livre, 1 BE). Chega beat CDU for the 2nd seat by 3 votes (26,755).",
+  "_sources": [
+   "https://www.rtp.pt/noticias/pais/carlos-moedas-designa-goncalo-reis-como-vice-presidente-da-camara-de-lisboa_n1700517",
+   "https://www.rtp.pt/noticias/politica/autarquicas-chega-vence-por-tres-votos-cdu-em-lisboa-e-confirma-dois-vereadores_n1692067",
+   "https://eco.sapo.pt/2025/12/17/camara-de-lisboa-aprova-orcamento-de-1-345-milhoes-para-2026-com-votos-do-chega/"
+  ],
+  "_confidence": "high"
+ },
+ "mayors": [
+  {
+   "name": "António Costa",
+   "party": "PS",
+   "from": "2007",
+   "to": "2015-04-06",
+   "notes": "Left to lead PS into the 2015 national election.",
+   "source": "https://en.wikipedia.org/wiki/Fernando_Medina",
+   "confidence": "high"
+  },
+  {
+   "name": "Fernando Medina",
+   "party": "PS",
+   "from": "2015-04-06",
+   "to": "2021-10-18",
+   "notes": "Succeeded Costa mid-term; re-elected 2017 without majority (PS-BE deal).",
+   "source": "https://en.wikipedia.org/wiki/Fernando_Medina",
+   "confidence": "high"
+  },
+  {
+   "name": "Carlos Moedas",
+   "party": "PSD (Novos Tempos 2021; Por ti, Lisboa 2025)",
+   "from": "2021-10-18",
+   "to": null,
+   "notes": "Minority in both terms (7/17 then 8/17); second term from 2025-11-11.",
+   "source": "https://observador.pt/2021/10/18/as-sete-prioridades-de-moedas-no-dia-em-que-avisou-a-esquerda-a-legitimidade-e-dele/",
+   "confidence": "high"
+  }
+ ],
+ "urbanism": [
+  {
+   "name": "Manuel Salgado",
+   "party": "PS list",
+   "from": "2007",
+   "to": "2019-10",
+   "portfolio": "Urbanismo e Planeamento Estratégico",
+   "notes": "Exit announced 31 Jul 2019; resignation dated 7 Oct 2019 (Lusa). Later chaired SRU Lisboa Ocidental; made arguido in 2021 (CUF Tejo).",
+   "source": "https://eco.sapo.pt/2019/07/31/manuel-salgado-sai-da-camara-de-lisboa",
+   "confidence": "high"
+  },
+  {
+   "name": "Ricardo Veludo",
+   "party": "PS list (Medina executive)",
+   "from": "2019-10",
+   "to": "2021-10",
+   "portfolio": "Urbanismo",
+   "notes": "Previously coordinator of the PRA mission team.",
+   "source": "https://www.sabado.pt/portugal/detalhe/novo-vereador-do-urbanismo-da-camara-de-lisboa-ja-assumiu-funcoes",
+   "confidence": "high"
+  },
+  {
+   "name": "Joana Almeida (Joana Castro e Almeida)",
+   "party": "independent (Novos Tempos)",
+   "from": "2021-10",
+   "to": "2025-11",
+   "portfolio": "Urbanismo; Transparência e Combate à Corrupção",
+   "source": "https://www.timeout.pt/lisboa/pt/noticias/ja-se-conhecem-os-pelouros-dos-vereadores-da-camara-de-lisboa-110421",
+   "confidence": "high"
+  },
+  {
+   "name": "Vasco Moreira Rato",
+   "party": "independent nominated by PSD (Por ti, Lisboa)",
+   "from": "2025-11-11",
+   "to": null,
+   "portfolio": "Habitação, Urbanismo, Obras em Edifícios Municipais",
+   "notes": "Was chief of staff to the Housing councillor 2021-2025.",
+   "source": "https://www.rtp.pt/noticias/pais/carlos-moedas-designa-goncalo-reis-como-vice-presidente-da-camara-de-lisboa_n1700517",
+   "confidence": "high"
+  }
+ ],
+ "housing": [
+  {
+   "name": "Paula Marques",
+   "party": "independent, Cidadãos por Lisboa (PS lists)",
+   "from": "2013",
+   "to": "2021-10",
+   "portfolio": "Habitação e Desenvolvimento Local (incl. BIP/ZIP)",
+   "notes": "Succeeded Helena Roseta (housing 2009-2013). Stayed as opposition councillor after 2021.",
+   "source": "https://creativebureaucracy.org/foundation/people/paula-marques",
+   "confidence": "high"
+  },
+  {
+   "name": "Filipa Roseta",
+   "party": "PSD",
+   "from": "2021-10",
+   "to": "2025-11",
+   "portfolio": "Habitação e Obras Municipais",
+   "source": "https://www.timeout.pt/lisboa/pt/noticias/ja-se-conhecem-os-pelouros-dos-vereadores-da-camara-de-lisboa-110421",
+   "confidence": "high"
+  },
+  {
+   "name": "Vasco Moreira Rato",
+   "party": "independent nominated by PSD",
+   "from": "2025-11-11",
+   "to": null,
+   "portfolio": "Habitação + Urbanismo (merged)",
+   "source": "https://www.rtp.pt/noticias/pais/carlos-moedas-designa-goncalo-reis-como-vice-presidente-da-camara-de-lisboa_n1700517",
+   "confidence": "high"
+  }
+ ],
+ "other_relevant": [
+  {
+   "name": "Ricardo Robles",
+   "party": "BE",
+   "from": "2017-11",
+   "to": "2018-07-30",
+   "portfolio": "Educação, Direitos Sociais (PS-BE agreement)",
+   "source": "https://eco.sapo.pt/2018/07/30/ricardo-robles-renuncia-ao-mandato",
+   "confidence": "high"
+  },
+  {
+   "name": "Manuel Grilo",
+   "party": "BE",
+   "from": "2018-07",
+   "to": "2021-10",
+   "portfolio": "Took over BE's executive portfolios",
+   "source": "https://observador.pt/2018/07/30/manuel-grilo-e-o-substituto-de-ricardo-robles-na-camara-de-lisboa/",
+   "confidence": "high"
+  },
+  {
+   "name": "Duarte Cordeiro",
+   "party": "PS",
+   "from": "2015-04",
+   "to": "2019-02",
+   "portfolio": "Vice-mayor",
+   "source": "https://eco.sapo.pt/2019/02/18/vereador-das-financas-assume-vice-presidencia-da-camara-de-lisboa/",
+   "confidence": "medium"
+  },
+  {
+   "name": "Filipe Anacoreta Correia",
+   "party": "CDS-PP",
+   "from": "2021-10",
+   "to": "2025-11",
+   "portfolio": "Vice-mayor, Finance",
+   "source": "https://www.dn.pt/arquivo/diario-de-noticias/presidente-da-camara-de-lisboa-atribui-pelouro-das-financas-a-anacoreta-correia--14288831.html",
+   "confidence": "high"
+  },
+  {
+   "name": "Gonçalo Reis",
+   "party": "PSD",
+   "from": "2025-11-11",
+   "to": null,
+   "portfolio": "Vice-mayor; Finance, Mobility, municipal companies",
+   "source": "https://www.rtp.pt/noticias/pais/carlos-moedas-designa-goncalo-reis-como-vice-presidente-da-camara-de-lisboa_n1700517",
+   "confidence": "high"
+  }
+ ],
+ "_total_councillors": 17
+}

@@ -1,0 +1,1911 @@
+{
+ "sources": [
+  {
+   "id": "ine_0010033",
+   "title": "INE - Valor mediano das vendas de alojamentos familiares nos últimos 12 meses (Metodologia 2018 - €/m²) por Localização geográfica e Categoria do alojamento familiar; Anual (Estatísticas de preços da habitação ao nível local)",
+   "url": "https://www.ine.pt/xurl/ind/0010033",
+   "api_url": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0010033&lang=PT&Dim1=S7A2016&Dim3=H1",
+   "period": "2016-2020 (annual = 12 months ending Q4); used for 2016-2018",
+   "notes": "Category H1 = Total (new + existing). Geo codes 1701106xx (NUTS 2013). Last updated 2021-06-14. Discontinued series; INE points to the 2019+ series (Metodologia 2022)."
+  },
+  {
+   "id": "ine_0012255",
+   "title": "INE - Valor mediano das vendas de alojamentos familiares (Metodologia 2022 - €/m²) por Localização geográfica (NUTS - 2024) e Categoria do alojamento familiar; Anual",
+   "url": "https://www.ine.pt/xurl/ind/0012255",
+   "api_url": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0012255&lang=PT&Dim1=S7A2025&Dim3=H1",
+   "period": "2019-2025 (calendar year); used for 2019-2025",
+   "notes": "Category H1 = Total. Geo codes 1A01106xx (NUTS 2024). Last updated 2026-04-24. Annual values verified identical to the Q4 rolling-12-month values of quarterly indicator 0012234."
+  },
+  {
+   "id": "ine_0012234",
+   "title": "INE - Valor mediano das vendas de alojamentos familiares nos últimos 12 meses (Metodologia 2022 - €/m²) por Localização geográfica (NUTS - 2024) e Categoria do alojamento familiar; Trimestral",
+   "url": "https://www.ine.pt/xurl/ind/0012234",
+   "api_url": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0012234&lang=PT&Dim1=S5A20261&Dim3=H1",
+   "period": "12 months ending Q1 2026 (Apr 2025 - Mar 2026)",
+   "notes": "Latest available (updated 2026-07-17). Used only for sale_eur_m2_12m_to_2026Q1; full-year 2026 not yet published."
+  },
+  {
+   "id": "ine_0009631",
+   "title": "INE - Valor mediano das rendas de novos contratos de arrendamento de alojamentos familiares (Metodologia 2021 - €/m²) por Localização geográfica (NUTS - 2013); Anual (Estatísticas de Rendas da Habitação ao nível local)",
+   "url": "https://www.ine.pt/xurl/ind/0009631",
+   "api_url": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0009631&lang=PT&Dim1=S7A2017",
+   "period": "2017-2023; used for 2017-2019",
+   "notes": "Last updated 2024-03-28. Discontinued; INE points to new series 0014698 (from 2020). Series starts 2017, so no 2016 rent value exists."
+  },
+  {
+   "id": "ine_0014698",
+   "title": "INE - Valor mediano das rendas de novos contratos de arrendamento de alojamentos familiares (Metodologia 2026 - €/m²) por Localização geográfica (NUTS - 2024); Anual",
+   "url": "https://www.ine.pt/xurl/ind/0014698",
+   "api_url": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0014698&lang=PT&Dim1=S7A2025",
+   "period": "2020-2025; used for 2020-2025",
+   "notes": "Last updated 2026-09-29 (INE note: 2020-2025 series revised on 29 Sep 2026 after a correction with slight changes in some NUTS III). A sibling indicator 0014773 (geografia 2025, updated 2026-06-26, pre-revision) differs by at most ~0.04 EUR/m2 for Lisbon parishes. Annual 2025 verified identical to Q4-2025 rolling-12-month value of 0014696."
+  },
+  {
+   "id": "ine_0014696",
+   "title": "INE - Valor mediano das rendas de novos contratos de arrendamento de alojamentos familiares nos últimos 12 meses (Metodologia 2026 - €/m²) por Localização geográfica (NUTS - 2024); Trimestral",
+   "url": "https://www.ine.pt/xurl/ind/0014696",
+   "api_url": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0014696&lang=PT&Dim1=S5A20262",
+   "period": "12 months ending Q2 2026 (Jul 2025 - Jun 2026)",
+   "notes": "Latest available (updated 2026-09-29). Used only for rent_eur_m2_12m_to_2026Q2."
+  },
+  {
+   "id": "ine_0011748",
+   "title": "INE - Índice de custo de construção de habitação nova (Base 2021) por Fator de produção; Mensal",
+   "url": "https://www.ine.pt/xurl/ind/0011748",
+   "api_url": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0011748&lang=PT&Dim1=T&Dim2=PT&Dim3=T",
+   "period": "Monthly Jan 2000 - Aug 2026; annual = simple mean of 12 monthly indices",
+   "notes": "Fator de produção = Total (materials + labour), Portugal, base 2021 = 100 (2021 mean = 100.00, consistent). Cross-checked against INE annual average rate of change (0011751, December values): 2016 1.2, 2017 1.8, 2018 2.3, 2019 2.3, 2020 2.1, 2021 6.5, 2022 12.2, 2023 3.9, 2024 3.3, 2025 4.0 % - all match the computed averages. Last updated 2026-10-09."
+  },
+  {
+   "id": "ecb_euribor",
+   "title": "ECB Data Portal - FM dataset: Euribor 1-year (FM.A.U2.EUR.RT.MM.EURIBOR1YD_.HSTA) and 6-month (FM.A.U2.EUR.RT.MM.EURIBOR6MD_.HSTA), historical close, average of observations through period",
+   "url": "https://data-api.ecb.europa.eu/service/data/FM/A.U2.EUR.RT.MM.EURIBOR1YD_.HSTA?format=csvdata",
+   "period": "Annual 2015-2025; 2026 = mean of monthly averages Jan-Sep 2026",
+   "notes": "Data provided to ECB by Refinitiv. Percent per annum. 6-month: https://data-api.ecb.europa.eu/service/data/FM/A.U2.EUR.RT.MM.EURIBOR6MD_.HSTA?format=csvdata ; monthly series same keys with M. instead of A."
+  },
+  {
+   "id": "rnal_webservice",
+   "title": "Turismo de Portugal - Registo Nacional de Alojamento Local (RNAL), web service list_RNAL filtered to Concelho=Lisboa (linked from Lisboa Aberta dataset \"Alojamento Local - Registo Nacional\")",
+   "url": "https://webservices.turismodeportugal.pt/RNT_External/rest/RNT/list_RNAL?Concelho=Lisboa",
+   "period": "Snapshot downloaded 2026-10-10; latest DataRegisto in the file 2026-10-07",
+   "notes": "11,863 records, counted by the DTMNFR (parish code) field of each record. Only aggregate counts were kept (records contain personal data of operators). Consistent with press: ~19,000 registrations before CML ordered cancellation of 6,765 (ECO, 2026-06-11, https://eco.sapo.pt/2026/06/11/mais-de-dez-mil-alojamentos-locais-encerrados-pelos-municipios/)."
+  },
+  {
+   "id": "ine_0012501",
+   "title": "INE Censos 2021 - Alojamentos familiares clássicos (N.º) por Localização geográfica à data dos Censos [2021] (NUTS - 2024), Forma de ocupação e Época de construção",
+   "url": "https://www.ine.pt/xurl/ind/0012501",
+   "api_url": "https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0012501&lang=PT&Dim1=S7A2021&Dim2=1106&Dim3=T&Dim4=T",
+   "period": "Census 2021",
+   "notes": "Denominator for the AL ratio (Forma de ocupação = Total, Época = Total). Lisboa total 319,640; of which residência habitual 242,044."
+  },
+  {
+   "id": "cml_rmal_2025",
+   "title": "Regulamento Municipal do Alojamento Local de Lisboa, 2.ª alteração (Aviso n.º 29926-A/2025/2, DR 2.ª série n.º 235/2025, Suplemento; Deliberação 570/AML/2025), as summarised by PLMJ Nota Informativa Dez. 2025",
+   "url": "https://www.plmj.com/xms/files/03_Novidades_legislativas/2025/NI_Alteracoes_ao_RMAL.pdf",
+   "period": "In force since 2025-12-06; cited ratios are CML monitoring figures at the time of approval (late 2025, before the 2026 cancellations)",
+   "notes": "Ratio = AL establishments / fogos de habitação permanente, the latter defined as alojamentos familiares clássicos in the latest Census (art. text in Boletim Municipal 1619, 27 Feb 2025 draft: https://amensagem.pt/wp-content/uploads/2025/11/Proposta-alteracao-RMAL-Lisboa-2025.pdf). Final thresholds: absolute containment >= 10% (municipality, parish or bairro); relative containment >= 5% and < 10% (parish or bairro). The Feb 2025 draft had 5% / 2.5%. Cited parish ratios: Santa Maria Maior 66.9, Misericórdia 43.8, Santo António 25.1, São Vicente 16.1, Arroios 13.5, Estrela 10.8 (Avenidas Novas classified relative containment, ratio not given)."
+  }
+ ],
+ "sale_eur_m2": {
+  "110601": {
+   "2016": 1607,
+   "2017": 2064,
+   "2018": 2929,
+   "2019": 3323,
+   "2020": 3063,
+   "2021": 3333,
+   "2022": 4068,
+   "2023": 3704,
+   "2024": 4082,
+   "2025": 4874,
+   "2026": null
+  },
+  "110602": {
+   "2016": 1764,
+   "2017": 2155,
+   "2018": 2763,
+   "2019": 3107,
+   "2020": 3279,
+   "2021": 3309,
+   "2022": 3732,
+   "2023": 4253,
+   "2024": 4363,
+   "2025": 4658,
+   "2026": null
+  },
+  "110607": {
+   "2016": 1454,
+   "2017": 1571,
+   "2018": 2317,
+   "2019": 2325,
+   "2020": 2478,
+   "2021": 2762,
+   "2022": 3009,
+   "2023": 3096,
+   "2024": 3982,
+   "2025": 4348,
+   "2026": null
+  },
+  "110608": {
+   "2016": 1646,
+   "2017": 1932,
+   "2018": 2459,
+   "2019": 2713,
+   "2020": 2758,
+   "2021": 2897,
+   "2022": 3288,
+   "2023": 3827,
+   "2024": 3971,
+   "2025": 4392,
+   "2026": null
+  },
+  "110610": {
+   "2016": 1850,
+   "2017": 2155,
+   "2018": 2905,
+   "2019": 3079,
+   "2020": 3466,
+   "2021": 3374,
+   "2022": 3559,
+   "2023": 4167,
+   "2024": 4773,
+   "2025": 5346,
+   "2026": null
+  },
+  "110611": {
+   "2016": 2156,
+   "2017": 2463,
+   "2018": 2986,
+   "2019": 2911,
+   "2020": 3324,
+   "2021": 3490,
+   "2022": 3649,
+   "2023": 4310,
+   "2024": 4197,
+   "2025": 4436,
+   "2026": null
+  },
+  "110618": {
+   "2016": 2006,
+   "2017": 2265,
+   "2018": 2711,
+   "2019": 2744,
+   "2020": 2883,
+   "2021": 3211,
+   "2022": 3371,
+   "2023": 3632,
+   "2024": 3885,
+   "2025": 4548,
+   "2026": null
+  },
+  "110621": {
+   "2016": 1718,
+   "2017": 1483,
+   "2018": 2666,
+   "2019": 2797,
+   "2020": 2763,
+   "2021": 3335,
+   "2022": 5440,
+   "2023": 5833,
+   "2024": 5623,
+   "2025": 5029,
+   "2026": null
+  },
+  "110633": {
+   "2016": 1387,
+   "2017": 1679,
+   "2018": 2153,
+   "2019": 2480,
+   "2020": 2511,
+   "2021": 2805,
+   "2022": 3175,
+   "2023": 3487,
+   "2024": 3523,
+   "2025": 4238,
+   "2026": null
+  },
+  "110639": {
+   "2016": 2168,
+   "2017": 2475,
+   "2018": 2947,
+   "2019": 3321,
+   "2020": 3443,
+   "2021": 3362,
+   "2022": 3758,
+   "2023": 3966,
+   "2024": 4198,
+   "2025": 4883,
+   "2026": null
+  },
+  "110654": {
+   "2016": 2283,
+   "2017": 2651,
+   "2018": 3260,
+   "2019": 3571,
+   "2020": 3563,
+   "2021": 3808,
+   "2022": 4271,
+   "2023": 4520,
+   "2024": 4647,
+   "2025": 4922,
+   "2026": null
+  },
+  "110655": {
+   "2016": 2071,
+   "2017": 2408,
+   "2018": 2905,
+   "2019": 3214,
+   "2020": 3320,
+   "2021": 3500,
+   "2022": 3793,
+   "2023": 4470,
+   "2024": 4853,
+   "2025": 4552,
+   "2026": null
+  },
+  "110656": {
+   "2016": 1955,
+   "2017": 2460,
+   "2018": 3000,
+   "2019": 3272,
+   "2020": 3604,
+   "2021": 3450,
+   "2022": 3870,
+   "2023": 4163,
+   "2024": 4271,
+   "2025": 4523,
+   "2026": null
+  },
+  "110657": {
+   "2016": 2317,
+   "2017": 2835,
+   "2018": 3595,
+   "2019": 4038,
+   "2020": 4010,
+   "2021": 4243,
+   "2022": 4339,
+   "2023": 4554,
+   "2024": 4680,
+   "2025": 5465,
+   "2026": null
+  },
+  "110658": {
+   "2016": 2147,
+   "2017": 2572,
+   "2018": 3426,
+   "2019": 3571,
+   "2020": 3853,
+   "2021": 3824,
+   "2022": 4265,
+   "2023": 4483,
+   "2024": 4917,
+   "2025": 5156,
+   "2026": null
+  },
+  "110659": {
+   "2016": 2234,
+   "2017": 2725,
+   "2018": 3477,
+   "2019": 3805,
+   "2020": 3622,
+   "2021": 3988,
+   "2022": 4760,
+   "2023": 4769,
+   "2024": 5204,
+   "2025": 5890,
+   "2026": null
+  },
+  "110660": {
+   "2016": 2396,
+   "2017": 2894,
+   "2018": 3507,
+   "2019": 3895,
+   "2020": 4097,
+   "2021": 4061,
+   "2022": 4448,
+   "2023": 5051,
+   "2024": 5474,
+   "2025": 5629,
+   "2026": null
+  },
+  "110661": {
+   "2016": 2703,
+   "2017": 3520,
+   "2018": 4126,
+   "2019": 4933,
+   "2020": 4710,
+   "2021": 4375,
+   "2022": 4449,
+   "2023": 5288,
+   "2024": 5405,
+   "2025": 5569,
+   "2026": null
+  },
+  "110662": {
+   "2016": 2996,
+   "2017": 3257,
+   "2018": 3247,
+   "2019": 4152,
+   "2020": 4018,
+   "2021": 4431,
+   "2022": 4690,
+   "2023": 5077,
+   "2024": 5171,
+   "2025": 6317,
+   "2026": null
+  },
+  "110663": {
+   "2016": 1544,
+   "2017": 1995,
+   "2018": 2543,
+   "2019": 2893,
+   "2020": 3033,
+   "2021": 3156,
+   "2022": 3246,
+   "2023": 3570,
+   "2024": 3649,
+   "2025": 4282,
+   "2026": null
+  },
+  "110664": {
+   "2016": 1480,
+   "2017": 1695,
+   "2018": 1969,
+   "2019": 2435,
+   "2020": 2259,
+   "2021": 2501,
+   "2022": 2622,
+   "2023": 2783,
+   "2024": 3416,
+   "2025": 3727,
+   "2026": null
+  },
+  "110665": {
+   "2016": 3022,
+   "2017": 3333,
+   "2018": 4297,
+   "2019": 4755,
+   "2020": 5682,
+   "2021": 4157,
+   "2022": 4392,
+   "2023": 4928,
+   "2024": 5200,
+   "2025": 5000,
+   "2026": null
+  },
+  "110666": {
+   "2016": 2481,
+   "2017": 3827,
+   "2018": 4568,
+   "2019": 5140,
+   "2020": 5503,
+   "2021": 5435,
+   "2022": 5753,
+   "2023": 6458,
+   "2024": 5879,
+   "2025": 6819,
+   "2026": null
+  },
+  "110667": {
+   "2016": 2051,
+   "2017": 2667,
+   "2018": 3250,
+   "2019": 3447,
+   "2020": 3506,
+   "2021": 3409,
+   "2022": 4200,
+   "2023": 4052,
+   "2024": 4638,
+   "2025": 4787,
+   "2026": null
+  },
+  "1106": {
+   "2016": 2065,
+   "2017": 2438,
+   "2018": 3010,
+   "2019": 3286,
+   "2020": 3415,
+   "2021": 3531,
+   "2022": 3872,
+   "2023": 4167,
+   "2024": 4340,
+   "2025": 4875,
+   "2026": null
+  }
+ },
+ "rent_eur_m2": {
+  "110601": {
+   "2016": null,
+   "2017": 8.77,
+   "2018": 10.83,
+   "2019": 12.5,
+   "2020": 11.54,
+   "2021": 12.14,
+   "2022": 13.61,
+   "2023": 15.83,
+   "2024": 17.78,
+   "2025": 18.43,
+   "2026": null
+  },
+  "110602": {
+   "2016": null,
+   "2017": 8.87,
+   "2018": 10.49,
+   "2019": 11.75,
+   "2020": 11.06,
+   "2021": 11.46,
+   "2022": 12.31,
+   "2023": 15.3,
+   "2024": 16,
+   "2025": 16.68,
+   "2026": null
+  },
+  "110607": {
+   "2016": null,
+   "2017": 9.23,
+   "2018": 10.11,
+   "2019": 10.28,
+   "2020": 10.66,
+   "2021": 10.7,
+   "2022": 12.21,
+   "2023": 14.29,
+   "2024": 15.56,
+   "2025": 16,
+   "2026": null
+  },
+  "110608": {
+   "2016": null,
+   "2017": 8.81,
+   "2018": 10.2,
+   "2019": 11.14,
+   "2020": 10.75,
+   "2021": 10.63,
+   "2022": 11.78,
+   "2023": 14.01,
+   "2024": 14.74,
+   "2025": 15.78,
+   "2026": null
+  },
+  "110610": {
+   "2016": null,
+   "2017": 9.93,
+   "2018": 12.43,
+   "2019": 12.5,
+   "2020": 12.21,
+   "2021": 11.95,
+   "2022": 13.84,
+   "2023": 15.83,
+   "2024": 17.58,
+   "2025": 18.28,
+   "2026": null
+  },
+  "110611": {
+   "2016": null,
+   "2017": 10.91,
+   "2018": 12.31,
+   "2019": 12.59,
+   "2020": 11.18,
+   "2021": 10.73,
+   "2022": 12.24,
+   "2023": 15.46,
+   "2024": 15.93,
+   "2025": 16.67,
+   "2026": null
+  },
+  "110618": {
+   "2016": null,
+   "2017": 9.46,
+   "2018": 10.42,
+   "2019": 11.14,
+   "2020": 10.39,
+   "2021": 10.12,
+   "2022": 11.62,
+   "2023": 13.82,
+   "2024": 14.61,
+   "2025": 14.5,
+   "2026": null
+  },
+  "110621": {
+   "2016": null,
+   "2017": 8.42,
+   "2018": 9,
+   "2019": 10.86,
+   "2020": 10.28,
+   "2021": 9.82,
+   "2022": 12.24,
+   "2023": 14.43,
+   "2024": 16.69,
+   "2025": 17.16,
+   "2026": null
+  },
+  "110633": {
+   "2016": null,
+   "2017": 8.64,
+   "2018": 10.07,
+   "2019": 11.02,
+   "2020": 10.59,
+   "2021": 10.64,
+   "2022": 11.8,
+   "2023": 14.02,
+   "2024": 15.24,
+   "2025": 16,
+   "2026": null
+  },
+  "110639": {
+   "2016": null,
+   "2017": 10.07,
+   "2018": 11.39,
+   "2019": 11.8,
+   "2020": 11.43,
+   "2021": 10.71,
+   "2022": 12.28,
+   "2023": 14.79,
+   "2024": 14.83,
+   "2025": 15.77,
+   "2026": null
+  },
+  "110654": {
+   "2016": null,
+   "2017": 9.67,
+   "2018": 11.34,
+   "2019": 11.74,
+   "2020": 11.39,
+   "2021": 11.01,
+   "2022": 12.41,
+   "2023": 14.39,
+   "2024": 14.87,
+   "2025": 15.81,
+   "2026": null
+  },
+  "110655": {
+   "2016": null,
+   "2017": 9.7,
+   "2018": 10.87,
+   "2019": 11.2,
+   "2020": 10.67,
+   "2021": 10.39,
+   "2022": 11.87,
+   "2023": 13.4,
+   "2024": 14.98,
+   "2025": 14.94,
+   "2026": null
+  },
+  "110656": {
+   "2016": null,
+   "2017": 9.05,
+   "2018": 10.6,
+   "2019": 11.29,
+   "2020": 10.91,
+   "2021": 10.92,
+   "2022": 12.58,
+   "2023": 14.94,
+   "2024": 15.75,
+   "2025": 16.36,
+   "2026": null
+  },
+  "110657": {
+   "2016": null,
+   "2017": 10.15,
+   "2018": 12.54,
+   "2019": 13.04,
+   "2020": 12,
+   "2021": 11.89,
+   "2022": 13.93,
+   "2023": 16.64,
+   "2024": 16.95,
+   "2025": 17.86,
+   "2026": null
+  },
+  "110658": {
+   "2016": null,
+   "2017": 10,
+   "2018": 11.58,
+   "2019": 12.08,
+   "2020": 11.31,
+   "2021": 11.54,
+   "2022": 12.86,
+   "2023": 15.99,
+   "2024": 16.26,
+   "2025": 16.67,
+   "2026": null
+  },
+  "110659": {
+   "2016": null,
+   "2017": 10.94,
+   "2018": 12.18,
+   "2019": 13.98,
+   "2020": 12.08,
+   "2021": 12.37,
+   "2022": 14.4,
+   "2023": 17.58,
+   "2024": 18.63,
+   "2025": 18.88,
+   "2026": null
+  },
+  "110660": {
+   "2016": null,
+   "2017": 10.11,
+   "2018": 12.8,
+   "2019": 14,
+   "2020": 12.5,
+   "2021": 12.5,
+   "2022": 14.66,
+   "2023": 17.5,
+   "2024": 18.44,
+   "2025": 19.24,
+   "2026": null
+  },
+  "110661": {
+   "2016": null,
+   "2017": 11.64,
+   "2018": 13.38,
+   "2019": 14.49,
+   "2020": 13.17,
+   "2021": 13.16,
+   "2022": 15,
+   "2023": 19.52,
+   "2024": 19.27,
+   "2025": 19.64,
+   "2026": null
+  },
+  "110662": {
+   "2016": null,
+   "2017": 11.7,
+   "2018": 13.12,
+   "2019": 13.55,
+   "2020": 12.87,
+   "2021": 12.84,
+   "2022": 15.12,
+   "2023": 18.36,
+   "2024": 18.37,
+   "2025": 18.33,
+   "2026": null
+  },
+  "110663": {
+   "2016": null,
+   "2017": 8.71,
+   "2018": 10.18,
+   "2019": 10.58,
+   "2020": 11.21,
+   "2021": 10.59,
+   "2022": 12.02,
+   "2023": 14.01,
+   "2024": 15.32,
+   "2025": 16.44,
+   "2026": null
+  },
+  "110664": {
+   "2016": null,
+   "2017": 6.82,
+   "2018": 8.31,
+   "2019": 8.82,
+   "2020": 7.43,
+   "2021": 8.62,
+   "2022": 9.41,
+   "2023": 10.44,
+   "2024": 12.16,
+   "2025": 12.46,
+   "2026": null
+  },
+  "110665": {
+   "2016": null,
+   "2017": 9.78,
+   "2018": 11.93,
+   "2019": 13.9,
+   "2020": 12.5,
+   "2021": 13.15,
+   "2022": 14.65,
+   "2023": 17.66,
+   "2024": 19.29,
+   "2025": 18.61,
+   "2026": null
+  },
+  "110666": {
+   "2016": null,
+   "2017": 11.08,
+   "2018": 14.1,
+   "2019": 14.25,
+   "2020": 14,
+   "2021": 13.57,
+   "2022": 16.67,
+   "2023": 20.06,
+   "2024": 21.11,
+   "2025": 20.94,
+   "2026": null
+  },
+  "110667": {
+   "2016": null,
+   "2017": 10.03,
+   "2018": 12.07,
+   "2019": 12.5,
+   "2020": 11.91,
+   "2021": 11.76,
+   "2022": 13.46,
+   "2023": 15.97,
+   "2024": 17.27,
+   "2025": 17.88,
+   "2026": null
+  },
+  "1106": {
+   "2016": null,
+   "2017": 9.62,
+   "2018": 11.16,
+   "2019": 11.96,
+   "2020": 11.54,
+   "2021": 11.34,
+   "2022": 12.99,
+   "2023": 15.38,
+   "2024": 16.31,
+   "2025": 16.88,
+   "2026": null
+  }
+ },
+ "construction_cost_index": {
+  "2015": 85.3,
+  "2016": 86.33,
+  "2017": 87.89,
+  "2018": 89.89,
+  "2019": 91.99,
+  "2020": 93.88,
+  "2021": 100.0,
+  "2022": 112.16,
+  "2023": 116.52,
+  "2024": 120.41,
+  "2025": 125.25
+ },
+ "euribor_12m_avg": {
+  "2015": 0.168,
+  "2016": -0.035,
+  "2017": -0.145,
+  "2018": -0.173,
+  "2019": -0.217,
+  "2020": -0.306,
+  "2021": -0.491,
+  "2022": 1.1,
+  "2023": 3.869,
+  "2024": 3.274,
+  "2025": 2.222
+ },
+ "al": {
+  "110601": {
+   "registrations": 179,
+   "ratio_pct": 2.03,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 8811,
+   "cml_ratio_pct_cited_dec2025": null
+  },
+  "110602": {
+   "registrations": 233,
+   "ratio_pct": 2.63,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 8858,
+   "cml_ratio_pct_cited_dec2025": null
+  },
+  "110607": {
+   "registrations": 96,
+   "ratio_pct": 1.28,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 7519,
+   "cml_ratio_pct_cited_dec2025": null
+  },
+  "110608": {
+   "registrations": 55,
+   "ratio_pct": 0.26,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 20880,
+   "cml_ratio_pct_cited_dec2025": null
+  },
+  "110610": {
+   "registrations": 128,
+   "ratio_pct": 1.41,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 9103,
+   "cml_ratio_pct_cited_dec2025": null
+  },
+  "110611": {
+   "registrations": 33,
+   "ratio_pct": 0.37,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 9009,
+   "cml_ratio_pct_cited_dec2025": null
+  },
+  "110618": {
+   "registrations": 89,
+   "ratio_pct": 0.37,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 24073,
+   "cml_ratio_pct_cited_dec2025": null
+  },
+  "110621": {
+   "registrations": 74,
+   "ratio_pct": 0.44,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 16773,
+   "cml_ratio_pct_cited_dec2025": null
+  },
+  "110633": {
+   "registrations": 115,
+   "ratio_pct": 0.68,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 16942,
+   "cml_ratio_pct_cited_dec2025": null
+  },
+  "110639": {
+   "registrations": 91,
+   "ratio_pct": 0.45,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 20309,
+   "cml_ratio_pct_cited_dec2025": null
+  },
+  "110654": {
+   "registrations": 153,
+   "ratio_pct": 0.81,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 18871,
+   "cml_ratio_pct_cited_dec2025": null
+  },
+  "110655": {
+   "registrations": 154,
+   "ratio_pct": 1.23,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 12529,
+   "cml_ratio_pct_cited_dec2025": null
+  },
+  "110656": {
+   "registrations": 1199,
+   "ratio_pct": 5.75,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 20848,
+   "cml_ratio_pct_cited_dec2025": 13.5
+  },
+  "110657": {
+   "registrations": 343,
+   "ratio_pct": 2.32,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 14777,
+   "cml_ratio_pct_cited_dec2025": null
+  },
+  "110658": {
+   "registrations": 205,
+   "ratio_pct": 2.19,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 9374,
+   "cml_ratio_pct_cited_dec2025": null
+  },
+  "110659": {
+   "registrations": 281,
+   "ratio_pct": 2.06,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 13624,
+   "cml_ratio_pct_cited_dec2025": null
+  },
+  "110660": {
+   "registrations": 744,
+   "ratio_pct": 5.88,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 12657,
+   "cml_ratio_pct_cited_dec2025": 10.8
+  },
+  "110661": {
+   "registrations": 2174,
+   "ratio_pct": 25.11,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 8657,
+   "cml_ratio_pct_cited_dec2025": 43.8
+  },
+  "110662": {
+   "registrations": 196,
+   "ratio_pct": 1.73,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 11321,
+   "cml_ratio_pct_cited_dec2025": null
+  },
+  "110663": {
+   "registrations": 319,
+   "ratio_pct": 1.8,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 17691,
+   "cml_ratio_pct_cited_dec2025": null
+  },
+  "110664": {
+   "registrations": 10,
+   "ratio_pct": 0.09,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 10900,
+   "cml_ratio_pct_cited_dec2025": null
+  },
+  "110665": {
+   "registrations": 3141,
+   "ratio_pct": 40.83,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 7692,
+   "cml_ratio_pct_cited_dec2025": 66.9
+  },
+  "110666": {
+   "registrations": 922,
+   "ratio_pct": 11.17,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 8252,
+   "cml_ratio_pct_cited_dec2025": 25.1
+  },
+  "110667": {
+   "registrations": 929,
+   "ratio_pct": 9.13,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 10170,
+   "cml_ratio_pct_cited_dec2025": 16.1
+  },
+  "1106": {
+   "registrations": 11863,
+   "ratio_pct": 3.71,
+   "period": "RNAL active registrations, snapshot downloaded 2026-10-10 (latest DataRegisto 2026-10-07)",
+   "classic_dwellings_census2021": 319640,
+   "cml_ratio_pct_cited_dec2025": null
+  }
+ },
+ "caveats": [
+  "sale_eur_m2 is a spliced series: 2016-2018 from INE Metodologia 2018 (0010033, NUTS 2013 geography) and 2019-2025 from INE Metodologia 2022 (0012255, NUTS 2024 geography). Where both exist (2019, 2020) they differ: Lisboa 3247 vs 3286 (2019) and 3377 vs 3415 (2020); some parishes differ more (e.g. Santa Maria Maior 2020: 5914 vs 5682; Misericórdia 2019: 4813 vs 4933). Raw series from both methodologies are kept in raw_series.",
+  "rent_eur_m2 is a spliced series: 2017-2019 from INE Metodologia 2021 (0009631) and 2020-2025 from INE Metodologia 2026 (0014698). In the 2020-2023 overlap the two differ slightly (Lisboa 2023: 15.22 vs 15.38). 2016 is null because INE local rent statistics start in 2017. Raw series in raw_series.",
+  "All INE local price values are medians over the full calendar year (= 12 months ending Q4), computed by INE from tax (IMT/AT) data for sales and from lease contracts declared to the Tax Authority for rents (new leases only). They are transaction medians, not asking prices; parish medians can be volatile year to year, likely due to composition effects (e.g. Marvila sale median jumps from 3335 in 2021 to 5440 in 2022; Santa Maria Maior moves 5682 -> 4157 between 2020 and 2021).",
+  "2026 is null in both annual price series because INE has not published full-year 2026 data. The latest rolling values are given separately: sale_eur_m2_12m_to_2026Q1 (Apr 2025-Mar 2026) and rent_eur_m2_12m_to_2026Q2 (Jul 2025-Jun 2026).",
+  "Sale values are for \"alojamentos familiares\" total (houses + apartments, new + existing; category H1). Rent values are for all new lease contracts of family dwellings.",
+  "construction_cost_index is the national (Portugal) index, base 2021=100, annual mean of monthly values; it is not Lisbon-specific. 2026 is partial (Jan-Aug) and given separately in construction_cost_index_2026_ytd.",
+  "euribor_12m_avg uses ECB annual averages of daily observations (2015-2025). 2026 is partial (Jan-Sep 2026 mean of monthly averages) and given separately in euribor_12m_avg_2026_ytd. euribor_6m_avg added as extra.",
+  "AL registrations are a snapshot of the RNAL web service on 2026-10-10 (after Lisbon cancelled ~6,765 registrations in 2026 for missing insurance proof, so counts are far lower than the ~19-20k of 2023-2025). Parish attribution uses the register's own DTMNFR field.",
+  "al.ratio_pct is COMPUTED here (not published by CML): RNAL registrations / INE Census 2021 alojamentos familiares clássicos (total) x 100, which follows the RMAL definition of the ratio. CML monitors and publishes the ratio monthly; its figures cited at approval (late 2025, pre-cancellation) are in cml_ratio_pct_cited_dec2025 for the 6 parishes named in the PLMJ note (e.g. Santa Maria Maior 66.9% vs 40.8% computed now). The CML monthly table itself could not be retrieved (dados.cm-lisboa.pt / dadosabertos.cm-lisboa.pt blocked by a Cloudflare challenge).",
+  "Parish codes: INE uses NUTS-prefixed geocodes (1701106xx in NUTS 2013 series, 1A01106xx in NUTS 2024 series); they have been normalised here to the 6-digit DICOFRE codes given (and 1106 for the municipality). the same 24 Lisbon parish codes (post-2012 reform) appear in every series used."
+ ],
+ "sale_eur_m2_12m_to_2026Q1": {
+  "110601": 5161,
+  "110602": 4938,
+  "110607": 4600,
+  "110608": 4631,
+  "110610": 5486,
+  "110611": 4553,
+  "110618": 4670,
+  "110621": 5008,
+  "110633": 4296,
+  "110639": 5182,
+  "110654": 5041,
+  "110655": 4963,
+  "110656": 4776,
+  "110657": 6000,
+  "110658": 5498,
+  "110659": 5979,
+  "110660": 5833,
+  "110661": 5913,
+  "110662": 6407,
+  "110663": 4465,
+  "110664": 3733,
+  "110665": 5000,
+  "110666": 6986,
+  "110667": 4954,
+  "1106": 5082
+ },
+ "rent_eur_m2_12m_to_2026Q2": {
+  "110601": 18.47,
+  "110602": 17.26,
+  "110607": 15.99,
+  "110608": 16.28,
+  "110610": 18.48,
+  "110611": 16.86,
+  "110618": 15.04,
+  "110621": 18.33,
+  "110633": 16.58,
+  "110639": 16.36,
+  "110654": 16.24,
+  "110655": 15.57,
+  "110656": 16.67,
+  "110657": 18.26,
+  "110658": 17.42,
+  "110659": 19.23,
+  "110660": 20,
+  "110661": 19.95,
+  "110662": 18.88,
+  "110663": 16.77,
+  "110664": 13.39,
+  "110665": 19.92,
+  "110666": 21.55,
+  "110667": 18.44,
+  "1106": 17.43
+ },
+ "construction_cost_index_2026_ytd": {
+  "value": 132.17,
+  "months": "Jan-Aug 2026 (8 months)",
+  "latest_month_value": 134.88
+ },
+ "euribor_12m_avg_2026_ytd": {
+  "value": 2.715,
+  "months": "2026-01..2026-09 (9 monthly averages, simple mean)"
+ },
+ "euribor_6m_avg": {
+  "2015": 0.053,
+  "2016": -0.165,
+  "2017": -0.26,
+  "2018": -0.266,
+  "2019": -0.303,
+  "2020": -0.367,
+  "2021": -0.523,
+  "2022": 0.682,
+  "2023": 3.694,
+  "2024": 3.482,
+  "2025": 2.202
+ },
+ "euribor_6m_avg_2026_ytd": {
+  "value": 2.497,
+  "months": "2026-01..2026-09 (9 monthly averages, simple mean)"
+ },
+ "al_rules": {
+  "absolute_containment_ratio_pct_min": 10,
+  "relative_containment_ratio_pct_range": [
+   5,
+   10
+  ],
+  "ratio_definition": "AL establishments / alojamentos familiares clássicos (latest Census) x 100",
+  "source_id": "cml_rmal_2025",
+  "previous_rules_2019": "absolute containment threshold was 20% under RMAL 2019 (Aviso 17706-C/2019), per press reports (idealista, Lusa) that the 2025 amendment lowered it from 20% to 10%"
+ },
+ "parish_names": {
+  "110601": "Ajuda",
+  "110602": "Alcântara",
+  "110607": "Beato",
+  "110608": "Benfica",
+  "110610": "Campolide",
+  "110611": "Carnide",
+  "110618": "Lumiar",
+  "110621": "Marvila",
+  "110633": "Olivais",
+  "110639": "São Domingos de Benfica",
+  "110654": "Alvalade",
+  "110655": "Areeiro",
+  "110656": "Arroios",
+  "110657": "Avenidas Novas",
+  "110658": "Belém",
+  "110659": "Campo de Ourique",
+  "110660": "Estrela",
+  "110661": "Misericórdia",
+  "110662": "Parque das Nações",
+  "110663": "Penha de França",
+  "110664": "Santa Clara",
+  "110665": "Santa Maria Maior",
+  "110666": "Santo António",
+  "110667": "São Vicente",
+  "1106": "Lisboa"
+ },
+ "raw_series": {
+  "ine_0010033_sale_met2018": {
+   "110601": {
+    "2016": 1607,
+    "2017": 2064,
+    "2018": 2929,
+    "2019": 3205,
+    "2020": 3000
+   },
+   "110602": {
+    "2016": 1764,
+    "2017": 2155,
+    "2018": 2763,
+    "2019": 3127,
+    "2020": 2965
+   },
+   "110607": {
+    "2016": 1454,
+    "2017": 1571,
+    "2018": 2317,
+    "2019": 2385,
+    "2020": 2518
+   },
+   "110608": {
+    "2016": 1646,
+    "2017": 1932,
+    "2018": 2459,
+    "2019": 2717,
+    "2020": 2701
+   },
+   "110610": {
+    "2016": 1850,
+    "2017": 2155,
+    "2018": 2905,
+    "2019": 3032,
+    "2020": 3333
+   },
+   "110611": {
+    "2016": 2156,
+    "2017": 2463,
+    "2018": 2986,
+    "2019": 2884,
+    "2020": 3411
+   },
+   "110618": {
+    "2016": 2006,
+    "2017": 2265,
+    "2018": 2711,
+    "2019": 2674,
+    "2020": 2740
+   },
+   "110621": {
+    "2016": 1718,
+    "2017": 1483,
+    "2018": 2666,
+    "2019": 2804,
+    "2020": 2742
+   },
+   "110633": {
+    "2016": 1387,
+    "2017": 1679,
+    "2018": 2153,
+    "2019": 2430,
+    "2020": 2527
+   },
+   "110639": {
+    "2016": 2168,
+    "2017": 2475,
+    "2018": 2947,
+    "2019": 3333,
+    "2020": 3341
+   },
+   "110654": {
+    "2016": 2283,
+    "2017": 2651,
+    "2018": 3260,
+    "2019": 3547,
+    "2020": 3590
+   },
+   "110655": {
+    "2016": 2071,
+    "2017": 2408,
+    "2018": 2905,
+    "2019": 3167,
+    "2020": 3368
+   },
+   "110656": {
+    "2016": 1955,
+    "2017": 2460,
+    "2018": 3000,
+    "2019": 3274,
+    "2020": 3650
+   },
+   "110657": {
+    "2016": 2317,
+    "2017": 2835,
+    "2018": 3595,
+    "2019": 3892,
+    "2020": 3645
+   },
+   "110658": {
+    "2016": 2147,
+    "2017": 2572,
+    "2018": 3426,
+    "2019": 3542,
+    "2020": 3806
+   },
+   "110659": {
+    "2016": 2234,
+    "2017": 2725,
+    "2018": 3477,
+    "2019": 3846,
+    "2020": 3699
+   },
+   "110660": {
+    "2016": 2396,
+    "2017": 2894,
+    "2018": 3507,
+    "2019": 3846,
+    "2020": 4223
+   },
+   "110661": {
+    "2016": 2703,
+    "2017": 3520,
+    "2018": 4126,
+    "2019": 4813,
+    "2020": 4754
+   },
+   "110662": {
+    "2016": 2996,
+    "2017": 3257,
+    "2018": 3247,
+    "2019": 4132,
+    "2020": 3972
+   },
+   "110663": {
+    "2016": 1544,
+    "2017": 1995,
+    "2018": 2543,
+    "2019": 2936,
+    "2020": 2987
+   },
+   "110664": {
+    "2016": 1480,
+    "2017": 1695,
+    "2018": 1969,
+    "2019": 2354,
+    "2020": 2102
+   },
+   "110665": {
+    "2016": 3022,
+    "2017": 3333,
+    "2018": 4297,
+    "2019": 4483,
+    "2020": 5914
+   },
+   "110666": {
+    "2016": 2481,
+    "2017": 3827,
+    "2018": 4568,
+    "2019": 4932,
+    "2020": 5544
+   },
+   "110667": {
+    "2016": 2051,
+    "2017": 2667,
+    "2018": 3250,
+    "2019": 3402,
+    "2020": 3470
+   },
+   "1106": {
+    "2016": 2065,
+    "2017": 2438,
+    "2018": 3010,
+    "2019": 3247,
+    "2020": 3377
+   }
+  },
+  "ine_0012255_sale_met2022": {
+   "110601": {
+    "2019": 3323,
+    "2020": 3063,
+    "2021": 3333,
+    "2022": 4068,
+    "2023": 3704,
+    "2024": 4082,
+    "2025": 4874
+   },
+   "110602": {
+    "2019": 3107,
+    "2020": 3279,
+    "2021": 3309,
+    "2022": 3732,
+    "2023": 4253,
+    "2024": 4363,
+    "2025": 4658
+   },
+   "110607": {
+    "2019": 2325,
+    "2020": 2478,
+    "2021": 2762,
+    "2022": 3009,
+    "2023": 3096,
+    "2024": 3982,
+    "2025": 4348
+   },
+   "110608": {
+    "2019": 2713,
+    "2020": 2758,
+    "2021": 2897,
+    "2022": 3288,
+    "2023": 3827,
+    "2024": 3971,
+    "2025": 4392
+   },
+   "110610": {
+    "2019": 3079,
+    "2020": 3466,
+    "2021": 3374,
+    "2022": 3559,
+    "2023": 4167,
+    "2024": 4773,
+    "2025": 5346
+   },
+   "110611": {
+    "2019": 2911,
+    "2020": 3324,
+    "2021": 3490,
+    "2022": 3649,
+    "2023": 4310,
+    "2024": 4197,
+    "2025": 4436
+   },
+   "110618": {
+    "2019": 2744,
+    "2020": 2883,
+    "2021": 3211,
+    "2022": 3371,
+    "2023": 3632,
+    "2024": 3885,
+    "2025": 4548
+   },
+   "110621": {
+    "2019": 2797,
+    "2020": 2763,
+    "2021": 3335,
+    "2022": 5440,
+    "2023": 5833,
+    "2024": 5623,
+    "2025": 5029
+   },
+   "110633": {
+    "2019": 2480,
+    "2020": 2511,
+    "2021": 2805,
+    "2022": 3175,
+    "2023": 3487,
+    "2024": 3523,
+    "2025": 4238
+   },
+   "110639": {
+    "2019": 3321,
+    "2020": 3443,
+    "2021": 3362,
+    "2022": 3758,
+    "2023": 3966,
+    "2024": 4198,
+    "2025": 4883
+   },
+   "110654": {
+    "2019": 3571,
+    "2020": 3563,
+    "2021": 3808,
+    "2022": 4271,
+    "2023": 4520,
+    "2024": 4647,
+    "2025": 4922
+   },
+   "110655": {
+    "2019": 3214,
+    "2020": 3320,
+    "2021": 3500,
+    "2022": 3793,
+    "2023": 4470,
+    "2024": 4853,
+    "2025": 4552
+   },
+   "110656": {
+    "2019": 3272,
+    "2020": 3604,
+    "2021": 3450,
+    "2022": 3870,
+    "2023": 4163,
+    "2024": 4271,
+    "2025": 4523
+   },
+   "110657": {
+    "2019": 4038,
+    "2020": 4010,
+    "2021": 4243,
+    "2022": 4339,
+    "2023": 4554,
+    "2024": 4680,
+    "2025": 5465
+   },
+   "110658": {
+    "2019": 3571,
+    "2020": 3853,
+    "2021": 3824,
+    "2022": 4265,
+    "2023": 4483,
+    "2024": 4917,
+    "2025": 5156
+   },
+   "110659": {
+    "2019": 3805,
+    "2020": 3622,
+    "2021": 3988,
+    "2022": 4760,
+    "2023": 4769,
+    "2024": 5204,
+    "2025": 5890
+   },
+   "110660": {
+    "2019": 3895,
+    "2020": 4097,
+    "2021": 4061,
+    "2022": 4448,
+    "2023": 5051,
+    "2024": 5474,
+    "2025": 5629
+   },
+   "110661": {
+    "2019": 4933,
+    "2020": 4710,
+    "2021": 4375,
+    "2022": 4449,
+    "2023": 5288,
+    "2024": 5405,
+    "2025": 5569
+   },
+   "110662": {
+    "2019": 4152,
+    "2020": 4018,
+    "2021": 4431,
+    "2022": 4690,
+    "2023": 5077,
+    "2024": 5171,
+    "2025": 6317
+   },
+   "110663": {
+    "2019": 2893,
+    "2020": 3033,
+    "2021": 3156,
+    "2022": 3246,
+    "2023": 3570,
+    "2024": 3649,
+    "2025": 4282
+   },
+   "110664": {
+    "2019": 2435,
+    "2020": 2259,
+    "2021": 2501,
+    "2022": 2622,
+    "2023": 2783,
+    "2024": 3416,
+    "2025": 3727
+   },
+   "110665": {
+    "2019": 4755,
+    "2020": 5682,
+    "2021": 4157,
+    "2022": 4392,
+    "2023": 4928,
+    "2024": 5200,
+    "2025": 5000
+   },
+   "110666": {
+    "2019": 5140,
+    "2020": 5503,
+    "2021": 5435,
+    "2022": 5753,
+    "2023": 6458,
+    "2024": 5879,
+    "2025": 6819
+   },
+   "110667": {
+    "2019": 3447,
+    "2020": 3506,
+    "2021": 3409,
+    "2022": 4200,
+    "2023": 4052,
+    "2024": 4638,
+    "2025": 4787
+   },
+   "1106": {
+    "2019": 3286,
+    "2020": 3415,
+    "2021": 3531,
+    "2022": 3872,
+    "2023": 4167,
+    "2024": 4340,
+    "2025": 4875
+   }
+  },
+  "ine_0009631_rent_met2021": {
+   "110601": {
+    "2017": 8.77,
+    "2018": 10.83,
+    "2019": 12.5,
+    "2020": 11.7,
+    "2021": 11.64,
+    "2022": 13.05,
+    "2023": 15
+   },
+   "110602": {
+    "2017": 8.87,
+    "2018": 10.49,
+    "2019": 11.75,
+    "2020": 10.98,
+    "2021": 11.27,
+    "2022": 12.5,
+    "2023": 14.38
+   },
+   "110607": {
+    "2017": 9.23,
+    "2018": 10.11,
+    "2019": 10.28,
+    "2020": 10.64,
+    "2021": 10.71,
+    "2022": 12.22,
+    "2023": 13.64
+   },
+   "110608": {
+    "2017": 8.81,
+    "2018": 10.2,
+    "2019": 11.14,
+    "2020": 10.83,
+    "2021": 10.64,
+    "2022": 11.73,
+    "2023": 13.64
+   },
+   "110610": {
+    "2017": 9.93,
+    "2018": 12.43,
+    "2019": 12.5,
+    "2020": 12.1,
+    "2021": 11.63,
+    "2022": 13.83,
+    "2023": 15.85
+   },
+   "110611": {
+    "2017": 10.91,
+    "2018": 12.31,
+    "2019": 12.59,
+    "2020": 11.54,
+    "2021": 10.73,
+    "2022": 12.16,
+    "2023": 14.94
+   },
+   "110618": {
+    "2017": 9.46,
+    "2018": 10.42,
+    "2019": 11.14,
+    "2020": 10.24,
+    "2021": 10.08,
+    "2022": 11.39,
+    "2023": 13.88
+   },
+   "110621": {
+    "2017": 8.42,
+    "2018": 9,
+    "2019": 10.86,
+    "2020": 10,
+    "2021": 9.8,
+    "2022": 12.65,
+    "2023": 14.43
+   },
+   "110633": {
+    "2017": 8.64,
+    "2018": 10.07,
+    "2019": 11.02,
+    "2020": 10.81,
+    "2021": 10.33,
+    "2022": 11.69,
+    "2023": 13.79
+   },
+   "110639": {
+    "2017": 10.07,
+    "2018": 11.39,
+    "2019": 11.8,
+    "2020": 11.57,
+    "2021": 10.83,
+    "2022": 12.44,
+    "2023": 15.15
+   },
+   "110654": {
+    "2017": 9.67,
+    "2018": 11.34,
+    "2019": 11.74,
+    "2020": 11.1,
+    "2021": 11.22,
+    "2022": 12.5,
+    "2023": 14.58
+   },
+   "110655": {
+    "2017": 9.7,
+    "2018": 10.87,
+    "2019": 11.2,
+    "2020": 10.91,
+    "2021": 10.39,
+    "2022": 11.9,
+    "2023": 13.81
+   },
+   "110656": {
+    "2017": 9.05,
+    "2018": 10.6,
+    "2019": 11.29,
+    "2020": 10.94,
+    "2021": 10.83,
+    "2022": 12.66,
+    "2023": 14.24
+   },
+   "110657": {
+    "2017": 10.15,
+    "2018": 12.54,
+    "2019": 13.04,
+    "2020": 11.85,
+    "2021": 11.68,
+    "2022": 13.89,
+    "2023": 16.29
+   },
+   "110658": {
+    "2017": 10,
+    "2018": 11.58,
+    "2019": 12.08,
+    "2020": 11.21,
+    "2021": 11.85,
+    "2022": 12.89,
+    "2023": 16.35
+   },
+   "110659": {
+    "2017": 10.94,
+    "2018": 12.18,
+    "2019": 13.98,
+    "2020": 12.03,
+    "2021": 12.39,
+    "2022": 14.62,
+    "2023": 17.81
+   },
+   "110660": {
+    "2017": 10.11,
+    "2018": 12.8,
+    "2019": 14,
+    "2020": 12.17,
+    "2021": 12.18,
+    "2022": 14.45,
+    "2023": 16.92
+   },
+   "110661": {
+    "2017": 11.64,
+    "2018": 13.38,
+    "2019": 14.49,
+    "2020": 13.4,
+    "2021": 13,
+    "2022": 14.47,
+    "2023": 18.94
+   },
+   "110662": {
+    "2017": 11.7,
+    "2018": 13.12,
+    "2019": 13.55,
+    "2020": 12.93,
+    "2021": 12.86,
+    "2022": 15.03,
+    "2023": 18.45
+   },
+   "110663": {
+    "2017": 8.71,
+    "2018": 10.18,
+    "2019": 10.58,
+    "2020": 11.11,
+    "2021": 10.64,
+    "2022": 11.9,
+    "2023": 14
+   },
+   "110664": {
+    "2017": 6.82,
+    "2018": 8.31,
+    "2019": 8.82,
+    "2020": 7.95,
+    "2021": 8.59,
+    "2022": 9.56,
+    "2023": 10.37
+   },
+   "110665": {
+    "2017": 9.78,
+    "2018": 11.93,
+    "2019": 13.9,
+    "2020": 12.92,
+    "2021": 13.09,
+    "2022": 15.13,
+    "2023": 17.93
+   },
+   "110666": {
+    "2017": 11.08,
+    "2018": 14.1,
+    "2019": 14.25,
+    "2020": 13.83,
+    "2021": 13.33,
+    "2022": 16.34,
+    "2023": 19.44
+   },
+   "110667": {
+    "2017": 10.03,
+    "2018": 12.07,
+    "2019": 12.5,
+    "2020": 11.76,
+    "2021": 11.7,
+    "2022": 13.49,
+    "2023": 16.25
+   },
+   "1106": {
+    "2017": 9.62,
+    "2018": 11.16,
+    "2019": 11.96,
+    "2020": 11.46,
+    "2021": 11.24,
+    "2022": 12.88,
+    "2023": 15.22
+   }
+  },
+  "ine_0014698_rent_met2026": {
+   "110601": {
+    "2020": 11.54,
+    "2021": 12.14,
+    "2022": 13.61,
+    "2023": 15.83,
+    "2024": 17.78,
+    "2025": 18.43
+   },
+   "110602": {
+    "2020": 11.06,
+    "2021": 11.46,
+    "2022": 12.31,
+    "2023": 15.3,
+    "2024": 16,
+    "2025": 16.68
+   },
+   "110607": {
+    "2020": 10.66,
+    "2021": 10.7,
+    "2022": 12.21,
+    "2023": 14.29,
+    "2024": 15.56,
+    "2025": 16
+   },
+   "110608": {
+    "2020": 10.75,
+    "2021": 10.63,
+    "2022": 11.78,
+    "2023": 14.01,
+    "2024": 14.74,
+    "2025": 15.78
+   },
+   "110610": {
+    "2020": 12.21,
+    "2021": 11.95,
+    "2022": 13.84,
+    "2023": 15.83,
+    "2024": 17.58,
+    "2025": 18.28
+   },
+   "110611": {
+    "2020": 11.18,
+    "2021": 10.73,
+    "2022": 12.24,
+    "2023": 15.46,
+    "2024": 15.93,
+    "2025": 16.67
+   },
+   "110618": {
+    "2020": 10.39,
+    "2021": 10.12,
+    "2022": 11.62,
+    "2023": 13.82,
+    "2024": 14.61,
+    "2025": 14.5
+   },
+   "110621": {
+    "2020": 10.28,
+    "2021": 9.82,
+    "2022": 12.24,
+    "2023": 14.43,
+    "2024": 16.69,
+    "2025": 17.16
+   },
+   "110633": {
+    "2020": 10.59,
+    "2021": 10.64,
+    "2022": 11.8,
+    "2023": 14.02,
+    "2024": 15.24,
+    "2025": 16
+   },
+   "110639": {
+    "2020": 11.43,
+    "2021": 10.71,
+    "2022": 12.28,
+    "2023": 14.79,
+    "2024": 14.83,
+    "2025": 15.77
+   },
+   "110654": {
+    "2020": 11.39,
+    "2021": 11.01,
+    "2022": 12.41,
+    "2023": 14.39,
+    "2024": 14.87,
+    "2025": 15.81
+   },
+   "110655": {
+    "2020": 10.67,
+    "2021": 10.39,
+    "2022": 11.87,
+    "2023": 13.4,
+    "2024": 14.98,
+    "2025": 14.94
+   },
+   "110656": {
+    "2020": 10.91,
+    "2021": 10.92,
+    "2022": 12.58,
+    "2023": 14.94,
+    "2024": 15.75,
+    "2025": 16.36
+   },
+   "110657": {
+    "2020": 12,
+    "2021": 11.89,
+    "2022": 13.93,
+    "2023": 16.64,
+    "2024": 16.95,
+    "2025": 17.86
+   },
+   "110658": {
+    "2020": 11.31,
+    "2021": 11.54,
+    "2022": 12.86,
+    "2023": 15.99,
+    "2024": 16.26,
+    "2025": 16.67
+   },
+   "110659": {
+    "2020": 12.08,
+    "2021": 12.37,
+    "2022": 14.4,
+    "2023": 17.58,
+    "2024": 18.63,
+    "2025": 18.88
+   },
+   "110660": {
+    "2020": 12.5,
+    "2021": 12.5,
+    "2022": 14.66,
+    "2023": 17.5,
+    "2024": 18.44,
+    "2025": 19.24
+   },
+   "110661": {
+    "2020": 13.17,
+    "2021": 13.16,
+    "2022": 15,
+    "2023": 19.52,
+    "2024": 19.27,
+    "2025": 19.64
+   },
+   "110662": {
+    "2020": 12.87,
+    "2021": 12.84,
+    "2022": 15.12,
+    "2023": 18.36,
+    "2024": 18.37,
+    "2025": 18.33
+   },
+   "110663": {
+    "2020": 11.21,
+    "2021": 10.59,
+    "2022": 12.02,
+    "2023": 14.01,
+    "2024": 15.32,
+    "2025": 16.44
+   },
+   "110664": {
+    "2020": 7.43,
+    "2021": 8.62,
+    "2022": 9.41,
+    "2023": 10.44,
+    "2024": 12.16,
+    "2025": 12.46
+   },
+   "110665": {
+    "2020": 12.5,
+    "2021": 13.15,
+    "2022": 14.65,
+    "2023": 17.66,
+    "2024": 19.29,
+    "2025": 18.61
+   },
+   "110666": {
+    "2020": 14,
+    "2021": 13.57,
+    "2022": 16.67,
+    "2023": 20.06,
+    "2024": 21.11,
+    "2025": 20.94
+   },
+   "110667": {
+    "2020": 11.91,
+    "2021": 11.76,
+    "2022": 13.46,
+    "2023": 15.97,
+    "2024": 17.27,
+    "2025": 17.88
+   },
+   "1106": {
+    "2020": 11.54,
+    "2021": 11.34,
+    "2022": 12.99,
+    "2023": 15.38,
+    "2024": 16.31,
+    "2025": 16.88
+   }
+  }
+ },
+ "generated": "2026-10-10"
+}

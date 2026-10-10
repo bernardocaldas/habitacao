@@ -1,0 +1,67 @@
+# Aguarda parecer
+
+*Quanto tempo demora a construir casas em Lisboa?*
+
+A Lisbon housing game for [estimador.pt](https://estimador.pt). You run a small developer
+backed by a fund, from January 2015 to the October 2029 local elections. Pick sites, design
+projects, and get them through the licensing procedure (RJUE), heritage opinions, public
+consultation, Câmara votes, the courts, Euribor and construction costs. Laws change on the
+dates they really changed.
+
+It is inspired by Oliver Sin's San Francisco simulator
+[Discretionary Review](https://housing.over.pizza/). The code, rules and text here are
+original.
+
+## What is real and what is not
+
+| Real, with a source | Game simplification (and said so in the game) | Invented |
+|---|---|---|
+| The 24 parishes (CAOP 2021) and their census counts | How strongly residents, the housing movement and heritage weigh in each parish | The 39 sites (archetypes placed in the right parish, at no real address) |
+| INE median sale prices and rents by parish, 2016–2025 | How each list in the Câmara leans when voting | Characters and fiction news |
+| INE construction cost index, ECB Euribor | Durations and odds of each licensing step | |
+| Câmara seats per list, every mandate since 2013 | The pro forma (premiums, soft costs, fees) | |
+| 129 dated events (laws, programmes, short-let rules, rates), each with a source | Prices after 2025 (a stated scenario) | |
+| Short-let registrations by parish (RNAL) | | |
+
+Sources and their licences are in `src/data/fontes/` and in the game's Rules dialog.
+
+## Run it
+
+```bash
+npm install
+npm run dev          # http://localhost:5173 (?lang=en for English)
+npm test             # the simulation's tests
+npm run typecheck
+npm run build        # static build in dist/
+npm run balance      # plays 90 scripted games and prints economics by site and year
+```
+
+`npm install` needs `legacy-peer-deps` (set in `.npmrc`): npm 10.9 trips over Vitest's optional
+peers otherwise.
+
+## Layout
+
+```
+src/sim/       the simulation: plain TypeScript, no React, deterministic from a seed
+  sim.ts         the monthly loop, the licensing state machine, decisions
+  econ.ts        pro forma: costs, VAT, fees, land as a residual, sale/rent/short-let values
+  votes.ts       the Câmara, seat by seat, with exact odds (Poisson-binomial)
+  heat.ts        who objects, and how loudly
+  path.ts        the route a proposal takes and how long each step usually lasts
+  rules.ts       rules and the council at any month (a fold over the timeline)
+  weather.ts     political events: the junta, petitions, rallies, the press
+  goals.ts       the fund's reviews every two years
+  forecast.ts    Monte Carlo forecast shown before and during a project
+  bot.ts         scripted players for tests and balance
+src/data/      parishes, sites, the Câmara, market series, the timeline
+  fontes/        the research: INE/ECB series (ine.json), dated events (cronologia.json)
+  precos.ts      GENERATED from fontes/ine.json by scripts/build-precos.py
+src/ui/        React interface (map, panels, dialogs), PT and EN
+src/styles/    estimador.pt tokens and the game's scoped stylesheet
+docs/DESIGN.md the design, the model, the data and the plan for estimador-web
+```
+
+To add a law: add the dated event to `src/data/fontes/cronologia.json` (with its source), then
+give it a `set` (rule changes) and a `game` line in `EFFECTS` in `src/data/timeline.ts`.
+
+To refresh prices: update `src/data/fontes/ine.json` and run `python3 -I scripts/build-precos.py`.

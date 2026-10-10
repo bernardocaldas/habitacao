@@ -266,7 +266,7 @@ export interface Decision {
 export interface NewsItem {
   m: number;
   head: L;
-  body?: L[];
+  body?: Partial<L>;
   /** What it changes in the game. */
   game?: L[];
   real: boolean;

@@ -1,0 +1,1915 @@
+[
+ {
+  "date": "2012-08-14",
+  "category": "law",
+  "title_pt": "Lei 31/2012 (NRAU, \"Lei Cristas\") publicada; em vigor a 12-11-2012",
+  "title_en": "Rental reform Law 31/2012 (\"Lei Cristas\") published; in force 12 Nov 2012",
+  "summary_en": "The 2012 reform of the urban lease regime eased rent updates on pre-1990 leases and created a special eviction procedure via the Balcão Nacional do Arrendamento (BNA), which started operating on 8 Jan 2013 (DL 1/2013).",
+  "summary_pt": "A reforma de 2012 do regime do arrendamento urbano facilitou a atualização das rendas dos contratos anteriores a 1990 e criou um procedimento especial de despejo através do Balcão Nacional do Arrendamento (BNA), que começou a funcionar a 8 de janeiro de 2013 (DL 1/2013).",
+  "numbers": {
+   "in_force": "2012-11-12",
+   "bna_start": "2013-01-08",
+   "bna_decree": "DL 1/2013 (7 Jan 2013)"
+  },
+  "source": "https://www.cgd.pt/Site/Saldo-Positivo/casa-e-familia/Pages/novo-regime-arrendamento-urbano.aspx",
+  "extra_sources": [
+   "https://diariodarepublica.pt/dr/detalhe/decreto-lei/1-2013-588827"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2014-08-29",
+  "category": "al",
+  "title_pt": "Decreto-Lei 128/2014: regime jurídico do Alojamento Local",
+  "title_en": "Decree-Law 128/2014 creates the short-term rental (Alojamento Local) regime",
+  "summary_en": "Made AL an autonomous legal category separate from tourist developments, registered by simple prior notice (registo) with the municipality. It entered into force on 27 Nov 2014 and is the base regime later amended in 2018, 2023 and 2024.",
+  "summary_pt": "Tornou o AL uma figura jurídica autónoma, separada dos empreendimentos turísticos, sujeita a registo mediante mera comunicação prévia junto do município. Entrou em vigor a 27 de novembro de 2014 e é o regime de base, alterado depois em 2018, 2023 e 2024.",
+  "numbers": {
+   "in_force": "2014-11-27"
+  },
+  "source": "https://diariodarepublica.pt/dr/legislacao-consolidada/decreto-lei/2014-56917875-116146061",
+  "confidence": "high"
+ },
+ {
+  "date": "2015-01-22",
+  "category": "market",
+  "title_pt": "BCE anuncia programa alargado de compra de ativos (QE)",
+  "title_en": "ECB announces expanded asset purchase programme (QE)",
+  "summary_en": "The ECB announced combined purchases of EUR 60 billion per month, adding sovereign bonds; public-sector purchases started 9 March 2015. Part of the ultra-low-rate backdrop to the 2015-2019 Lisbon price boom.",
+  "summary_pt": "O BCE anunciou compras mensais combinadas de 60 mil milhões de euros, passando a incluir dívida soberana; as compras de títulos do setor público começaram a 9 de março de 2015. Faz parte do contexto de juros ultrabaixos por detrás da escalada dos preços em Lisboa entre 2015 e 2019.",
+  "numbers": {
+   "monthly_purchases_eur_bn": 60,
+   "pspp_start": "2015-03-09"
+  },
+  "source": "https://www.ecb.europa.eu/press/pr/date/2015/html/pr150122_1.en.html",
+  "confidence": "high"
+ },
+ {
+  "date": "2015-04-06",
+  "category": "politics",
+  "title_pt": "Fernando Medina sucede a António Costa na presidência da Câmara de Lisboa",
+  "title_en": "Fernando Medina succeeds António Costa as Lisbon mayor",
+  "summary_en": "Costa (mayor since 2007) left to lead the PS into the national election; deputy mayor Fernando Medina took over without having headed the 2013 list. Medina served until 18 Oct 2021.",
+  "summary_pt": "Costa (presidente da Câmara desde 2007) saiu para liderar o PS nas eleições legislativas; o vice-presidente Fernando Medina assumiu o cargo sem ter encabeçado a lista de 2013. Medina exerceu funções até 18 de outubro de 2021.",
+  "numbers": {
+   "medina_term_end": "2021-10-18"
+  },
+  "source": "https://en.wikipedia.org/wiki/Fernando_Medina",
+  "extra_sources": [
+   "https://24noticias.sapo.pt/atualidade/artigos/antonio-costa-sobre-medina-sera-presidente-da-camara-por-merito-proprio"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2015-05-18",
+  "category": "project",
+  "title_pt": "Câmara aprecia projeto imobiliário da Matinha em solos contaminados",
+  "title_en": "Council weighs Matinha (Marvila) property project on contaminated former gasworks land",
+  "summary_en": "Público reported that a GES-linked fund's project for the former Matinha gasworks site was before the council despite contaminated soils, unfavourable opinions from CCDR-LVT and another body, and no urbanisation contract; phased execution had been approved in 2012 under councillor Manuel Salgado.",
+  "summary_pt": "O Público noticiou que o projeto de um fundo ligado ao GES para os terrenos da antiga fábrica de gás da Matinha estava a ser apreciado pela Câmara apesar dos solos contaminados, dos pareceres desfavoráveis da CCDR-LVT e de outra entidade e da inexistência de contrato de urbanização; a execução faseada tinha sido aprovada em 2012, sob a tutela do vereador Manuel Salgado.",
+  "source": "https://www.publico.pt/2015/05/18/local/noticia/cml-aprecia-projecto-imobiliario-do-ges-para-solos-contaminados-e-sem-contrato-de-urbanizacao-1695751",
+  "confidence": "medium"
+ },
+ {
+  "date": "2015-12-09",
+  "category": "market",
+  "title_pt": "BCE desce taxa de depósito para -0,30%",
+  "title_en": "ECB cuts deposit facility rate to -0.30%",
+  "summary_en": "Deposit facility rate cut from -0.20% to -0.30% (main refinancing rate 0.05%).",
+  "summary_pt": "A taxa da facilidade de depósito foi reduzida de -0,20% para -0,30% (taxa principal de refinanciamento: 0,05%).",
+  "numbers": {
+   "deposit_rate_pct": -0.3,
+   "mro_pct": 0.05
+  },
+  "source": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html",
+  "confidence": "high"
+ },
+ {
+  "date": "2016-01",
+  "category": "tax",
+  "title_pt": "Taxa turística de Lisboa entra em vigor (1 euro/noite)",
+  "title_en": "Lisbon tourist tax starts at EUR 1 per night",
+  "summary_en": "Lisbon began charging a municipal tourist tax on overnight stays in hotels and Alojamento Local.",
+  "summary_pt": "Lisboa começou a cobrar uma taxa turística municipal sobre as dormidas em hotéis e em alojamento local.",
+  "numbers": {
+   "eur_per_night": 1
+  },
+  "source": "https://observador.pt/2024/07/24/assembleia-municipal-de-lisboa-aprova-aumento-da-taxa-turistica-a-partir-de-setembro/",
+  "confidence": "high"
+ },
+ {
+  "date": "2016-03-16",
+  "category": "market",
+  "title_pt": "BCE: taxa de depósito -0,40% e taxa de refinanciamento 0%",
+  "title_en": "ECB: deposit rate -0.40%, main refinancing rate 0%",
+  "summary_en": "Further easing; rates stayed at these levels until September 2019.",
+  "summary_pt": "Novo alívio da política monetária; as taxas mantiveram-se nestes níveis até setembro de 2019.",
+  "numbers": {
+   "deposit_rate_pct": -0.4,
+   "mro_pct": 0.0
+  },
+  "source": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html",
+  "confidence": "high"
+ },
+ {
+  "date": "2016-12-28",
+  "category": "tax",
+  "title_pt": "Orçamento do Estado 2017 cria o Adicional ao IMI (AIMI)",
+  "title_en": "2017 State Budget (Law 42/2016) creates the IMI surcharge (AIMI)",
+  "summary_en": "New annual surcharge on owners of high-value residential property and building land, with a EUR 600,000 deduction for individuals; commercial/services property excluded.",
+  "summary_pt": "Novo adicional anual a pagar pelos proprietários de imóveis habitacionais e terrenos para construção de valor elevado, com uma dedução de 600 000 euros para pessoas singulares; ficam excluídos os imóveis comerciais e de serviços.",
+  "numbers": {
+   "deduction_individual_eur": 600000,
+   "law": "Lei 42/2016, 28 Dec 2016"
+  },
+  "source": "https://www.idealista.pt/news/node/31814",
+  "confidence": "medium"
+ },
+ {
+  "date": "2017-04",
+  "category": "programme",
+  "title_pt": "Câmara de Lisboa aprova o Programa Renda Acessível (PRA)",
+  "title_en": "Lisbon council approves the Affordable Rent Programme (PRA)",
+  "summary_en": "Medina's executive approved the PRA (PSD, CDS and PCP abstained): municipal land/buildings conceded to private partners who build/renovate and let homes at rents of 10%-35% of household income, allocated by lottery. Press reports cited a target of about 6,000 homes in 15 zones; first site Rua de São Lázaro.",
+  "summary_pt": "O executivo de Medina aprovou o PRA (com abstenção de PSD, CDS e PCP): terrenos e edifícios municipais concessionados a parceiros privados, que constroem ou reabilitam e arrendam as casas com rendas entre 10% e 35% do rendimento do agregado familiar, atribuídas por sorteio. A imprensa referiu uma meta de cerca de 6000 casas em 15 zonas; o primeiro local foi a Rua de São Lázaro.",
+  "numbers": {
+   "rent_share_of_income_min_pct": 10,
+   "rent_share_of_income_max_pct": 35,
+   "target_homes_press": 6000,
+   "target_zones": 15
+  },
+  "source": "https://eco.sapo.pt/2017/04/20/pre-registo-para-rendas-acessiveis-dentro-de-um-mes-casa-so-daqui-a-tres-anos/",
+  "extra_sources": [
+   "https://www.dn.pt/sociedade/camara-de-lisboa-aprova-parcerias-com-privados-para-reabilitar-casas-6234209.html"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2017-05-30",
+  "category": "programme",
+  "title_pt": "Assembleia Municipal aprova o Programa de Renda Acessível",
+  "title_en": "Municipal Assembly approves the Affordable Rent Programme",
+  "summary_en": "Proposal 180/CM/2017 passed (Deliberation 168/AML/2017): PS, PAN and independents for, BE against, PSD, PCP, CDS-PP and PEV abstaining. The proposal's own estimate of the land allocated was rehab of 370 homes and 8,788 new homes, a different figure from the 6,000 quoted in the press.",
+  "summary_pt": "A Proposta 180/CM/2017 foi aprovada (Deliberação 168/AML/2017), com votos a favor de PS, PAN e independentes, contra do BE e abstenção de PSD, PCP, CDS-PP e PEV. A estimativa da própria proposta para os terrenos afetos era a reabilitação de 370 casas e 8788 casas novas, um número diferente das 6000 citadas na imprensa.",
+  "numbers": {
+   "deliberation": "168/AML/2017",
+   "proposal_rehab_homes": 370,
+   "proposal_new_homes": 8788
+  },
+  "source": "https://www.am-lisboa.pt/301000/1/007661,000380/index.htm",
+  "confidence": "high"
+ },
+ {
+  "date": "2017-06-19",
+  "category": "programme",
+  "title_pt": "Lançado o primeiro concurso de concessão do PRA: Rua de São Lázaro",
+  "title_en": "First PRA concession tender launched: Rua de São Lázaro",
+  "summary_en": "Public-private concession for 126 affordable flats in 16 municipal buildings (surface rights), private partner to finance, design, rehabilitate and operate for 25 years plus ~5 years for design and works.",
+  "summary_pt": "Concessão público-privada de 126 apartamentos a renda acessível em 16 prédios municipais (direito de superfície), cabendo ao parceiro privado financiar, projetar, reabilitar e explorar durante 25 anos, mais cerca de 5 anos para projeto e obras.",
+  "numbers": {
+   "homes": 126,
+   "buildings": 16,
+   "operation_years": 25
+  },
+  "source": "https://eco.sapo.pt/2017/06/19/lancado-primeiro-concurso-para-programa-renda-acessivel-em-lisboa",
+  "confidence": "high"
+ },
+ {
+  "date": "2017-10-01",
+  "category": "politics",
+  "title_pt": "Autárquicas: PS de Medina vence mas perde maioria absoluta",
+  "title_en": "Local elections: Medina's PS wins but loses its absolute majority",
+  "summary_en": "PS 42.02% and 8 of 17 councillors (11 in 2013); CDS-PP (Assunção Cristas) 4; PSD 2; CDU 2; BE 1.",
+  "summary_pt": "PS com 42,02% e 8 dos 17 vereadores (11 em 2013); CDS-PP (Assunção Cristas) 4; PSD 2; CDU 2; BE 1.",
+  "numbers": {
+   "PS": 8,
+   "CDS-PP": 4,
+   "PSD": 2,
+   "CDU": 2,
+   "BE": 1,
+   "PS_vote_pct": 42.02
+  },
+  "source": "https://eco.sapo.pt/2017/10/02/medina-perde-maioria-absoluta-em-lisboa",
+  "confidence": "high"
+ },
+ {
+  "date": "2017-11",
+  "category": "politics",
+  "title_pt": "Acordo PS-BE na Câmara de Lisboa: Ricardo Robles com pelouros",
+  "title_en": "PS-Left Bloc governing agreement in Lisbon: Ricardo Robles gets portfolios",
+  "summary_en": "Formal agreement giving the single BE councillor executive portfolios (Education and Social Rights; early reports also listed Health and Citizenship), giving Medina a working majority (9 of 17). Measures included free school textbooks and 1,000 new nursery places.",
+  "summary_pt": "Acordo formal que atribuiu pelouros ao único vereador do BE (Educação e Direitos Sociais; as primeiras notícias referiam também Saúde e Cidadania), dando a Medina uma maioria funcional (9 em 17). As medidas incluíam manuais escolares gratuitos e 1000 novas vagas em creche.",
+  "numbers": {
+   "working_majority_seats": 9
+  },
+  "source": "https://rr.pt/noticia/politica/2017/11/02/acordo-politico-em-lisboa-bloco-ganha-pelouros-da-educacao-e-saude/97261/",
+  "confidence": "medium"
+ },
+ {
+  "date": "2018-05-02",
+  "category": "law",
+  "title_pt": "Governo aprova a Nova Geração de Políticas de Habitação; 1.º Direito criado em junho",
+  "title_en": "Government launches 'New Generation of Housing Policies'; 1.º Direito programme created in June",
+  "summary_en": "Council of Ministers Resolution 50-A/2018 set the NGPH; Decree-Law 37/2018 (4 Jun 2018) created '1.º Direito', the subsidy programme for municipalities to rehouse families in undignified housing, later the main channel for PRR housing money.",
+  "summary_pt": "A Resolução do Conselho de Ministros 50-A/2018 definiu a NGPH; o Decreto-Lei 37/2018 (4 de junho de 2018) criou o '1.º Direito', o programa de apoio aos municípios para realojar famílias que vivem em condições habitacionais indignas, que viria a ser o principal canal das verbas do PRR para a habitação.",
+  "numbers": {
+   "dl_1_direito": "DL 37/2018, 4 Jun 2018",
+   "rcm": "RCM 50-A/2018, 2 May 2018"
+  },
+  "source": "https://diariodarepublica.pt/dr/legislacao-consolidada/decreto-lei/2018-115868810",
+  "confidence": "high"
+ },
+ {
+  "date": "2018-05-17",
+  "category": "project",
+  "title_pt": "Operação Integrada de Entrecampos vai a discussão pública",
+  "title_en": "Entrecampos Integrated Operation (ex-Feira Popular) sent to public consultation",
+  "summary_en": "Medina's plan for the former Feira Popular area and surroundings: about 700 affordable-rent homes (515 built by the municipality) plus 279 market homes, offices and a car park; budget about EUR 800M (EUR 100M municipal). CDS-PP voted against, arguing it breached the PDM.",
+  "summary_pt": "Plano de Medina para a zona da antiga Feira Popular e envolvente: cerca de 700 casas de renda acessível (515 construídas pelo município), mais 279 casas a preço de mercado, escritórios e um parque de estacionamento; orçamento de cerca de 800 milhões de euros (100 milhões de euros municipais). O CDS-PP votou contra, alegando violação do PDM.",
+  "numbers": {
+   "affordable_homes": 700,
+   "municipal_affordable_homes": 515,
+   "market_homes": 279,
+   "budget_eur_m": 800
+  },
+  "source": "https://observador.pt/2018/05/16/camara-de-lisboa-divide-terrenos-da-antiga-feira-popular-por-tres-hastas-publicas/",
+  "confidence": "medium"
+ },
+ {
+  "date": "2018-07-17",
+  "category": "law",
+  "title_pt": "Entra em vigor travão temporário aos despejos de idosos e pessoas com deficiência",
+  "title_en": "Temporary brake on evictions of elderly and disabled tenants takes effect",
+  "summary_en": "Parliament approved a temporary regime suspending lease terminations/evictions affecting elderly and disabled tenants while broader rental changes were debated.",
+  "summary_pt": "O Parlamento aprovou um regime temporário que suspendia a cessação de contratos de arrendamento e os despejos que afetassem inquilinos idosos e com deficiência, enquanto se debatiam alterações mais amplas ao arrendamento.",
+  "source": "https://eco.sapo.pt/2018/07/16/travao-aos-despejos-de-idosos-e-deficientes-entra-em-vigor-amanha/",
+  "confidence": "high"
+ },
+ {
+  "date": "2018-07-30",
+  "category": "politics",
+  "title_pt": "Ricardo Robles renuncia após polémica com prédio em Alfama",
+  "title_en": "BE councillor Ricardo Robles resigns over Alfama building sale",
+  "summary_en": "Jornal Económico revealed Robles had bought an Alfama building with his sister in 2014 at a public auction (~EUR 347k; one report says 370k), renovated it and listed it for EUR 5.7M. He resigned; Manuel Grilo replaced him and kept BE's executive portfolios under the PS-BE deal.",
+  "summary_pt": "O Jornal Económico revelou que Robles tinha comprado com a irmã, em 2014, um prédio em Alfama em hasta pública (cerca de 347 mil euros; uma notícia indica 370 mil), que o reabilitou e o pôs à venda por 5,7 milhões de euros. Robles renunciou; Manuel Grilo substituiu-o e manteve os pelouros do BE ao abrigo do acordo PS-BE.",
+  "numbers": {
+   "purchase_price_eur": 347000,
+   "asking_price_eur": 5700000
+  },
+  "source": "https://eco.sapo.pt/2018/07/30/ricardo-robles-renuncia-ao-mandato",
+  "extra_sources": [
+   "https://observador.pt/2018/07/30/manuel-grilo-e-o-substituto-de-ricardo-robles-na-camara-de-lisboa/"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2018-08-22",
+  "category": "al",
+  "title_pt": "Lei 62/2018 permite aos municípios criar áreas de contenção de AL",
+  "title_en": "Law 62/2018 lets municipalities create AL containment areas",
+  "summary_en": "Amended DL 128/2014: municipalities may define containment areas where new AL requires express authorisation, cap one owner at 7 AL units in those areas, and suspend new registrations for up to one year (by municipal assembly decision) while preparing a regulation. Condominiums gained powers over AL in residential buildings. In force 21 Oct 2018.",
+  "summary_pt": "Alterou o DL 128/2014: os municípios podem definir áreas de contenção onde novos AL exigem autorização expressa, limitar a 7 o número de estabelecimentos de AL por proprietário nessas áreas e suspender novos registos por um período até um ano (por deliberação da assembleia municipal) enquanto preparam um regulamento. Os condomínios ganharam poderes sobre o AL em prédios de habitação. Em vigor desde 21 de outubro de 2018.",
+  "numbers": {
+   "in_force": "2018-10-21",
+   "max_al_per_owner_in_containment": 7,
+   "max_suspension_years": 1
+  },
+  "source": "https://files.dre.pt/1s/2018/08/16100/0430004312.pdf",
+  "confidence": "high"
+ },
+ {
+  "date": "2018-09-15",
+  "category": "project",
+  "title_pt": "Ministério Público investiga Torre de Picoas",
+  "title_en": "Prosecutors investigating Torre de Picoas tower licensing",
+  "summary_en": "PGR confirmed an inquiry open since July 2017 (no suspects named). Critics noted the council allowed 17 floors after BES-linked owners took the plot, versus 7 before; foundations had been built on municipal land. The tower was sold to German fund Deka for over EUR 125M in July 2019.",
+  "summary_pt": "A PGR confirmou um inquérito aberto desde julho de 2017 (sem arguidos identificados). Os críticos assinalaram que a Câmara autorizou 17 pisos depois de proprietários ligados ao BES terem ficado com o lote, contra 7 anteriormente; as fundações tinham sido construídas em terreno municipal. A torre foi vendida ao fundo alemão Deka por mais de 125 milhões de euros em julho de 2019.",
+  "numbers": {
+   "floors_allowed": 17,
+   "floors_previously": 7,
+   "deka_price_eur_m_min": 125
+  },
+  "source": "https://sol.sapo.pt/2018/09/15/mp-investiga-torre-de-picoas/",
+  "extra_sources": [
+   "https://eco.sapo.pt/2019/07/19/negocio-fechado-fundo-alemao-paga-mais-de-125-milhoes-por-torre-nas-picoas/"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "date": "2018-11-09",
+  "category": "al",
+  "title_pt": "Suspensos novos registos de AL em cinco bairros históricos",
+  "title_en": "New AL registrations suspended in five historic neighbourhoods",
+  "summary_en": "Using Law 62/2018, Lisbon froze new AL in Bairro Alto, Madragoa, Castelo, Alfama and Mouraria (parts of Santa Maria Maior, Misericórdia, Estrela) for at least six months while drafting a containment regulation. Announced 11 Oct 2018; extended in April 2019.",
+  "summary_pt": "Ao abrigo da Lei 62/2018, Lisboa suspendeu novos AL no Bairro Alto, Madragoa, Castelo, Alfama e Mouraria (partes de Santa Maria Maior, Misericórdia e Estrela) durante pelo menos seis meses, enquanto preparava um regulamento de contenção. A suspensão foi anunciada a 11 de outubro de 2018 e prorrogada em abril de 2019.",
+  "numbers": {
+   "areas": [
+    "Bairro Alto",
+    "Madragoa",
+    "Castelo",
+    "Alfama",
+    "Mouraria"
+   ]
+  },
+  "source": "https://www.publico.pt/2018/11/09/local/noticia/alojamento-local-suspenso-bairro-alto-alfama-mouraria-castelo-madragoa-1850388",
+  "extra_sources": [
+   "https://observador.pt/2018/10/11/camara-de-lisboa-vai-suspender-registos-de-alojamento-local-em-cinco-bairros-historicos/"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2018-12-12",
+  "category": "project",
+  "title_pt": "Fidelidade compra terrenos da antiga Feira Popular por 273,9 milhões",
+  "title_en": "Fidelidade buys former Feira Popular land for EUR 273.9M",
+  "summary_en": "At the 4th session (after a 2015 auction with no bidders and postponements, the last on 3 Dec after prosecutors raised doubts following a CDS-PP complaint), Fidelidade bought all lots: three Feira Popular lots for EUR 238.5M plus a nearby lot for EUR 35.4M, vs EUR 188.4M base. Medina said the ~EUR 80M surplus would reinforce affordable rent; plan kept 700 affordable homes.",
+  "summary_pt": "Na 4.ª sessão (depois de uma hasta pública sem licitantes em 2015 e de vários adiamentos, o último a 3 de dezembro, depois de o Ministério Público ter levantado dúvidas na sequência de uma queixa do CDS-PP), a Fidelidade comprou todos os lotes: três lotes da Feira Popular por 238,5 milhões de euros e um lote próximo por 35,4 milhões de euros, face a uma base de licitação de 188,4 milhões de euros. Medina afirmou que o excedente de cerca de 80 milhões de euros reforçaria a renda acessível; o plano manteve as 700 casas de renda acessível.",
+  "numbers": {
+   "total_price_eur_m": 273.9,
+   "base_price_eur_m": 188.4,
+   "feira_lots_eur_m": 238.5,
+   "fourth_lot_eur_m": 35.4,
+   "affordable_homes_promised": 700
+  },
+  "source": "https://eco.sapo.pt/2018/12/12/fidelidade-fica-com-terrenos-da-feira-popular/",
+  "extra_sources": [
+   "https://www.dn.pt/arquivo/diario-de-noticias/e-ha-quarta-foi-de-vez-terrenos-da-feira-popular-ja-rendem-milhoes-10310767.html"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2019-01",
+  "category": "programme",
+  "title_pt": "Tribunal de Contas recusa visto à concessão de renda acessível de São Lázaro",
+  "title_en": "Court of Auditors refuses prior approval for the São Lázaro affordable-rent concession",
+  "summary_en": "The court treated the Neonsmiles contract as a PPP lacking an economic-financial feasibility study. The council appealed; Medina publicly attacked the court.",
+  "summary_pt": "O tribunal considerou o contrato com a Neonsmiles uma PPP sem estudo de viabilidade económico-financeira. A Câmara recorreu; Medina atacou publicamente o tribunal.",
+  "source": "https://eco.sapo.pt/2020/04/07/mais-de-um-ano-depois-tribunal-de-contas-da-luz-verde-as-rendas-acessiveis-em-s-lazaro/",
+  "extra_sources": [
+   "https://observador.pt/2020/01/16/fernando-medina-acusa-tribunal-de-contas-de-perseguicao-politica-e-de-fazer-relatorios-de-baixissima-qualidade-tecnica/"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2019-01",
+  "category": "tax",
+  "title_pt": "Taxa turística de Lisboa sobe para 2 euros/noite",
+  "title_en": "Lisbon tourist tax doubles to EUR 2 per night",
+  "summary_en": "Second step of the municipal tourist tax.",
+  "summary_pt": "Segunda fase da taxa turística municipal.",
+  "numbers": {
+   "eur_per_night": 2
+  },
+  "source": "https://observador.pt/2024/07/24/assembleia-municipal-de-lisboa-aprova-aumento-da-taxa-turistica-a-partir-de-setembro/",
+  "confidence": "high"
+ },
+ {
+  "date": "2019-02-12",
+  "category": "law",
+  "title_pt": "Leis 12/2019 e 13/2019: proteção de inquilinos e proibição do assédio no arrendamento",
+  "title_en": "Laws 12/2019 and 13/2019: tenant protections and ban on landlord harassment",
+  "summary_en": "Law 13/2019 (in force 13 Feb 2019) restricted landlords' ability to end leases and strengthened protection for tenants aged 65+ or with 60%+ disability (e.g. pre-1990 leases of protected tenants only move to NRAU by agreement). Law 12/2019 prohibits and punishes harassment of tenants.",
+  "summary_pt": "A Lei 13/2019 (em vigor desde 13 de fevereiro de 2019) restringiu a possibilidade de os senhorios porem fim aos contratos e reforçou a proteção dos inquilinos com 65 ou mais anos ou com grau de incapacidade igual ou superior a 60% (por exemplo, os contratos anteriores a 1990 destes inquilinos protegidos só transitam para o NRAU por acordo). A Lei 12/2019 proíbe e pune o assédio a inquilinos.",
+  "numbers": {
+   "in_force": "2019-02-13",
+   "protected_age": 65,
+   "protected_disability_pct": 60
+  },
+  "source": "https://www.vda.pt/xms/files/05_Publicacoes/2019/Flashes_Newsletters/Flash_Imobiliario_-_Alteracoes_ao_Regime_Juridico_do_Arrendamento_Urbano.pdf",
+  "confidence": "high"
+ },
+ {
+  "date": "2019-05-06",
+  "category": "project",
+  "title_pt": "Polémica torre de 16 pisos no quarteirão da Portugália (Almirante Reis)",
+  "title_en": "Controversy over a 16-storey tower at the Portugália block (Av. Almirante Reis)",
+  "summary_en": "The 'Portugália Plaza' project proposed four buildings, one with 16 floors (60.2 m), needing a PDM exception; residents launched a protest movement. The council blocked the tower in July 2020 and a revised plan with 8-storey buildings and a hotel emerged in April 2021.",
+  "summary_pt": "O projeto 'Portugália Plaza' previa quatro edifícios, um deles com 16 pisos (60,2 m), o que exigia uma exceção ao PDM; os moradores criaram um movimento de contestação. A Câmara travou a torre em julho de 2020 e em abril de 2021 surgiu um projeto revisto com edifícios de 8 pisos e um hotel.",
+  "numbers": {
+   "floors": 16,
+   "height_m": 60.2
+  },
+  "source": "https://www.publico.pt/2019/05/06/local/noticia/portugalia-1871674",
+  "extra_sources": [
+   "https://www.idealista.pt/news/financas/investimentos/2020/07/23/44061-polemica-torre-da-portugalia-travada-pela-camara-de-lisboa",
+   "https://www.idealista.pt/news/financas/investimentos/2021/04/04/46831-quarteirao-da-portugalia-perde-a-polemica-torre-e-ganha-edificios-de-oito-andares-e"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2019-05-22",
+  "category": "law",
+  "title_pt": "Criado o Programa de Arrendamento Acessível nacional (DL 68/2019)",
+  "title_en": "National Affordable Rental Programme created (DL 68/2019)",
+  "summary_en": "Voluntary national scheme giving tax exemptions to landlords who let below reference rents.",
+  "summary_pt": "Programa nacional de adesão voluntária que concede isenções fiscais aos senhorios que arrendem abaixo das rendas de referência.",
+  "source": "https://diariodarepublica.pt/dre/detalhe/decreto-lei/68-2019-122373682",
+  "confidence": "high"
+ },
+ {
+  "date": "2019-07-31",
+  "category": "politics",
+  "title_pt": "Manuel Salgado deixa o Urbanismo; Ricardo Veludo sucede-lhe",
+  "title_en": "Manuel Salgado leaves the urbanism portfolio; Ricardo Veludo takes over",
+  "summary_en": "Salgado, urbanism councillor since 2007, announced his exit (resignation dated 7 Oct 2019 per Lusa). Ricardo Veludo, coordinator of the PRA mission team, attended his first council meeting as urbanism councillor in October 2019. Salgado stayed on as chair of SRU Lisboa Ocidental.",
+  "summary_pt": "Salgado, vereador do Urbanismo desde 2007, anunciou a saída (renúncia datada de 7 de outubro de 2019, segundo a Lusa). Ricardo Veludo, coordenador da equipa de missão do PRA, participou na primeira reunião de Câmara como vereador do Urbanismo em outubro de 2019. Salgado manteve-se como presidente da SRU Lisboa Ocidental.",
+  "source": "https://eco.sapo.pt/2019/07/31/manuel-salgado-sai-da-camara-de-lisboa",
+  "extra_sources": [
+   "https://www.sabado.pt/portugal/detalhe/novo-vereador-do-urbanismo-da-camara-de-lisboa-ja-assumiu-funcoes"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2019-09-18",
+  "category": "market",
+  "title_pt": "BCE desce taxa de depósito para -0,50%",
+  "title_en": "ECB cuts deposit rate to -0.50%",
+  "summary_en": "Lowest point of the ECB cycle; held until July 2022.",
+  "summary_pt": "Ponto mais baixo do ciclo do BCE; a taxa manteve-se neste nível até julho de 2022.",
+  "numbers": {
+   "deposit_rate_pct": -0.5
+  },
+  "source": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html",
+  "confidence": "high"
+ },
+ {
+  "date": "2019-10-01",
+  "category": "law",
+  "title_pt": "Entra em vigor a Lei de Bases da Habitação (Lei 83/2019)",
+  "title_en": "Housing Framework Law (Law 83/2019) enters into force",
+  "summary_en": "First framework law on housing in Portugal, published 3 Sept 2019; implementing rules came later (e.g. DL 89/2021).",
+  "summary_pt": "Primeira lei de bases da habitação em Portugal, publicada a 3 de setembro de 2019; a regulamentação surgiu mais tarde (por exemplo, o DL 89/2021).",
+  "numbers": {
+   "published": "2019-09-03"
+  },
+  "source": "https://eco.sapo.pt/opiniao/lei-de-bases-da-habitacao-lei-83-2019-de-3-de-setembro/",
+  "confidence": "high"
+ },
+ {
+  "date": "2019-11-05",
+  "category": "al",
+  "title_pt": "Assembleia Municipal aprova Regulamento Municipal do Alojamento Local (zonas de contenção)",
+  "title_en": "Municipal Assembly approves Lisbon's AL regulation with containment zones",
+  "summary_en": "Published 7 Nov 2019 (Aviso 17706-D/2019), in force 8 Nov 2019. Absolute containment (AL/permanent-dwelling ratio of 20%+; new AL barred save exceptions): Bairro Alto/Madragoa; Castelo/Alfama/Mouraria; Colina de Santana; Baixa/Av. Liberdade/Av. República/Av. Almirante Reis. Relative containment (10% to <20%): Graça; Almirante Reis surroundings/Bairro das Colónias.",
+  "summary_pt": "Publicado a 7 de novembro de 2019 (Aviso 17706-D/2019), em vigor desde 8 de novembro de 2019. Contenção absoluta (rácio entre AL e habitação permanente igual ou superior a 20%; novos AL proibidos, salvo exceções): Bairro Alto/Madragoa; Castelo/Alfama/Mouraria; Colina de Santana; Baixa/Av. Liberdade/Av. República/Av. Almirante Reis. Contenção relativa (de 10% a menos de 20%): Graça; envolvente da Almirante Reis/Bairro das Colónias.",
+  "numbers": {
+   "absolute_threshold_pct": 20,
+   "relative_threshold_pct": [
+    10,
+    20
+   ],
+   "in_force": "2019-11-08"
+  },
+  "source": "https://eco.sapo.pt/2019/11/07/novas-zonas-de-contencao-do-alojamento-local-em-lisboa-ja-estao-em-vigor-veja-o-mapa/",
+  "extra_sources": [
+   "https://www.am-lisboa.pt/101000/1/013063,112019/index.htm"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2019-11-19",
+  "category": "programme",
+  "title_pt": "Medina anuncia novo modelo de renda acessível sem visto do Tribunal de Contas",
+  "title_en": "Medina announces a new affordable-rent model to avoid Court of Auditors review",
+  "summary_en": "After the São Lázaro visa refusal, the council said it would propose a new model for Benfica and Arroios not requiring prior Court of Auditors approval: 'not the original, but the possible'.",
+  "summary_pt": "Depois da recusa do visto para São Lázaro, a Câmara afirmou que iria propor para Benfica e Arroios um novo modelo que não exigisse visto prévio do Tribunal de Contas: 'não o original, mas o possível'.",
+  "source": "https://rr.pt/noticia/pais/2019/11/19/camara-de-lisboa-vai-propor-novo-modelo-de-renda-acessivel-ate-ao-final-do-ano/172311/",
+  "confidence": "medium"
+ },
+ {
+  "date": "2019-11-26",
+  "category": "project",
+  "title_pt": "Tribunal aceita providência cautelar contra projeto no antigo Hospital da Marinha",
+  "title_en": "Court accepts injunction against luxury project at former Navy Hospital",
+  "summary_en": "Heritage association ADPEV challenged the council-approved tourist/housing project (building sold by the State in 2016 to fund Stone Capital), objecting to two new buildings under the PDM. The council said licensed works were not suspended. The site later opened as a luxury hotel (2025).",
+  "summary_pt": "A associação de defesa do património ADPEV contestou o projeto turístico e habitacional aprovado pela Câmara (edifício vendido pelo Estado em 2016 ao fundo Stone Capital), opondo-se, à luz do PDM, a dois novos edifícios. A Câmara afirmou que as obras licenciadas não estavam suspensas. O local abriu mais tarde como hotel de luxo (2025).",
+  "source": "https://www.publico.pt/2019/11/26/local/noticia/tribunal-aceita-providencia-cautelar-projecto-antigo-hospital-marinha-1895186",
+  "extra_sources": [
+   "https://www.idealista.pt/news/imobiliario/construcao/2019/11/27/41643-projeto-imobiliario-para-transformar-antigo-hospital-da-marinha-travado-em-tribunal",
+   "https://www.idealista.pt/news/financas/investimentos/2025/09/16/71599-antigo-hospital-da-marinha-em-lisboa-renasce-como-hotel-de-luxo"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2019-12",
+  "category": "al",
+  "title_pt": "Registo Nacional de AL fecha 2019 com 91.638 registos (24.753 no distrito de Lisboa)",
+  "title_en": "National AL register ends 2019 with 91,638 registrations (24,753 in Lisbon district)",
+  "summary_en": "Lisbon district figure is broader than the municipality.",
+  "summary_pt": "O número do distrito de Lisboa abrange uma área mais ampla do que o município.",
+  "numbers": {
+   "national_registrations": 91638,
+   "lisbon_district_registrations": 24753
+  },
+  "source": "https://www.rtp.pt/noticias/economia/alojamento-local-aproxima-se-dos-100-mil-registos-apesar-de-quebra-em-2019_n1198142",
+  "confidence": "medium"
+ },
+ {
+  "date": "2020-03-12",
+  "category": "programme",
+  "title_pt": "Primeiro sorteio do Programa Renda Acessível: 120 casas",
+  "title_en": "First Affordable Rent Programme lottery: 120 homes",
+  "summary_en": "First 120 PRA homes (T0-T4, rents EUR 150-800 depending on income) drawn online because of COVID; 3,170 applications had been received by 31 Jan 2020. Housing councillor Paula Marques presided.",
+  "summary_pt": "As primeiras 120 casas do PRA (T0 a T4, rendas entre 150 e 800 euros consoante o rendimento) foram sorteadas online devido à COVID; até 31 de janeiro de 2020 tinham sido recebidas 3170 candidaturas. O sorteio foi presidido pela vereadora da Habitação, Paula Marques.",
+  "numbers": {
+   "homes": 120,
+   "applications": 3170,
+   "rent_min_eur": 150,
+   "rent_max_eur": 800
+  },
+  "source": "https://www.publico.pt/2020/03/12/local/noticia/sala-vazia-numeros-ecra-sorteio-casas-tempo-coronavirus-1907507",
+  "extra_sources": [
+   "https://observador.pt/2020/01/31/primeiro-concurso-de-renda-acessivel-em-lisboa-teve-3-170-candidaturas/"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2020-04-06",
+  "category": "law",
+  "title_pt": "COVID-19: moratória de rendas (Lei 4-C/2020) e suspensão de despejos",
+  "title_en": "COVID-19: rent deferral law (Law 4-C/2020) and suspension of lease terminations",
+  "summary_en": "Law 4-C/2020 let qualifying tenants defer rents due during the state of emergency, repaying in 12 monthly instalments; Law 1-A/2020 (as amended by Law 4-A/2020) suspended lease expiries and evictions during the pandemic measures.",
+  "summary_pt": "A Lei 4-C/2020 permitiu aos inquilinos elegíveis diferir as rendas vencidas durante o estado de emergência, pagando-as em 12 prestações mensais; a Lei 1-A/2020 (na redação dada pela Lei 4-A/2020) suspendeu a caducidade dos contratos de arrendamento e os despejos enquanto vigorassem as medidas de resposta à pandemia.",
+  "source": "https://diariodarepublica.pt/dr/detalhe/lei/4-c-2020-131193441",
+  "confidence": "high"
+ },
+ {
+  "date": "2020-04-07",
+  "category": "programme",
+  "title_pt": "Tribunal de Contas dá visto à concessão de São Lázaro após recurso",
+  "title_en": "Court of Auditors approves São Lázaro concession on appeal",
+  "summary_en": "Plenary upheld the council's appeal, allowing the 103-home rehab concession to proceed; however, by Dec 2022 the São Lázaro operation (then 131 homes) was still awaiting contract signing because of court proceedings since 2020.",
+  "summary_pt": "O plenário deu provimento ao recurso da Câmara, permitindo avançar com a concessão de reabilitação de 103 casas; no entanto, em dezembro de 2022 a operação de São Lázaro (então com 131 casas) ainda aguardava a assinatura do contrato devido a processos judiciais pendentes desde 2020.",
+  "numbers": {
+   "homes": 103
+  },
+  "source": "https://eco.sapo.pt/2020/04/07/mais-de-um-ano-depois-tribunal-de-contas-da-luz-verde-as-rendas-acessiveis-em-s-lazaro/",
+  "confidence": "high"
+ },
+ {
+  "date": "2020-05-18",
+  "category": "programme",
+  "title_pt": "Arranca o Programa Renda Segura",
+  "title_en": "Lisbon launches 'Renda Segura' (council leases private homes to sublet)",
+  "summary_en": "The council rented homes from private owners (5-year leases, guaranteed rent, IMI and rental-income tax exemptions, bonus for AL owners who left furniture) and sublet them at affordable rents. Reference caps: T0 450, T1 600, T2 800, T3 900, T4 1,000 EUR/month. Budget ~EUR 4M/year; target 300 homes in phase 1.",
+  "summary_pt": "A Câmara arrendava casas a proprietários privados (contratos de 5 anos, renda garantida, isenções de IMI e de imposto sobre os rendimentos prediais, bónus para proprietários de AL que deixassem a mobília) e subarrendava-as a rendas acessíveis. Tetos de referência: T0 450, T1 600, T2 800, T3 900, T4 1000 euros/mês. Orçamento de cerca de 4 milhões de euros por ano; meta de 300 casas na 1.ª fase.",
+  "numbers": {
+   "cap_T0": 450,
+   "cap_T1": 600,
+   "cap_T2": 800,
+   "cap_T3": 900,
+   "cap_T4": 1000,
+   "budget_eur_m_per_year": 4,
+   "phase1_target_homes": 300
+  },
+  "source": "https://eco.sapo.pt/2020/05/18/arranca-programa-renda-segura-cml-vai-arrendar-casas-a-privados-para-as-subarrendar-a-precos-acessiveis/",
+  "confidence": "high"
+ },
+ {
+  "date": "2020-12",
+  "category": "market",
+  "title_pt": "Pandemia: AL em Lisboa recua e oferta de arrendamento tradicional dispara",
+  "title_en": "Pandemic: Lisbon AL shrinks and long-term rental supply jumps",
+  "summary_en": "Airbnb listings in Lisbon fell 18% over 2020 and long/medium-term rental offers more than doubled in several parishes (Mensagem analysis of Idealista data); Casafari counted 45% more traditional rental supply nationally, with rent falls of 5%-10% depending on location.",
+  "summary_pt": "Os anúncios do Airbnb em Lisboa caíram 18% ao longo de 2020 e a oferta de arrendamento de longa e média duração mais do que duplicou em várias freguesias (análise da Mensagem a dados do Idealista); a Casafari contabilizou mais 45% de oferta de arrendamento tradicional a nível nacional, com descidas das rendas entre 5% e 10% consoante a localização.",
+  "numbers": {
+   "airbnb_units_lisbon_change_2020_pct": -18,
+   "national_rental_supply_change_pct": 45
+  },
+  "source": "https://amensagem.pt/2021/03/12/lisboa-casas-arrendar-alojamento-local-queda-habitacao/",
+  "extra_sources": [
+   "https://sol.sapo.pt/2020/12/15/pandemia-faz-aumentar-45-da-oferta-de-arrendamento-tradicional-em-portugal/"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "date": "2021-02-11",
+  "category": "project",
+  "title_pt": "Manuel Salgado constituído arguido por aprovação do Hospital CUF Tejo",
+  "title_en": "Ex-urbanism councillor Salgado named a suspect over CUF Tejo hospital approval (Alcântara)",
+  "summary_en": "The inquiry concerns alleged prevarication and breach of planning rules over the hospital's volume/landscape impact; Salgado denied wrongdoing and resigned as chair of SRU Lisboa Ocidental.",
+  "summary_pt": "O inquérito incide sobre suspeitas de prevaricação e violação de regras urbanísticas relacionadas com a volumetria e o impacto paisagístico do hospital; Salgado negou qualquer irregularidade e demitiu-se da presidência da SRU Lisboa Ocidental.",
+  "source": "https://eco.sapo.pt/2021/02/11/manuel-salgado-apresenta-demissao-da-sru-por-ser-arguido-em-processo-que-envolve-cuf-tejo/",
+  "confidence": "high"
+ },
+ {
+  "date": "2021-02-12",
+  "category": "tax",
+  "title_pt": "Vistos gold: DL 14/2021 exclui compra de habitação em Lisboa a partir de 2022",
+  "title_en": "Golden visas: DL 14/2021 removes Lisbon residential purchases from 2022",
+  "summary_en": "From 1 Jan 2022, buying housing in Lisbon, Porto and most of the coast no longer qualified for investment residence permits (aim: steer capital to the interior and islands). Tourism/commercial property was reportedly still eligible.",
+  "summary_pt": "A partir de 1 de janeiro de 2022, a compra de habitação em Lisboa, no Porto e na maior parte do litoral deixou de dar acesso a autorizações de residência para investimento (objetivo: canalizar capital para o interior e as ilhas). Segundo a imprensa, os imóveis turísticos e comerciais continuavam elegíveis.",
+  "numbers": {
+   "effective": "2022-01-01"
+  },
+  "source": "https://diariodarepublica.pt/dr/detalhe/decreto-lei/14-2021-157236756",
+  "extra_sources": [
+   "https://www.idealista.pt/news/financas/investimentos/2022/02/16/50991-fim-dos-vistos-gold-em-lisboa-afinal-ha-como-beneficiar-do-programa"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2021-04",
+  "category": "programme",
+  "title_pt": "Aprovados concursos de concessão PRA em Benfica, Parque das Nações e Paço da Rainha",
+  "title_en": "PRA concession tenders approved for Benfica, Parque das Nações and Paço da Rainha",
+  "summary_en": "Tenders for 1,008 homes: Benfica 688 (459 affordable, ~EUR 120M), Parque das Nações 235 (154 affordable, ~EUR 31.2M), Paço da Rainha/Arroios 85. They ran, with postponements, until May 2022.",
+  "summary_pt": "Concursos para 1008 casas: Benfica 688 (459 a renda acessível, cerca de 120 milhões de euros), Parque das Nações 235 (154 a renda acessível, cerca de 31,2 milhões de euros), Paço da Rainha/Arroios 85. Decorreram, com adiamentos, até maio de 2022.",
+  "numbers": {
+   "homes_total": 1008,
+   "benfica": 688,
+   "parque_nacoes": 235,
+   "paco_rainha": 85
+  },
+  "source": "https://eco.sapo.pt/2022/12/14/lisboa-desiste-dos-concursos-para-renda-acessivel-em-benfica-paco-da-rainha-e-parque-das-nacoes/",
+  "confidence": "high"
+ },
+ {
+  "date": "2021-04-20",
+  "category": "project",
+  "title_pt": "Operação Olissipus: PJ faz buscas na Câmara de Lisboa por suspeitas no Urbanismo",
+  "title_en": "'Operação Olissipus': police search Lisbon City Hall over urbanism decisions",
+  "summary_en": "28 search warrants under eight inquiries (abuse of power, corruption, prevarication, breach of planning rules, influence peddling). Cases cited included a tower on Av. Fontes Pereira de Melo, a Segunda Circular works contract and Hospital da Luz; Medina confirmed Salgado was among those targeted.",
+  "summary_pt": "Estavam em causa 28 mandados de busca no âmbito de oito inquéritos (abuso de poder, corrupção, prevaricação, violação de regras urbanísticas, tráfico de influência). Entre os casos referidos estavam uma torre na Av. Fontes Pereira de Melo, um contrato de obras na Segunda Circular e o Hospital da Luz; Medina confirmou que Salgado era um dos visados.",
+  "numbers": {
+   "search_warrants": 28,
+   "inquiries": 8
+  },
+  "source": "https://observador.pt/2021/04/20/pj-faz-buscas-na-camara-de-lisboa-por-varios-processos-relacionados-com-o-urbanismo/",
+  "confidence": "high"
+ },
+ {
+  "date": "2021-06-21",
+  "category": "programme",
+  "title_pt": "Entregues as primeiras 118 casas de renda acessível em prédios comprados à Segurança Social",
+  "title_en": "First 118 affordable-rent homes in ex-Social Security buildings handed over",
+  "summary_en": "Homes on Av. da República, Campo Grande and Av. Visconde Valmor (T0-T4), average rent EUR 340, allocated in the 5th PRA lottery.",
+  "summary_pt": "Casas na Av. da República, no Campo Grande e na Av. Visconde Valmor (T0 a T4), com renda média de 340 euros, atribuídas no 5.º sorteio do PRA.",
+  "numbers": {
+   "homes": 118,
+   "avg_rent_eur": 340
+  },
+  "source": "https://www.noticiasaominuto.com/casa/1779433/renda-acessivel-primeiras-118-casas-da-camara-de-lisboa-entregues-hoje",
+  "confidence": "high"
+ },
+ {
+  "date": "2021-06-29",
+  "category": "market",
+  "title_pt": "INE: rendas de novos contratos em Lisboa caem 9,2% (1.º trimestre 2021)",
+  "title_en": "INE: Lisbon new-lease rents fall 9.2% year on year (Q1 2021)",
+  "summary_en": "Median new-lease rent in Lisbon fell to EUR 10.99/m2 while the national median rose 5.5% to EUR 5.80/m2: the clearest COVID effect on Lisbon rents.",
+  "summary_pt": "A renda mediana dos novos contratos em Lisboa desceu para 10,99 euros/m2, enquanto a mediana nacional subiu 5,5%, para 5,80 euros/m2: o efeito mais nítido da COVID nas rendas de Lisboa.",
+  "numbers": {
+   "lisbon_median_rent_eur_m2": 10.99,
+   "lisbon_yoy_pct": -9.2,
+   "national_median_eur_m2": 5.8,
+   "national_yoy_pct": 5.5
+  },
+  "source": "https://eco.sapo.pt/2021/06/29/preco-das-rendas-sobe-55-mas-cai-em-lisboa-e-porto/",
+  "confidence": "high"
+ },
+ {
+  "date": "2021-07",
+  "category": "programme",
+  "title_pt": "Acordo 1.º Direito Lisboa-IHRU: 4.500 habitações, 240 milhões",
+  "title_en": "Lisbon's 1.º Direito agreement with IHRU: 4,500 homes, EUR 240M",
+  "summary_en": "Press report: the agreement foresaw funding 4,500 homes for families in need, EUR 240M investment of which EUR 81M non-repayable; 432 homes delivered by then. Exact signing date not verified.",
+  "summary_pt": "Segundo a imprensa, o acordo previa o financiamento de 4500 casas para famílias carenciadas, num investimento de 240 milhões de euros, dos quais 81 milhões de euros a fundo perdido; até então tinham sido entregues 432 casas. A data exata da assinatura não foi verificada.",
+  "numbers": {
+   "homes": 4500,
+   "investment_eur_m": 240,
+   "grant_eur_m": 81
+  },
+  "source": "https://amensagem.pt/2021/07/25/crise-habitacao-lisboa-milhoes-bazuca-jovens-investimento-arrendar-comprar-casa/",
+  "confidence": "medium"
+ },
+ {
+  "date": "2021-09-26",
+  "category": "politics",
+  "title_pt": "Carlos Moedas conquista Lisboa sem maioria",
+  "title_en": "Carlos Moedas wins Lisbon without a majority",
+  "summary_en": "Novos Tempos (PSD/CDS-PP/MPT/PPM/Aliança) 34.25% and 7 councillors; Mais Lisboa (PS/Livre) 33.3%, 7; CDU 10.52%, 2; BE 6.21%, 1; Chega 4.41%, 0. Margin ~2,300 votes; ended 14 years of PS rule.",
+  "summary_pt": "Novos Tempos (PSD/CDS-PP/MPT/PPM/Aliança) com 34,25% e 7 vereadores; Mais Lisboa (PS/Livre) 33,3%, 7; CDU 10,52%, 2; BE 6,21%, 1; Chega 4,41%, 0. Diferença de cerca de 2300 votos; pôs fim a 14 anos de governação do PS.",
+  "numbers": {
+   "Novos_Tempos": 7,
+   "Mais_Lisboa_PS_Livre": 7,
+   "CDU": 2,
+   "BE": 1,
+   "Chega": 0,
+   "NT_vote_pct": 34.25,
+   "ML_vote_pct": 33.3
+  },
+  "source": "https://www.noticiasaominuto.com/politica/1840277/social-democrata-carlos-moedas-conquistou-lisboa-ao-ps",
+  "confidence": "high"
+ },
+ {
+  "date": "2021-10-18",
+  "category": "politics",
+  "title_pt": "Moedas toma posse; Joana Almeida no Urbanismo e Filipa Roseta na Habitação",
+  "title_en": "Moedas sworn in; Joana Almeida gets Urbanism, Filipa Roseta Housing",
+  "summary_en": "Independent planner Joana Almeida took Urbanism (plus transparency/anti-corruption); Filipa Roseta (PSD) Housing and Municipal Works; Filipe Anacoreta Correia (CDS) vice-mayor with Finance. Opposition held 10 of 17 seats, so housing votes often went against the mayor.",
+  "summary_pt": "A urbanista independente Joana Almeida ficou com o Urbanismo (e ainda a transparência e o combate à corrupção); Filipa Roseta (PSD) com a Habitação e Obras Municipais; Filipe Anacoreta Correia (CDS) como vice-presidente, com as Finanças. A oposição detinha 10 dos 17 lugares, pelo que as votações sobre habitação foram muitas vezes contra o presidente da Câmara.",
+  "source": "https://www.timeout.pt/lisboa/pt/noticias/ja-se-conhecem-os-pelouros-dos-vereadores-da-camara-de-lisboa-110421",
+  "extra_sources": [
+   "https://observador.pt/2021/10/18/as-sete-prioridades-de-moedas-no-dia-em-que-avisou-a-esquerda-a-legitimidade-e-dele/"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2021-12-15",
+  "category": "al",
+  "title_pt": "Câmara aprova suspensão de novos AL em 14 freguesias (proposta PS/Livre)",
+  "title_en": "Council approves AL freeze in 14 parishes (PS/Livre proposal, against the mayor)",
+  "summary_en": "Opposition majority approved suspending new AL where AL/dwelling ratio is 2.5%+ (PS, Livre, PCP and independent Paula Marques for; PSD and CDS against; BE abstained). It triggered a rush: 738 new Lisbon AL registrations in Q1 2022, +382% year on year.",
+  "summary_pt": "A maioria da oposição aprovou a suspensão de novos AL onde o rácio entre AL e alojamentos é igual ou superior a 2,5% (a favor PS, Livre, PCP e a independente Paula Marques; contra PSD e CDS; abstenção do BE). A decisão provocou uma corrida: 738 novos registos de AL em Lisboa no 1.º trimestre de 2022, mais 382% em termos homólogos.",
+  "numbers": {
+   "ratio_threshold_pct": 2.5,
+   "q1_2022_new_registrations": 738,
+   "q1_2022_yoy_pct": 382
+  },
+  "source": "https://www.dn.pt/dinheiro/lisboa-alojamento-local-dispara-382-14777796.html",
+  "confidence": "high"
+ },
+ {
+  "date": "2022-03-22",
+  "category": "al",
+  "title_pt": "Assembleia Municipal aprova suspensão de AL em 14 freguesias",
+  "title_en": "Municipal Assembly approves AL freeze in 14 parishes",
+  "summary_en": "Parishes: Ajuda, Alcântara, Areeiro, Arroios, Avenidas Novas, Belém, Campo de Ourique, Estrela, Misericórdia, Parque das Nações, Penha de França, Santa Maria Maior, Santo António, São Vicente. Six months, renewable. Highest ratios: Santa Maria Maior 52%, Misericórdia 39%, Santo António 26%.",
+  "summary_pt": "Freguesias: Ajuda, Alcântara, Areeiro, Arroios, Avenidas Novas, Belém, Campo de Ourique, Estrela, Misericórdia, Parque das Nações, Penha de França, Santa Maria Maior, Santo António, São Vicente. Por seis meses, renovável. Rácios mais elevados: Santa Maria Maior 52%, Misericórdia 39%, Santo António 26%.",
+  "numbers": {
+   "parishes": 14,
+   "ratio_threshold_pct": 2.5,
+   "duration_months": 6
+  },
+  "source": "https://eco.sapo.pt/2022/03/22/lisboa-aprova-suspensao-de-novos-registos-de-alojamento-local-em-14-freguesias/",
+  "confidence": "high"
+ },
+ {
+  "date": "2022-04",
+  "category": "market",
+  "title_pt": "Euribor a 12 meses volta a terreno positivo",
+  "title_en": "12-month Euribor turns positive",
+  "summary_en": "Daily 12-month Euribor hit 0.005% on 12 April 2022, first positive value since Feb 2016; April 2022 monthly average 0.013%.",
+  "summary_pt": "O valor diário da Euribor a 12 meses chegou a 0,005% a 12 de abril de 2022, o primeiro valor positivo desde fevereiro de 2016; a média mensal de abril de 2022 foi de 0,013%.",
+  "numbers": {
+   "april_2022_avg_pct": 0.013
+  },
+  "source": "https://www.idealista.com/news/euribor/monthly/4/2022/",
+  "confidence": "medium"
+ },
+ {
+  "date": "2022-04-15",
+  "category": "al",
+  "title_pt": "Suspensão de novos registos de AL entra em vigor em 14 freguesias",
+  "title_en": "AL registration freeze takes effect in 14 parishes",
+  "summary_en": "Deliberation published 14 April 2022; in force the next day.",
+  "summary_pt": "Deliberação publicada a 14 de abril de 2022; em vigor no dia seguinte.",
+  "numbers": {
+   "parishes": 14
+  },
+  "source": "https://www.jornaldenegocios.pt/empresas/detalhe/suspensao-de-novos-registos-de-alojamento-local-em-lisboa-entrou-hoje-em-vigor",
+  "confidence": "high"
+ },
+ {
+  "date": "2022-07",
+  "category": "programme",
+  "title_pt": "Entregues 128 casas de renda acessível em Entrecampos (PRR)",
+  "title_en": "128 affordable-rent homes delivered in Entrecampos (PRR-funded)",
+  "summary_en": "First PRA homes built under the Entrecampos Integrated Operation, EUR 15.5M investment financed by the Recovery and Resilience Plan.",
+  "summary_pt": "Primeiras casas do PRA construídas no âmbito da Operação Integrada de Entrecampos, num investimento de 15,5 milhões de euros financiado pelo Plano de Recuperação e Resiliência.",
+  "numbers": {
+   "homes": 128,
+   "investment_eur_m": 15.5,
+   "note": "idealista headline says 126 homes; its URL and Supercasa say 128"
+  },
+  "source": "https://www.idealista.pt/news/imobiliario/habitacao/2022/07/26/53302-arrendamento-acessivel-foram-entregues-128-casas-em-lisboa",
+  "extra_sources": [
+   "https://supercasa.pt/noticias/renda-acessivel-camara-de-lisboa-entrega-128-casas-em-entrecampos/n3371"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "date": "2022-07-27",
+  "category": "market",
+  "title_pt": "BCE inicia subida de juros: taxa de depósito sai de terreno negativo",
+  "title_en": "ECB starts hiking: deposit rate leaves negative territory",
+  "summary_en": "Deposit facility rate from -0.50% to 0.00% (MRO 0.50%), first step of a record 450 bp tightening to Sept 2023. Hikes: 14 Sep 2022 0.75%; 2 Nov 1.50%; 21 Dec 2.00%; 8 Feb 2023 2.50%; 22 Mar 3.00%; 10 May 3.25%; 21 Jun 3.50%; 2 Aug 3.75%; 20 Sep 2023 4.00%.",
+  "summary_pt": "A taxa da facilidade de depósito passou de -0,50% para 0,00% (taxa principal de refinanciamento: 0,50%), primeiro passo de um aperto recorde de 450 pontos base até setembro de 2023. Subidas: 14 de setembro de 2022, 0,75%; 2 de novembro, 1,50%; 21 de dezembro, 2,00%; 8 de fevereiro de 2023, 2,50%; 22 de março, 3,00%; 10 de maio, 3,25%; 21 de junho, 3,50%; 2 de agosto, 3,75%; 20 de setembro de 2023, 4,00%.",
+  "numbers": {
+   "deposit_rate_pct": 0.0,
+   "mro_pct": 0.5
+  },
+  "source": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html",
+  "confidence": "high"
+ },
+ {
+  "date": "2022-10",
+  "category": "al",
+  "title_pt": "Suspensão de AL prorrogada e alargada a 15 freguesias (entra Campolide)",
+  "title_en": "AL freeze extended for six months and widened to 15 parishes (Campolide added)",
+  "summary_en": "Campolide crossed the 2.5% ratio; only nine parishes still accepted new AL. Ratified by the Municipal Assembly (PS, BE, Livre, PEV, PCP, PAN, PPM for; PSD, CDS-PP, IL, MPT, Aliança, Chega against).",
+  "summary_pt": "Campolide ultrapassou o rácio de 2,5%; só nove freguesias continuavam a aceitar novos AL. Ratificada pela Assembleia Municipal (a favor PS, BE, Livre, PEV, PCP, PAN e PPM; contra PSD, CDS-PP, IL, MPT, Aliança e Chega).",
+  "numbers": {
+   "parishes": 15
+  },
+  "source": "https://www.idealista.pt/news/ferias/turismo/2022/10/05/54368-novos-registos-de-alojamento-local-continuam-suspensos-em-lisboa",
+  "confidence": "high"
+ },
+ {
+  "date": "2022-10",
+  "category": "law",
+  "title_pt": "Lei 19/2022: atualização das rendas limitada a 2% em 2023",
+  "title_en": "Law 19/2022 caps 2023 rent increases at 2%",
+  "summary_en": "Fixed the 2023 rent update coefficient at 1.02 instead of the 1.0543 that inflation would have produced (unless otherwise agreed), with tax compensation for landlords. Note: this cap predates Mais Habitação.",
+  "summary_pt": "Fixou o coeficiente de atualização das rendas para 2023 em 1,02, em vez dos 1,0543 que resultariam da inflação (salvo acordo em contrário), com compensação fiscal para os senhorios. Nota: este travão é anterior ao Mais Habitação.",
+  "numbers": {
+   "coefficient_2023": 1.02,
+   "coefficient_without_cap": 1.0543
+  },
+  "source": "https://diariodarepublica.pt/dr/legislacao-consolidada/lei/2022-202436963",
+  "confidence": "high"
+ },
+ {
+  "date": "2022-12",
+  "category": "market",
+  "title_pt": "Custos de construção de habitação nova sobem 11,9% em 2022",
+  "title_en": "New-housing construction costs up 11.9% in 2022",
+  "summary_en": "INE construction cost index: 2022 annual average +11.9% (materials +15.9%, labour +6.3%) after +5.7% in 2021; December 2022 +11.5% year on year.",
+  "summary_pt": "Índice de custos de construção do INE: média anual de 2022 de +11,9% (materiais +15,9%, mão de obra +6,3%), depois de +5,7% em 2021; em dezembro de 2022, +11,5% em termos homólogos.",
+  "numbers": {
+   "2021_pct": 5.7,
+   "2022_pct": 11.9,
+   "materials_2022_pct": 15.9,
+   "labour_2022_pct": 6.3
+  },
+  "source": "https://www.diarioimobiliario.pt/2022-fecha-com-um-aumento-de-11-9-no-custo-de-construcao-de-habitacao-nova",
+  "confidence": "high"
+ },
+ {
+  "date": "2022-12-14",
+  "category": "programme",
+  "title_pt": "Lisboa desiste das concessões PRA em Benfica, Paço da Rainha e Parque das Nações",
+  "title_en": "Lisbon drops PRA concessions in Benfica, Paço da Rainha and Parque das Nações",
+  "summary_en": "Four bids were received in 2022 (two Benfica, one Parque das Nações, one Paço da Rainha) but juries found none eligible, so none were awarded (not strictly 'deserted'). Paço da Rainha switched to a 100% public operation; a new private model was promised. Only Rua Gomes Freire (92 homes, works since 12 Oct 2022) was under way; São Lázaro (131) was stuck in court.",
+  "summary_pt": "Foram recebidas quatro propostas em 2022 (duas para Benfica, uma para o Parque das Nações e uma para o Paço da Rainha), mas os júris não consideraram nenhuma elegível, pelo que nenhum concurso foi adjudicado (em rigor, não ficaram 'desertos'). O Paço da Rainha passou a operação 100% pública; foi prometido um novo modelo com privados. Só a Rua Gomes Freire (92 casas, em obra desde 12 de outubro de 2022) estava em curso; a operação de São Lázaro (131) continuava parada nos tribunais.",
+  "numbers": {
+   "bids_received": 4,
+   "bids_eligible": 0,
+   "homes_cancelled": 1008,
+   "gomes_freire_homes": 92,
+   "sao_lazaro_homes": 131
+  },
+  "source": "https://eco.sapo.pt/2022/12/14/lisboa-desiste-dos-concursos-para-renda-acessivel-em-benfica-paco-da-rainha-e-parque-das-nacoes/",
+  "confidence": "high"
+ },
+ {
+  "date": "2023-02",
+  "category": "programme",
+  "title_pt": "Fim do Renda Segura: só 235 contratos",
+  "title_en": "Renda Segura wound down with only 235 leases",
+  "summary_en": "Público reported the programme fell far short of its goals (235 properties with signed leases) and was closed by Moedas's executive.",
+  "summary_pt": "O Público noticiou que o programa ficou muito aquém dos objetivos (235 imóveis com contrato assinado) e foi encerrado pelo executivo de Moedas.",
+  "numbers": {
+   "leases": 235
+  },
+  "source": "https://www.publico.pt/2023/02/17/local/noticia/estado-quer-subarrendar-casas-privados-lisboa-ja-tentou-nao-sucesso-2039406",
+  "confidence": "medium"
+ },
+ {
+  "date": "2023-03-14",
+  "category": "al",
+  "title_pt": "Assembleia Municipal prorroga suspensão de AL em 15 freguesias",
+  "title_en": "Municipal Assembly extends AL freeze in 15 parishes",
+  "summary_en": "Third approval of the freeze in the 2021-25 term; council vote 22 Feb 2023 (per RTP: 10 opposition councillors for, 7 governing councillors against).",
+  "summary_pt": "Terceira aprovação da suspensão no mandato 2021-25; votação na Câmara a 22 de fevereiro de 2023 (segundo a RTP, 10 vereadores da oposição a favor e 7 vereadores do governo municipal contra).",
+  "numbers": {
+   "parishes": 15
+  },
+  "source": "https://observador.pt/2023/03/14/assembleia-municipa-de-lisboa-prorroga-suspensao-de-novos-registos-de-alojamento-local-em-15-freguesias/",
+  "extra_sources": [
+   "https://www.rtp.pt/noticias/pais/cm-lisboa-volta-a-prorrogar-suspensao-de-novos-registos-de-alojamento-local_n1468936"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2023-03-30",
+  "category": "law",
+  "title_pt": "Conselho de Ministros aprova pacote Mais Habitação",
+  "title_en": "Government approves the 'Mais Habitação' package",
+  "summary_en": "Package presented from 16 Feb 2023: end of golden visas, coercive leasing of vacant homes, AL freeze, rent limits on new contracts, tax incentives. Sent to Parliament.",
+  "summary_pt": "Pacote apresentado a partir de 16 de fevereiro de 2023: fim dos vistos gold, arrendamento coercivo de casas devolutas, congelamento do AL, limites às rendas nos novos contratos e incentivos fiscais. Enviado ao Parlamento.",
+  "source": "https://eco.sapo.pt/2023/03/30/do-arrendamento-coercivo-ao-fim-dos-vistos-gold-estas-sao-medidas-que-vao-ser-aprovadas-pelo-governo/",
+  "confidence": "high"
+ },
+ {
+  "date": "2023-04-01",
+  "category": "politics",
+  "title_pt": "Primeira manifestação nacional 'Casa para Viver'",
+  "title_en": "First national 'Casa para Viver' housing protest",
+  "summary_en": "Housing movement's first national protest; further ones followed (e.g. 28 Sep 2024, 21 Mar 2026).",
+  "summary_pt": "Primeiro protesto nacional do movimento pela habitação; seguiram-se outros (por exemplo, a 28 de setembro de 2024 e a 21 de março de 2026).",
+  "source": "https://www.esquerda.net/artigo/novas-manifestacoes-pelo-direito-habitacao-marcadas-para-junho/95190",
+  "confidence": "medium"
+ },
+ {
+  "date": "2023-06",
+  "category": "programme",
+  "title_pt": "Câmara chumba primeira versão da Carta Municipal de Habitação",
+  "title_en": "Council rejects first draft of the Municipal Housing Charter",
+  "summary_en": "The opposition majority rejected Moedas's original draft; a revised version was approved for consultation in October 2023.",
+  "summary_pt": "A maioria da oposição chumbou a versão original de Moedas; uma versão revista foi aprovada para discussão pública em outubro de 2023.",
+  "source": "https://observador.pt/2023/10/12/carta-municipal-de-habitacao-de-lisboa-aprovada-com-criticas-e-apos-negociacoes/",
+  "confidence": "medium"
+ },
+ {
+  "date": "2023-06-02",
+  "category": "al",
+  "title_pt": "Beato ultrapassa rácio: suspensão de AL abrange 16 das 24 freguesias",
+  "title_en": "Beato crosses the ratio: AL freeze now covers 16 of 24 parishes",
+  "summary_en": "Beato passed the 2.5% AL/dwelling threshold, so new registrations stopped there too.",
+  "summary_pt": "O Beato ultrapassou o limiar de 2,5% no rácio entre AL e alojamentos, pelo que também ali deixou de ser possível fazer novos registos.",
+  "numbers": {
+   "parishes": 16
+  },
+  "source": "https://eco.sapo.pt/2023/06/02/freguesia-lisboeta-do-beato-ultrapassa-racio-de-alojamento-local-e-ficam-suspensos-novos-registos/",
+  "confidence": "high"
+ },
+ {
+  "date": "2023-07-04",
+  "category": "programme",
+  "title_pt": "Entregues 64 casas de renda acessível em Entrecampos",
+  "title_en": "64 more affordable-rent homes delivered in Entrecampos",
+  "summary_en": "Nine-storey building in the Forças Armadas lots (476 affordable homes planned there). Average rents: T0 EUR 306, T1 311, T2 396, T3 458.",
+  "summary_pt": "Edifício de nove pisos nos lotes das Forças Armadas (onde estão previstas 476 casas de renda acessível). Rendas médias: T0 306 euros, T1 311, T2 396, T3 458.",
+  "numbers": {
+   "homes": 64,
+   "avg_rent_T0": 306,
+   "avg_rent_T1": 311,
+   "avg_rent_T2": 396,
+   "avg_rent_T3": 458,
+   "forcas_armadas_planned": 476
+  },
+  "source": "https://www.sabado.pt/ultima-hora/detalhe/camara-de-lisboa-entrega-64-casas-do-programa-renda-acessivel-em-entrecampos",
+  "confidence": "high"
+ },
+ {
+  "date": "2023-07-19",
+  "category": "law",
+  "title_pt": "Parlamento aprova Mais Habitação só com votos do PS",
+  "title_en": "Parliament passes Mais Habitação with PS votes only",
+  "summary_en": "PSD, BE, PCP, IL and Chega voted against. President Marcelo vetoed it on 21 Aug 2023; Parliament re-approved it unchanged on 22 Sep 2023; promulgation announced 30 Sep 2023.",
+  "summary_pt": "PSD, BE, PCP, IL e Chega votaram contra. O Presidente Marcelo vetou o diploma a 21 de agosto de 2023; o Parlamento voltou a aprová-lo sem alterações a 22 de setembro de 2023; a promulgação foi anunciada a 30 de setembro de 2023.",
+  "numbers": {
+   "veto": "2023-08-21",
+   "reconfirmed": "2023-09-22"
+  },
+  "source": "https://observador.pt/2023/09/22/ps-volta-a-aprovar-mais-habitacao-no-parlamento-depois-de-veto-de-marcelo/",
+  "extra_sources": [
+   "https://eco.sapo.pt/2023/08/21/marcelo-veta-pacote-mais-habitacao/"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2023-09-20",
+  "category": "market",
+  "title_pt": "BCE leva taxa de depósito ao máximo de 4%",
+  "title_en": "ECB deposit rate peaks at 4.00%",
+  "summary_en": "Tenth consecutive hike; rate held until June 2024.",
+  "summary_pt": "Décima subida consecutiva; a taxa manteve-se neste nível até junho de 2024.",
+  "numbers": {
+   "deposit_rate_pct": 4.0,
+   "mro_pct": 4.5
+  },
+  "source": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html",
+  "confidence": "high"
+ },
+ {
+  "date": "2023-10",
+  "category": "market",
+  "title_pt": "Euribor a 12 meses atinge máximo do ciclo: 4,160% (média de outubro)",
+  "title_en": "12-month Euribor peaks at 4.160% (October monthly average)",
+  "summary_en": "Monthly averages: Aug 2023 4.073%, Sep 4.149%, Oct 4.160%, Nov 4.022%, Dec 3.679%.",
+  "summary_pt": "Médias mensais: agosto de 2023, 4,073%; setembro, 4,149%; outubro, 4,160%; novembro, 4,022%; dezembro, 3,679%.",
+  "numbers": {
+   "oct_2023_avg_pct": 4.16
+  },
+  "source": "https://eco.sapo.pt/2023/10/31/media-mensal-das-euribor-volta-a-subir-nos-tres-prazos-em-outubro/",
+  "confidence": "high"
+ },
+ {
+  "date": "2023-10-07",
+  "category": "law",
+  "title_pt": "Lei 56/2023 (Mais Habitação) em vigor: fim dos vistos gold imobiliários e congelamento nacional do AL",
+  "title_en": "Law 56/2023 (Mais Habitação) in force: real-estate golden visas end, national AL freeze",
+  "summary_en": "Published 6 Oct 2023. Ends new investment residence permits via real estate (renewals still possible); suspends new AL registrations in flats nationwide except listed interior territories (until 31 Dec 2030, per press); AL registrations made time-limited; initial rent of new leases on homes let in the prior five years capped against the previous rent (1.02 coefficient); coercive leasing of homes vacant 2+ years; IMI exemption for building land with pending licence; 6% VAT for affordable housing works.",
+  "summary_pt": "Publicada a 6 de outubro de 2023. Acaba com novas autorizações de residência para investimento por via imobiliária (as renovações continuam possíveis); suspende novos registos de AL em apartamentos em todo o país, exceto nos territórios do interior enumerados (até 31 de dezembro de 2030, segundo a imprensa); os registos de AL passam a ter prazo de validade; a renda inicial dos novos contratos de casas arrendadas nos cinco anos anteriores fica limitada em função da renda anterior (coeficiente de 1,02); arrendamento coercivo de casas devolutas há pelo menos 2 anos; isenção de IMI para terrenos para construção com licenciamento pendente; IVA a 6% nas obras de habitação a custos acessíveis.",
+  "numbers": {
+   "published": "2023-10-06",
+   "al_freeze_until": "2030-12-31",
+   "new_lease_rent_coefficient": 1.02
+  },
+  "source": "https://diariodarepublica.pt/dr/detalhe/lei/56-2023-222477692",
+  "extra_sources": [
+   "https://www.idealista.pt/news/imobiliario/habitacao/2023/10/09/59796-mais-habitacao-em-vigor-ja-nao-sao-admitidos-novos-vistos-gold"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2023-10-11",
+  "category": "programme",
+  "title_pt": "Câmara aprova Carta Municipal de Habitação para discussão pública",
+  "title_en": "Council sends Municipal Housing Charter to public consultation",
+  "summary_en": "10-year plan worth EUR 918M (council figure). Opposition amendments passed, including a 5% citywide AL cap; consultation extended from 30 to 60 days (Nov 2023 to Feb 2024).",
+  "summary_pt": "Plano a 10 anos no valor de 918 milhões de euros (número da Câmara). Foram aprovadas propostas de alteração da oposição, incluindo um teto de 5% de AL para toda a cidade; a discussão pública foi alargada de 30 para 60 dias (de novembro de 2023 a fevereiro de 2024).",
+  "numbers": {
+   "investment_eur_m": 918,
+   "years": 10,
+   "al_cap_citywide_pct": 5
+  },
+  "source": "https://observador.pt/2023/10/12/carta-municipal-de-habitacao-de-lisboa-aprovada-com-criticas-e-apos-negociacoes/",
+  "confidence": "high"
+ },
+ {
+  "date": "2023-10-26",
+  "category": "law",
+  "title_pt": "Rendas sobem 6,94% em 2024 sem travão; Governo reforça apoio",
+  "title_en": "2024 rents rise 6.94% with no cap; government boosts rent support instead",
+  "summary_en": "The 2024 update coefficient (6.94%) applied in full; eligible tenants (up to 6th IRS bracket, effort rate over 35%) got extra support worth 4.94% of rent.",
+  "summary_pt": "O coeficiente de atualização para 2024 (6,94%) foi aplicado na totalidade; os inquilinos elegíveis (até ao 6.º escalão de IRS e com taxa de esforço superior a 35%) receberam um apoio adicional equivalente a 4,94% da renda.",
+  "numbers": {
+   "coefficient_2024_pct": 6.94,
+   "support_pct_of_rent": 4.94
+  },
+  "source": "https://eco.sapo.pt/2023/10/26/rendas-sem-travao-em-2024-governo-aprova-apoio-de-494-para-inquilinos/",
+  "confidence": "high"
+ },
+ {
+  "date": "2023-11-21",
+  "category": "project",
+  "title_pt": "VIC Properties conclui primeira fase do Prata Riverside Village",
+  "title_en": "VIC Properties completes first phase of Prata Riverside Village (Marvila)",
+  "summary_en": "Renzo Piano-designed riverside scheme: first building (Urban, 65 flats) completed. No court case or prosecutor challenge was found in the sources searched.",
+  "summary_pt": "Empreendimento ribeirinho projetado por Renzo Piano: concluído o primeiro edifício (Urban, 65 apartamentos). Nas fontes consultadas não foi encontrado qualquer processo judicial nem contestação do Ministério Público.",
+  "numbers": {
+   "phase1_flats": 65
+  },
+  "source": "https://construir.pt/2023/11/21/vic-properties-conclui-primeira-fase-do-prata-riverside-village",
+  "confidence": "medium"
+ },
+ {
+  "date": "2023-11-29",
+  "category": "tax",
+  "title_pt": "Câmara chumba pela terceira vez isenção de IMT para jovens proposta por Moedas",
+  "title_en": "Council rejects Moedas's IMT exemption for under-35s for the third time",
+  "summary_en": "Proposal: municipal IMT exemption for buyers up to 35 on homes up to EUR 300k (EUR 250k in the 2023 version); PS, Cidadãos por Lisboa, PCP, Livre and BE voted against. Estimated cost EUR 4.5M/year.",
+  "summary_pt": "Proposta: isenção municipal de IMT para compradores até aos 35 anos na compra de casas até 300 mil euros (250 mil euros na versão de 2023); PS, Cidadãos por Lisboa, PCP, Livre e BE votaram contra. Custo estimado de 4,5 milhões de euros por ano.",
+  "numbers": {
+   "price_cap_eur": 300000,
+   "cost_eur_m_per_year": 4.5
+  },
+  "source": "https://eco.sapo.pt/2023/11/29/lisboa-volta-a-chumbar-isencao-de-imt-para-jovens-ate-35-anos/",
+  "confidence": "high"
+ },
+ {
+  "date": "2023-12-13",
+  "category": "al",
+  "title_pt": "Prazo da prova de atividade do AL: Lisboa arrisca cancelar mais de 8.200 registos",
+  "title_en": "AL proof-of-activity deadline: Lisbon faces 8,200+ cancellations",
+  "summary_en": "Under Mais Habitação, AL holders had to prove activity (deadline extended from 7 to 13 Dec 2023). Lisbon had 19,917 registrations but only 11,447 proofs; nationally 74,972 of 120,719.",
+  "summary_pt": "Ao abrigo do Mais Habitação, os titulares de AL tinham de fazer prova de atividade (prazo prorrogado de 7 para 13 de dezembro de 2023). Lisboa tinha 19 917 registos, mas apenas 11 447 provas; a nível nacional, 74 972 em 120 719.",
+  "numbers": {
+   "lisbon_registrations": 19917,
+   "lisbon_proofs": 11447,
+   "lisbon_expected_cancellations_min": 8200,
+   "national_registrations": 120719,
+   "national_proofs": 74972
+  },
+  "source": "https://publituris.pt/2023/12/15/do-universo-de-120-mil-registos-de-alojamento-local-so-75-mil-apresentaram-atividade",
+  "confidence": "high"
+ },
+ {
+  "date": "2024-01",
+  "category": "programme",
+  "title_pt": "Moedas retira novo modelo de concessão de renda acessível para Benfica e Parque das Nações",
+  "title_en": "Moedas withdraws new affordable-rent concession model for Benfica and Parque das Nações",
+  "summary_en": "Proposal by Filipa Roseta: ~550 homes, 90-year surface-rights sale instead of a public-contracts concession, rents ~20% below market. Withdrawn before debate after PS/PCP opposition (they wanted municipal rent caps). Best-case delivery would have been 2028.",
+  "summary_pt": "Proposta de Filipa Roseta: cerca de 550 casas, venda do direito de superfície por 90 anos em vez de uma concessão no regime da contratação pública, rendas cerca de 20% abaixo do mercado. Retirada antes do debate, perante a oposição de PS e PCP (que queriam tetos de renda municipais). No melhor cenário, a entrega das casas só aconteceria em 2028.",
+  "numbers": {
+   "homes": 550,
+   "surface_rights_years": 90,
+   "rent_discount_vs_market_pct": 20
+  },
+  "source": "https://lisboaparapessoas.pt/2024/03/17/habitacao-renda-acessivel-pra-concessoes-benfica-parque-das-nacoes/",
+  "extra_sources": [
+   "https://rr.pt/noticia/politica/2024/01/17/lisboa-adiada-discussao-sobre-novo-modelo-de-parceria-publico-privada-para-habitacao-acessivel/363068/"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2024-01-01",
+  "category": "tax",
+  "title_pt": "Fim do regime dos Residentes Não Habituais para novos aderentes",
+  "title_en": "Non-Habitual Resident (NHR) tax regime closed to new entrants",
+  "summary_en": "The 2024 State Budget (Law 82/2023) revoked NHR from 1 Jan 2024 with transitional rules; existing beneficiaries keep it for their 10 years. Replaced by the narrower IFICI incentive (science/innovation).",
+  "summary_pt": "O Orçamento do Estado para 2024 (Lei 82/2023) revogou o regime dos Residentes Não Habituais (RNH) a partir de 1 de janeiro de 2024, com regras transitórias; os atuais beneficiários mantêm-no durante os respetivos 10 anos. Foi substituído pelo IFICI, um incentivo mais restrito (ciência e inovação).",
+  "source": "https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/questoes_frequentes/pages/faqs-00309.aspx",
+  "confidence": "high"
+ },
+ {
+  "date": "2024-02",
+  "category": "programme",
+  "title_pt": "Câmara aprova programa municipal Cooperativas 1.ª Habitação Lisboa",
+  "title_en": "Council approves 'Cooperativas 1.ª Habitação Lisboa' programme",
+  "summary_en": "Municipal plots granted to housing cooperatives in 90-year surface rights; the council covers architecture/licensing projects. Proposed by Filipa Roseta with Livre/PS amendments. The Housing Charter targets 500 cooperative homes.",
+  "summary_pt": "Lotes municipais cedidos a cooperativas de habitação em direito de superfície por 90 anos; a Câmara assume os projetos de arquitetura e de licenciamento. Proposta de Filipa Roseta, com alterações do Livre e do PS. A Carta Municipal de Habitação prevê 500 casas em regime cooperativo.",
+  "numbers": {
+   "surface_rights_years": 90,
+   "target_coop_homes": 500
+  },
+  "source": "https://www.idealista.pt/news/imobiliario/habitacao/2024/02/15/61478-lisboa-cede-terrenos-a-cooperativas-para-criar-habitacao-acessivel",
+  "extra_sources": [
+   "https://observador.pt/2025/04/14/camara-de-lisboa-atribui-terreno-no-lumiar-para-cooperativa-construir-18-habitacoes/"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2024-02-02",
+  "category": "project",
+  "title_pt": "Assinado contrato PPP do Hospital de Lisboa Oriental (futuro da Colina de Santana)",
+  "title_en": "PPP contract signed for new Lisbon East Hospital (future of Colina de Santana hospitals)",
+  "summary_en": "Government and a Mota-Engil-led consortium signed the 30-year PPP; 875 beds in Marvila, opening expected 2027, replacing CHULC hospitals including São José and Santa Marta. In Nov 2024 the council gave a favourable opinion; BE warned the vacated Colina de Santana hospitals (sold to state property company Estamo in 2009) could feed speculation.",
+  "summary_pt": "O Governo e um consórcio liderado pela Mota-Engil assinaram a PPP por 30 anos: 875 camas em Marvila, com abertura prevista para 2027, em substituição de hospitais do CHULC, entre os quais São José e Santa Marta. Em novembro de 2024, a Câmara deu parecer favorável; o BE alertou que os hospitais desocupados da Colina de Santana (vendidos à imobiliária pública Estamo em 2009) poderiam alimentar a especulação.",
+  "numbers": {
+   "beds": 875,
+   "ppp_years": 30
+  },
+  "source": "https://cnnportugal.iol.pt/novo-hospital-lisboa/saude/governo-e-mota-engil-assinam-contrato-para-ppp-do-novo-hospital-de-lisboa/20240202/65bd0e82d34e371fc0bca8e2",
+  "extra_sources": [
+   "https://observador.pt/2024/11/06/camara-de-lisboa-da-parecer-previo-favoravel-ao-projeto-do-novo-hospital/",
+   "https://www.dn.pt/i/5683890.html/"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "date": "2024-03-04",
+  "category": "law",
+  "title_pt": "Simplex Urbanístico (DL 10/2024) entra em vigor",
+  "title_en": "Planning-permit 'Simplex' (DL 10/2024) takes effect",
+  "summary_en": "Published 8 Jan 2024; most rules in force 4 Mar 2024 (some exemptions from 1 Jan 2024; mandatory municipal e-platform from 5 Jan 2026). Tacit approval of licences when councils miss deadlines; building-licence 'alvará' replaced by the fee-payment receipt; new cases of prior notice (comunicação prévia) and exemptions; applicants can no longer opt for a licence where prior notice applies; councils cannot demand documents beyond the legal list.",
+  "summary_pt": "Publicado a 8 de janeiro de 2024; a maior parte das regras em vigor desde 4 de março de 2024 (algumas isenções desde 1 de janeiro de 2024; plataforma eletrónica municipal obrigatória a partir de 5 de janeiro de 2026). Deferimento tácito das licenças quando as câmaras não cumprem os prazos; o alvará de licença de construção é substituído pelo recibo de pagamento das taxas; novos casos de comunicação prévia e de isenção; os requerentes deixam de poder optar pelo licenciamento quando se aplica a comunicação prévia; as câmaras não podem exigir documentos além dos previstos na lei.",
+  "numbers": {
+   "published": "2024-01-08",
+   "main_in_force": "2024-03-04",
+   "e_platform": "2026-01-05"
+  },
+  "source": "https://diariodarepublica.pt/dr/detalhe/decreto-lei/10-2024-836222484",
+  "extra_sources": [
+   "https://www.servulo.com/pt/investigacao-e-conhecimento/Simplex-urbanistico-arranca-em-2024/8651/"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2024-04-29",
+  "category": "programme",
+  "title_pt": "PRA passa a aceitar candidaturas até 2.037 euros/mês de rendimento",
+  "title_en": "PRA income ceiling set at EUR 2,037/month",
+  "summary_en": "Affordable Rent Programme lotteries target households with average monthly income below 4x the social support index (IAS).",
+  "summary_pt": "Os sorteios do Programa Renda Acessível destinam-se a agregados com rendimento médio mensal inferior a 4 vezes o Indexante dos Apoios Sociais (IAS).",
+  "numbers": {
+   "income_cap_eur_month": 2037.04
+  },
+  "source": "https://observador.pt/2024/04/29/camara-de-lisboa-permite-candidaturas-a-renda-acessivel-a-quem-ganha-ate-2-037-euros/",
+  "confidence": "high"
+ },
+ {
+  "date": "2024-05-10",
+  "category": "law",
+  "title_pt": "Governo AD apresenta estratégia 'Construir Portugal' (30 medidas)",
+  "title_en": "AD government presents 'Construir Portugal' housing strategy (30 measures)",
+  "summary_en": "Presented by PM Luís Montenegro in Porto: supply-side measures, youth home-buying support, land-law change, public property for housing, unlock PRR homes.",
+  "summary_pt": "Apresentada pelo primeiro-ministro, Luís Montenegro, no Porto: medidas do lado da oferta, apoio à compra de casa por jovens, alteração da lei dos solos, imóveis públicos para habitação e desbloqueio das casas do PRR.",
+  "numbers": {
+   "measures": 30
+  },
+  "source": "https://portugal.gov.pt/gc24/comunicacao/noticias/apresentada-nova-estrategia-para-a-habitacao",
+  "confidence": "high"
+ },
+ {
+  "date": "2024-05-27",
+  "category": "law",
+  "title_pt": "Conselho de Ministros aprova revogação do arrendamento coercivo e da contribuição sobre o AL",
+  "title_en": "Cabinet approves repeal of coercive leasing and the AL extraordinary levy",
+  "summary_en": "Extraordinary Council of Ministers under Construir Portugal: decree revoking forced leasing of vacant homes; proposals to repeal the extraordinary AL contribution (CEAL) and the IMI age-coefficient penalty on AL; rent support extended to some newer leases.",
+  "summary_pt": "Conselho de Ministros extraordinário no âmbito do Construir Portugal: decreto que revoga o arrendamento forçado de casas devolutas; propostas para revogar a contribuição extraordinária sobre o alojamento local (CEAL) e a penalização do coeficiente de vetustez no IMI aplicada ao AL; apoio à renda alargado a alguns contratos mais recentes.",
+  "source": "https://portugal.gov.pt/gc24/governo/comunicados-do-conselho-de-ministros/614",
+  "confidence": "high"
+ },
+ {
+  "date": "2024-06-12",
+  "category": "market",
+  "title_pt": "BCE inicia descida de juros",
+  "title_en": "ECB begins cutting rates",
+  "summary_en": "Deposit rate 4.00% to 3.75%. Further cuts: 18 Sep 2024 3.50%; 23 Oct 3.25%; 18 Dec 3.00%; 5 Feb 2025 2.75%; 12 Mar 2.50%; 23 Apr 2.25%; 11 Jun 2025 2.00%.",
+  "summary_pt": "Taxa de depósito de 4,00% para 3,75%. Descidas seguintes: 18 de setembro de 2024, 3,50%; 23 de outubro, 3,25%; 18 de dezembro, 3,00%; 5 de fevereiro de 2025, 2,75%; 12 de março, 2,50%; 23 de abril, 2,25%; 11 de junho de 2025, 2,00%.",
+  "numbers": {
+   "deposit_rate_pct": 3.75
+  },
+  "source": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html",
+  "confidence": "high"
+ },
+ {
+  "date": "2024-07-03",
+  "category": "law",
+  "title_pt": "Revogado o arrendamento forçado de casas devolutas (DL 43/2024)",
+  "title_en": "Forced leasing of vacant homes repealed (DL 43/2024)",
+  "summary_en": "Published 2 Jul 2024, in force 3 Jul: removed art. 108.-C of the RJUE introduced by Mais Habitação.",
+  "summary_pt": "Publicado a 2 de julho de 2024, em vigor a 3 de julho: eliminou o artigo 108.º-C do RJUE, introduzido pelo Mais Habitação.",
+  "source": "https://rr.pt/noticia/economia/2024/07/02/publicado-decreto-lei-que-revoga-arrendamento-forcado-de-devolutos-e-alarga-apoio-as-rendas/384617/",
+  "confidence": "high"
+ },
+ {
+  "date": "2024-07-10",
+  "category": "tax",
+  "title_pt": "Garantia pública do Estado no crédito à habitação para jovens (DL 44/2024)",
+  "title_en": "State guarantee for young buyers' mortgages (DL 44/2024)",
+  "summary_en": "State may guarantee up to 15% of the purchase price for buyers up to 35 (first permanent home up to EUR 450,000), allowing banks to lend up to 100%. Bank adhesion rules came in Sept 2024 (Portaria 236-A/2024/1); a Dec 2024 order listed 18 participating banks.",
+  "summary_pt": "O Estado pode garantir até 15% do preço de compra a compradores até aos 35 anos (primeira habitação própria e permanente até 450 000 euros), permitindo aos bancos financiar até 100%. As regras de adesão dos bancos chegaram em setembro de 2024 (Portaria 236-A/2024/1); um despacho de dezembro de 2024 identificou 18 bancos aderentes.",
+  "numbers": {
+   "max_guarantee_pct": 15,
+   "max_price_eur": 450000,
+   "max_age": 35
+  },
+  "source": "https://diariodarepublica.pt/dr/detalhe/decreto-lei/44-2024-871466267",
+  "extra_sources": [
+   "https://www.deco.proteste.pt/dinheiro/comprar-vender-casa/noticias/credito-habitacao-jovem-como-funciona-garantia-publica-estado"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2024-07-23",
+  "category": "tax",
+  "title_pt": "Taxa turística de Lisboa sobe para 4 euros a partir de setembro",
+  "title_en": "Lisbon tourist tax to rise to EUR 4/night from September 2024",
+  "summary_en": "Council approved 19 July, Municipal Assembly 23 July 2024 (PEV, PCP and Chega against); cruise passenger tax doubled to EUR 2.",
+  "summary_pt": "Aprovada pela Câmara a 19 de julho e pela Assembleia Municipal a 23 de julho de 2024 (PEV, PCP e Chega contra); a taxa sobre passageiros de cruzeiros duplicou para 2 euros.",
+  "numbers": {
+   "eur_per_night": 4,
+   "effective": "2024-09-01"
+  },
+  "source": "https://observador.pt/2024/07/24/assembleia-municipal-de-lisboa-aprova-aumento-da-taxa-turistica-a-partir-de-setembro/",
+  "confidence": "high"
+ },
+ {
+  "date": "2024-08-01",
+  "category": "tax",
+  "title_pt": "Isenção de IMT e Imposto do Selo para jovens até 35 anos (DL 48-A/2024)",
+  "title_en": "IMT and stamp-duty exemption for buyers up to 35 (DL 48-A/2024)",
+  "summary_en": "Applies from 1 Aug 2024 to first permanent homes: full exemption up to EUR 316,772, partial up to EUR 633,453 (2024 brackets; updated yearly). Buyers must not have owned a home in the previous three years.",
+  "summary_pt": "Aplica-se desde 1 de agosto de 2024 à primeira habitação própria e permanente: isenção total até 316 772 euros e parcial até 633 453 euros (escalões de 2024, atualizados anualmente). Os compradores não podem ter sido proprietários de uma casa nos três anos anteriores.",
+  "numbers": {
+   "full_exemption_max_eur_2024": 316772,
+   "partial_exemption_max_eur_2024": 633453
+  },
+  "source": "https://files.diariodarepublica.pt/1s/2024/07/14301/0000200006.pdf",
+  "extra_sources": [
+   "https://www.servulo.com/en/knowledge/Jovens-Isencao-de-IMT-e-Imposto-do-Selo-na-aquisicao-de-primeira-habitacao/8925/"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2024-09-28",
+  "category": "politics",
+  "title_pt": "Manifestação 'Casa para Viver' em Lisboa",
+  "title_en": "'Casa para Viver' housing demonstration in Lisbon",
+  "summary_en": "Thousands gathered at Alameda according to DN/CNN (RTP and Euronews reported hundreds); housing councillor Filipa Roseta attended.",
+  "summary_pt": "Milhares de pessoas concentraram-se na Alameda, segundo DN/CNN (a RTP e a Euronews referiram centenas); a vereadora da Habitação, Filipa Roseta, esteve presente.",
+  "source": "https://cnnportugal.iol.pt/habitacao/manifestacao/milhares-de-pessoas-querem-casa-para-viver-e-sairam-a-rua-para-lutar/20240928/66f82883d34e94b82905abc8",
+  "confidence": "medium"
+ },
+ {
+  "date": "2024-10-23",
+  "category": "al",
+  "title_pt": "DL 76/2024 devolve aos municípios a regulação do AL (em vigor 1-11-2024)",
+  "title_en": "DL 76/2024 returns AL regulation to municipalities (in force 1 Nov 2024)",
+  "summary_en": "Lifted the national freeze and the 5-year validity of registrations; created municipal containment and 'sustainable growth' areas and an AL ombudsman; municipalities with 1,000+ AL units must decide within 12 months whether to regulate; councils may suspend new registrations in defined areas for up to a year.",
+  "summary_pt": "Levantou o congelamento nacional e a validade de 5 anos dos registos; criou áreas municipais de contenção e de 'crescimento sustentável' e um provedor do AL; os municípios com 1000 ou mais estabelecimentos de AL têm de decidir no prazo de 12 meses se regulamentam a atividade; as câmaras podem suspender novos registos em áreas delimitadas por um período até um ano.",
+  "numbers": {
+   "in_force": "2024-11-01"
+  },
+  "source": "https://files.diariodarepublica.pt/1s/2024/10/20600/0000300031.pdf",
+  "extra_sources": [
+   "https://www.cuatrecasas.com/pt/portugal/imobiliario/art/alteracoes-ao-regime-do-alojamento-local-1"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2024-10-25",
+  "category": "programme",
+  "title_pt": "Câmara aprova versão final da Carta Municipal de Habitação",
+  "title_en": "Council approves final Municipal Housing Charter",
+  "summary_en": "Executive approval of the charter (about EUR 900M over 10 years); press reported a target of about 3,000 homes.",
+  "summary_pt": "Aprovação da carta pelo executivo municipal (cerca de 900 milhões de euros em 10 anos); a imprensa noticiou uma meta de cerca de 3000 casas.",
+  "numbers": {
+   "investment_eur_m": 900,
+   "years": 10,
+   "homes_target_press": 3000
+  },
+  "source": "https://eco.sapo.pt/2024/10/25/camara-de-lisboa-devera-investir-900-milhoes-de-euros-em-habitacao-nos-proximos-dez-anos/",
+  "confidence": "medium"
+ },
+ {
+  "date": "2024-10-30",
+  "category": "al",
+  "title_pt": "Câmara aprova por unanimidade nova suspensão de AL (proposta PS)",
+  "title_en": "Council unanimously approves new AL freeze (PS proposal)",
+  "summary_en": "Freeze applies in parishes with AL ratio of 2.5%+ or citywide if the municipal ratio is 5%+; with a 7.2% city ratio it covers all of Lisbon. A PSD/CDS 'total suspension' proposal was dropped.",
+  "summary_pt": "A suspensão aplica-se às freguesias com rácio de AL igual ou superior a 2,5%, ou a toda a cidade se o rácio municipal for igual ou superior a 5%; com um rácio de 7,2% na cidade, abrange toda a Lisboa. Uma proposta de 'suspensão total' do PSD/CDS foi abandonada.",
+  "numbers": {
+   "municipal_ratio_pct": 7.2,
+   "citywide_trigger_pct": 5,
+   "parish_trigger_pct": 2.5
+  },
+  "source": "https://eco.sapo.pt/2024/11/05/assembleia-municipal-de-lisboa-aprova-suspensao-imediata-de-novos-registos-de-alojamento-local/",
+  "confidence": "high"
+ },
+ {
+  "date": "2024-10-30",
+  "category": "project",
+  "title_pt": "Câmara aprova alteração ao Plano de Urbanização do Vale de Santo António",
+  "title_en": "Council approves amended Vale de Santo António urban plan",
+  "summary_en": "About 2,400 homes (for affordable rent), park and facilities over ~48 ha; Municipal Assembly approval 21 Jan 2025.",
+  "summary_pt": "Cerca de 2400 casas (para renda acessível), parque e equipamentos numa área de cerca de 48 ha; aprovação pela Assembleia Municipal a 21 de janeiro de 2025.",
+  "numbers": {
+   "homes": 2400,
+   "aml_approval": "2025-01-21"
+  },
+  "source": "https://www.idealista.pt/news/imobiliario/habitacao/2024/10/31/66486-alteracao-do-plano-de-urbanizacao-do-vale-de-s-antonio-aprovada",
+  "confidence": "high"
+ },
+ {
+  "date": "2024-11-05",
+  "category": "al",
+  "title_pt": "Assembleia Municipal aprova 'suspensão imediata' de novos AL em toda a cidade",
+  "title_en": "Municipal Assembly approves immediate citywide AL freeze",
+  "summary_en": "Six months, renewable, until the AL regulation is amended. For: BE, Livre, PEV, PCP, Cidadãos por Lisboa, PS, PSD, PAN, Aliança, CDS-PP. Against: IL, MPT, PPM, Chega, one independent.",
+  "summary_pt": "Por seis meses, renovável, até à alteração do regulamento do AL. A favor: BE, Livre, PEV, PCP, Cidadãos por Lisboa, PS, PSD, PAN, Aliança, CDS-PP. Contra: IL, MPT, PPM, Chega e um independente.",
+  "numbers": {
+   "duration_months": 6
+  },
+  "source": "https://eco.sapo.pt/2024/11/05/assembleia-municipal-de-lisboa-aprova-suspensao-imediata-de-novos-registos-de-alojamento-local/",
+  "confidence": "high"
+ },
+ {
+  "date": "2024-12-03",
+  "category": "al",
+  "title_pt": "Assembleia Municipal aprova referendo local sobre AL",
+  "title_en": "Municipal Assembly approves local referendum on AL",
+  "summary_en": "Citizens' initiative by Movimento Referendo pela Habitação: two questions on cancelling AL in residential buildings within 180 days and banning AL in residential buildings. Sent to the Constitutional Court on 9 Dec 2024.",
+  "summary_pt": "Iniciativa de cidadãos do Movimento Referendo pela Habitação, com duas perguntas: o cancelamento do AL em prédios de habitação no prazo de 180 dias e a proibição do AL em prédios de habitação. A proposta de referendo foi enviada ao Tribunal Constitucional a 9 de dezembro de 2024.",
+  "source": "https://www.dn.pt/local/tribunal-constitucional-rejeita-referendo-sobre-alojamento-local-em-lisboa",
+  "confidence": "high"
+ },
+ {
+  "date": "2024-12-17",
+  "category": "programme",
+  "title_pt": "Assembleia Municipal aprova Carta Municipal de Habitação",
+  "title_en": "Municipal Assembly approves Municipal Housing Charter",
+  "summary_en": "Approved with PSD, PAN, MPT, PPM, Aliança and CDS-PP for; BE, Livre, IL, Chega and two Cidadãos por Lisboa deputies against; PEV, PCP and PS abstaining. EUR 900M over 10 years.",
+  "summary_pt": "Aprovada com os votos a favor de PSD, PAN, MPT, PPM, Aliança e CDS-PP; contra BE, Livre, IL, Chega e dois deputados municipais dos Cidadãos por Lisboa; abstenção de PEV, PCP e PS. 900 milhões de euros em 10 anos.",
+  "numbers": {
+   "investment_eur_m": 900
+  },
+  "source": "https://observador.pt/2024/12/17/assembleia-municipal-de-lisboa-aprova-carta-municipal-de-habitacao-que-preve-investimento-de-900-milhoes-de-euros/",
+  "confidence": "high"
+ },
+ {
+  "date": "2025-01-03",
+  "category": "al",
+  "title_pt": "Tribunal Constitucional chumba referendo ao AL em Lisboa",
+  "title_en": "Constitutional Court blocks Lisbon AL referendum",
+  "summary_en": "Unanimous ruling (two judges disputing parts of the reasoning). Procedural: only 4,863 of 6,528 first-batch signatures were valid Lisbon voters (5,000 needed), second batch unverified, no 15 representatives, no mayor's opinion. Substantive: a municipal regulation cannot ban AL in residential buildings. Defect deemed incurable.",
+  "summary_pt": "Acórdão unânime (dois juízes discordaram de partes da fundamentação). Razões processuais: só 4863 das 6528 assinaturas do primeiro lote correspondiam a eleitores válidos de Lisboa (eram precisas 5000), o segundo lote não foi verificado, não havia 15 representantes nem parecer do presidente da Câmara. Razões de fundo: um regulamento municipal não pode proibir o AL em prédios de habitação. O vício foi considerado insanável.",
+  "numbers": {
+   "signatures_first_batch": 6528,
+   "valid_lisbon_voters": 4863,
+   "required": 5000
+  },
+  "source": "https://www.publico.pt/2025/01/04/local/noticia/tribunal-constitucional-chumba-referendo-alojamento-local-apartamentos-lisboa-2117608",
+  "extra_sources": [
+   "https://www.dn.pt/local/tribunal-constitucional-rejeita-referendo-sobre-alojamento-local-em-lisboa"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2025-01-29",
+  "category": "law",
+  "title_pt": "Nova lei dos solos (DL 117/2024) entra em vigor; Parlamento altera-a em fevereiro",
+  "title_en": "Land-use reclassification decree (DL 117/2024) in force; amended by Parliament in February",
+  "summary_en": "Lets councils reclassify rustic land as urban for housing (at least 70% of above-ground floor area for public or 'moderate-value' housing). On 28 Feb 2025 Parliament amended it (PSD and PS): 'moderate value' replaced by affordable-rent/controlled-cost housing, 4-year validity.",
+  "summary_pt": "Permite às câmaras reclassificar solo rústico como urbano para habitação (pelo menos 70% da área de construção acima do solo destinada a habitação pública ou de 'valor moderado'). A 28 de fevereiro de 2025, o Parlamento alterou o diploma (PSD e PS): o 'valor moderado' foi substituído por habitação a renda acessível ou a custos controlados, com validade de 4 anos.",
+  "numbers": {
+   "min_share_public_or_moderate_pct": 70
+  },
+  "source": "https://diariodarepublica.pt/dr/detalhe/decreto-lei/117-2024-901535572",
+  "extra_sources": [
+   "https://www.idealista.pt/news/imobiliario/habitacao/2025/04/10/69149-alteracoes-a-lei-dos-solos-ja-publicadas-em-dr-o-que-muda"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "date": "2025-02-26",
+  "category": "politics",
+  "title_pt": "Câmara aprova por unanimidade proposta do PCP para rever o PDM",
+  "title_en": "Council unanimously backs PCP proposal to revise the master plan (PDM)",
+  "summary_en": "The PDM in force dates from 2012 and is past its 10-year horizon; the council was preparing the 'Lisboa 2040' strategy as the basis for revision.",
+  "summary_pt": "O PDM em vigor data de 2012 e já ultrapassou o horizonte de 10 anos; a Câmara estava a preparar a estratégia 'Lisboa 2040' como base para a revisão.",
+  "source": "https://observador.pt/2025/02/27/camara-de-lisboa-aprova-proposta-do-pcp-para-revisao-do-pdm/",
+  "confidence": "high"
+ },
+ {
+  "date": "2025-04-14",
+  "category": "programme",
+  "title_pt": "Primeiro terreno para cooperativas atribuído no Lumiar",
+  "title_en": "First cooperative housing plot awarded in Lumiar",
+  "summary_en": "Rua António do Couto plot (tender launched Sept 2024, 4 bids) went to Cooperativa JHLX: 18 homes, T1 EUR 146k, T2 EUR 216k, T3 EUR 289k; EUR 3.83M investment. A second tender (Rua da Venezuela, Benfica, 12 homes) was approved in July 2025.",
+  "summary_pt": "O lote da Rua António do Couto (concurso lançado em setembro de 2024, 4 propostas) foi atribuído à Cooperativa JHLX: 18 casas, T1 a 146 mil euros, T2 a 216 mil euros, T3 a 289 mil euros; investimento de 3,83 milhões de euros. Um segundo concurso (Rua da Venezuela, Benfica, 12 casas) foi aprovado em julho de 2025.",
+  "numbers": {
+   "homes": 18,
+   "price_T1": 146000,
+   "price_T2": 216000,
+   "price_T3": 289000,
+   "bids": 4
+  },
+  "source": "https://observador.pt/2025/04/14/camara-de-lisboa-atribui-terreno-no-lumiar-para-cooperativa-construir-18-habitacoes/",
+  "extra_sources": [
+   "https://www.construir.pt/2025/07/02/camara-de-lisboa-aprova-segundo-concurso-publico-do-programa-de-cooperativas"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2025-05-06",
+  "category": "al",
+  "title_pt": "Assembleia Municipal prolonga suspensão de AL por seis meses",
+  "title_en": "Municipal Assembly extends AL freeze six months",
+  "summary_en": "Conditions unchanged (city ratio 7.2%). For: BE, Livre, PEV, PCP, PS, two independents; against: IL, Chega, one deputy; abstained: PSD, MPT, CDS-PP.",
+  "summary_pt": "Condições inalteradas (rácio da cidade de 7,2%). A favor: BE, Livre, PEV, PCP, PS e dois independentes; contra: IL, Chega e um deputado municipal; abstenção: PSD, MPT e CDS-PP.",
+  "numbers": {
+   "municipal_ratio_pct": 7.2
+  },
+  "source": "https://observador.pt/2025/05/07/assembleia-municipal-de-lisboa-prolonga-suspensao-de-novos-registos-de-alojamento-local/",
+  "confidence": "high"
+ },
+ {
+  "date": "2025-06-11",
+  "category": "market",
+  "title_pt": "BCE fixa taxa de depósito em 2%",
+  "title_en": "ECB deposit rate reaches 2.00%",
+  "summary_en": "Last cut of the 2024-25 easing cycle; held until June 2026.",
+  "summary_pt": "Última descida do ciclo de alívio monetário de 2024-25; a taxa manteve-se neste nível até junho de 2026.",
+  "numbers": {
+   "deposit_rate_pct": 2.0
+  },
+  "source": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html",
+  "confidence": "high"
+ },
+ {
+  "date": "2025-09-10",
+  "category": "programme",
+  "title_pt": "Câmara aprova concurso de renda acessível para jovens nos bairros históricos",
+  "title_en": "Council approves affordable-rent lottery for under-35s in historic neighbourhoods",
+  "summary_en": "Extraordinary PRA tender of about 100 flats for people aged 18-35, with opposition amendments.",
+  "summary_pt": "Concurso extraordinário do PRA com cerca de 100 apartamentos para pessoas entre os 18 e os 35 anos, com alterações da oposição.",
+  "numbers": {
+   "homes_approx": 100
+  },
+  "source": "https://www.publico.pt/2025/09/11/p3/noticia/camara-lisboa-aprova-renda-acessivel-jovens-bairros-historicos-2146743",
+  "extra_sources": [
+   "https://www.jn.pt/nacional/artigo/camara-de-lisboa-aprova-renda-acessivel-para-jovens-nos-bairros-historicos/17953972"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "date": "2025-09-25",
+  "category": "tax",
+  "title_pt": "Governo aprova IVA a 6% na construção e IRS de 10% para rendas moderadas",
+  "title_en": "Government approves 6% VAT on housing construction and 10% IRS on moderate rents",
+  "summary_en": "Council of Ministers: 6% VAT on building homes for sale up to EUR 648,000 or rent up to EUR 2,300/month (until 2029); landlord IRS rate on moderate rents cut from 25% to 10%; tenant rent deduction EUR 900 (2026) and EUR 1,000 (2027); AIMI exemption for homes let at up to EUR 2,300.",
+  "summary_pt": "Conselho de Ministros: IVA a 6% na construção de casas para venda até 648 000 euros ou para arrendamento até 2300 euros por mês (até 2029); taxa de IRS dos senhorios sobre rendas moderadas reduzida de 25% para 10%; dedução das rendas pelos inquilinos de 900 euros (2026) e 1000 euros (2027); isenção de AIMI para casas arrendadas até 2300 euros.",
+  "numbers": {
+   "vat_pct": 6,
+   "sale_cap_eur": 648000,
+   "rent_cap_eur": 2300,
+   "irs_moderate_rent_pct": 10,
+   "irs_previous_pct": 25,
+   "tenant_deduction_2026_eur": 900,
+   "tenant_deduction_2027_eur": 1000
+  },
+  "source": "https://portugal.gov.pt/gc25/comunicacao/noticias/conselho-de-ministros-aprova-medidas-no-ambito-da-habitacao",
+  "confidence": "high"
+ },
+ {
+  "date": "2025-10-12",
+  "category": "politics",
+  "title_pt": "Moedas reeleito com 8 de 17 vereadores",
+  "title_en": "Moedas re-elected with 8 of 17 councillors",
+  "summary_en": "Por ti, Lisboa (PSD/CDS-PP/IL) 41.69% and 8 seats (one short of a majority); Viver Lisboa (PS/Livre/BE/PAN, Alexandra Leitão) 33.95%, 6; Chega 2 (26,755 votes, three more than CDU after the final count); CDU 1.",
+  "summary_pt": "Por ti, Lisboa (PSD/CDS-PP/IL) com 41,69% e 8 mandatos (a um da maioria); Viver Lisboa (PS/Livre/BE/PAN, Alexandra Leitão) 33,95%, 6; Chega 2 (26 755 votos, mais três do que a CDU após o apuramento final); CDU 1.",
+  "numbers": {
+   "Por_ti_Lisboa": 8,
+   "Viver_Lisboa": 6,
+   "Chega": 2,
+   "CDU": 1,
+   "PtL_vote_pct": 41.69,
+   "VL_vote_pct": 33.95,
+   "chega_votes": 26755,
+   "chega_margin_over_cdu": 3
+  },
+  "source": "https://www.rtp.pt/noticias/politica/autarquicas-chega-vence-por-tres-votos-cdu-em-lisboa-e-confirma-dois-vereadores_n1692067",
+  "extra_sources": [
+   "https://rr.pt/noticia/politica/2025/10/13/carlos-moedas-vence-lisboa-chega-supera-cdu-por-11-votos/443575/"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2025-10-27",
+  "category": "programme",
+  "title_pt": "Governo altera o 1.º Direito para assegurar execução do PRR",
+  "title_en": "Government amends 1.º Direito to secure PRR execution",
+  "summary_en": "Decree adjusting 1.º Direito so that PRR housing deadlines (2026) can be met.",
+  "summary_pt": "Decreto que ajusta o 1.º Direito para que seja possível cumprir os prazos do PRR para a habitação (2026).",
+  "source": "https://observador.pt/2025/10/27/governo-altera-programa-1-o-direito-para-assegurar-execucao-do-prr-no-apoio-a-habitacao/",
+  "confidence": "medium"
+ },
+ {
+  "date": "2025-11-03",
+  "category": "al",
+  "title_pt": "Moedas prolonga suspensão do AL até ao novo regulamento",
+  "title_en": "Moedas extends AL freeze pending the new regulation",
+  "summary_en": "By order, the post-election caretaker period was excluded from the 12-month suspension count, pushing the end (due 7 Nov) to early December 2025; opposition warned of a rush for licences.",
+  "summary_pt": "Por despacho, o período de gestão pós-eleitoral foi excluído da contagem dos 12 meses de suspensão, o que adiou o fim (previsto para 7 de novembro) para o início de dezembro de 2025; a oposição alertou para uma corrida às licenças.",
+  "source": "https://observador.pt/2025/11/05/moedas-prolonga-suspensao-de-novas-licencas-de-alojamento-local-por-mais-um-mes/",
+  "confidence": "high"
+ },
+ {
+  "date": "2025-11-11",
+  "category": "politics",
+  "title_pt": "Novo executivo toma posse; Vasco Moreira Rato com Habitação e Urbanismo",
+  "title_en": "New executive sworn in; Vasco Moreira Rato gets Housing and Urbanism",
+  "summary_en": "Gonçalo Reis (PSD) vice-mayor (finance, mobility); Vasco Moreira Rato (independent nominated by PSD) Housing, Urbanism and municipal building works. Portfolios only for the 8 coalition councillors; Chega (2) holds none but votes with the coalition on key items.",
+  "summary_pt": "Gonçalo Reis (PSD) é vice-presidente (finanças e mobilidade); Vasco Moreira Rato (independente indicado pelo PSD) fica com a Habitação, o Urbanismo e as obras municipais. Só os 8 vereadores da coligação têm pelouros; o Chega (2) não tem nenhum, mas vota com a coligação nas matérias principais.",
+  "source": "https://www.rtp.pt/noticias/pais/carlos-moedas-designa-goncalo-reis-como-vice-presidente-da-camara-de-lisboa_n1700517",
+  "extra_sources": [
+   "https://rr.pt/noticia/politica/2025/11/11/moedas-avisa-oposicao-que-nao-pode-esquecer-quem-foi-escolhido-para-governar/447436/"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2025-12-02",
+  "category": "al",
+  "title_pt": "Assembleia Municipal aprova novo Regulamento do AL (contenção absoluta a 10%)",
+  "title_en": "Municipal Assembly approves new AL regulation (absolute containment at 10%)",
+  "summary_en": "Council approved 27 Nov 2025 (8 coalition + 2 Chega); Assembly 2 Dec (PSD, CDS-PP, IL, Chega for; PS, PCP, PEV, BE, Livre, PAN against). Published 5 Dec (Aviso 29926-A/2025/2), in force 6 Dec 2025; the citywide freeze, which ran until the amended regulation took effect, gave way to area rules: absolute containment at ratio 10%+, relative 5%-10%, citywide absolute area if the city ratio reaches 10% (about 7% then). Six parishes in absolute containment: Santa Maria Maior (66.9%), Misericórdia (43.8%), Santo António (25.1%), São Vicente (16.1%), Arroios (13.5%), Estrela (10.8%), plus nine bairros.",
+  "summary_pt": "Aprovado pela Câmara a 27 de novembro de 2025 (8 vereadores da coligação + 2 do Chega) e pela Assembleia Municipal a 2 de dezembro (a favor PSD, CDS-PP, IL e Chega; contra PS, PCP, PEV, BE, Livre e PAN). Publicado a 5 de dezembro (Aviso 29926-A/2025/2), em vigor desde 6 de dezembro de 2025; a suspensão em toda a cidade, que vigorou até à entrada em vigor do regulamento alterado, deu lugar a regras por área: contenção absoluta com rácio igual ou superior a 10%, relativa entre 5% e 10%, e toda a cidade em contenção absoluta se o rácio da cidade atingir 10% (então cerca de 7%). Seis freguesias em contenção absoluta: Santa Maria Maior (66,9%), Misericórdia (43,8%), Santo António (25,1%), São Vicente (16,1%), Arroios (13,5%), Estrela (10,8%), além de nove bairros.",
+  "numbers": {
+   "absolute_threshold_pct": 10,
+   "relative_threshold_pct": [
+    5,
+    10
+   ],
+   "citywide_trigger_pct": 10,
+   "in_force": "2025-12-06",
+   "ratios_pct": {
+    "Santa Maria Maior": 66.9,
+    "Misericórdia": 43.8,
+    "Santo António": 25.1,
+    "São Vicente": 16.1,
+    "Arroios": 13.5,
+    "Estrela": 10.8
+   }
+  },
+  "source": "https://observador.pt/2025/12/02/assembleia-municipal-de-lisboa-aprova-novo-regulamento-do-alojamento-local/",
+  "extra_sources": [
+   "https://www.cuatrecasas.com/en/global/real-estate/art/amendment-lisbon-municipal-regulation-short-term-letting",
+   "https://www.jornaldenegocios.pt/economia/detalhe/assembleia-municipal-de-lisboa-aprova-novo-regulamento-do-alojamento-local-mais-permissivo"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2025-12-02",
+  "category": "politics",
+  "title_pt": "Orçamento 2026 prevê início da revisão do PDM",
+  "title_en": "2026 budget foresees start of PDM revision",
+  "summary_en": "The first budget of Moedas's second term states the master-plan revision will begin; no formal start deliberation was found in the sources searched.",
+  "summary_pt": "O primeiro orçamento do segundo mandato de Moedas prevê o arranque da revisão do PDM; nas fontes consultadas não foi encontrada qualquer deliberação formal de início.",
+  "source": "https://lisboaparapessoas.pt/en/2025/12/02/primeiro-orcamento-novo-mandato-moedas/",
+  "confidence": "medium"
+ },
+ {
+  "date": "2025-12-17",
+  "category": "politics",
+  "title_pt": "Câmara aprova orçamento de 1.345 milhões para 2026 com votos do Chega",
+  "title_en": "Council passes EUR 1,345M 2026 budget with Chega votes",
+  "summary_en": "10 for (8 coalition + 2 Chega), 7 against (4 PS, 1 Livre, 1 BE, 1 PCP). Investment EUR 410M (+30.7%); PS claimed a 40% cut in housing investment. The Municipal Assembly approved it in January 2026 with coalition and Chega votes.",
+  "summary_pt": "10 votos a favor (8 da coligação + 2 do Chega) e 7 contra (4 do PS, 1 do Livre, 1 do BE, 1 do PCP). Investimento de 410 milhões de euros (+30,7%); o PS apontou um corte de 40% no investimento em habitação. A Assembleia Municipal aprovou-o em janeiro de 2026 com os votos da coligação e do Chega.",
+  "numbers": {
+   "budget_eur_m": 1345,
+   "investment_eur_m": 410,
+   "votes_for": 10,
+   "votes_against": 7
+  },
+  "source": "https://eco.sapo.pt/2025/12/17/camara-de-lisboa-aprova-orcamento-de-1-345-milhoes-para-2026-com-votos-do-chega/",
+  "extra_sources": [
+   "https://www.noticiasaominuto.com/pais/2918827/assembleia-municipal-de-lisboa-aprova-orcamento-de-1345-milhoes"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2026-01-30",
+  "category": "programme",
+  "title_pt": "Moedas: execução do PRR na habitação perto de 80%; pede 'bazuca' europeia para a habitação",
+  "title_en": "Moedas: PRR housing execution near 80%; asks EU for a housing 'Next Generation' fund",
+  "summary_en": "Lisbon's EU-backed municipal housing investment exceeds EUR 560M; execution almost 80%, possibly 90% by the 30 June 2026 deadline. The council says 3,200 homes were delivered in four years and 1,000+ are under construction.",
+  "summary_pt": "O investimento municipal de Lisboa em habitação com apoio europeu ultrapassa os 560 milhões de euros; a execução está perto dos 80% e poderá chegar aos 90% até ao prazo de 30 de junho de 2026. A Câmara afirma que foram entregues 3200 casas em quatro anos e que mais de 1000 estão em construção.",
+  "numbers": {
+   "investment_eur_m_min": 560,
+   "execution_pct": 80,
+   "homes_delivered_4y": 3200,
+   "homes_under_construction_min": 1000
+  },
+  "source": "https://eco.sapo.pt/2026/01/30/execucao-do-prr-para-casas-em-lisboa-pode-chegar-a-90-moedas-pede-nova-bazuca-para-habitacao/",
+  "confidence": "high"
+ },
+ {
+  "date": "2026-02-25",
+  "category": "project",
+  "title_pt": "Câmara avança com Operação de Reabilitação Urbana do Vale de Santo António",
+  "title_en": "Council launches Vale de Santo António urban regeneration operation",
+  "summary_en": "Systematic ORU with a 12-year horizon managed by municipal company SRU, for ~2,400 affordable-rent homes on ~48 ha. An opinion column puts the cost at EUR 750M and the housing share at 80% (vs 30% at Entrecampos) - unverified official figures.",
+  "summary_pt": "ORU sistemática com um horizonte de 12 anos, gerida pela empresa municipal SRU, para cerca de 2400 casas de renda acessível em cerca de 48 ha. Um artigo de opinião estima o custo em 750 milhões de euros e a parte destinada a habitação em 80% (contra 30% em Entrecampos); números não confirmados oficialmente.",
+  "numbers": {
+   "homes": 2400,
+   "horizon_years": 12
+  },
+  "source": "https://www.idealista.pt/news/imobiliario/habitacao/2026/02/25/74055-cml-avanca-com-operacao-para-reabilitar-vale-de-santo-antonio",
+  "extra_sources": [
+   "https://observador.pt/opiniao/80-por-cento/"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "date": "2026-03-06",
+  "category": "tax",
+  "title_pt": "Lei 9-A/2026 autoriza Governo a aprovar pacote fiscal da habitação",
+  "title_en": "Law 9-A/2026 authorises the housing tax package",
+  "summary_en": "Legislative authorisation (approved in committee in Feb 2026 with PSD, IL and CDS for and Chega abstaining) for the 6% VAT and rental tax measures; Parliament added penalties for buyers who resell within a year / do not live in the home for at least 12 months.",
+  "summary_pt": "Autorização legislativa (aprovada em comissão em fevereiro de 2026, com votos a favor de PSD, IL e CDS e abstenção do Chega) para o IVA a 6% e as medidas fiscais sobre o arrendamento; o Parlamento acrescentou penalizações para os compradores que revendam a casa no prazo de um ano ou que não a habitem durante pelo menos 12 meses.",
+  "source": "https://files.diariodarepublica.pt/1s/2026/03/04601/0000200005.pdf",
+  "extra_sources": [
+   "https://eco.sapo.pt/2026/02/18/comprar-casa-com-iva-a-6-e-vende-la-em-menos-de-um-ano-da-penalizacao-parlamento-aprova-pacote-fiscal-com-novas-regras/"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2026-03-21",
+  "category": "politics",
+  "title_pt": "Manifestação nacional 'Casa para Viver' em Lisboa",
+  "title_en": "National 'Casa para Viver' demonstration in Lisbon",
+  "summary_en": "March from Marquês de Pombal to Rossio against government housing policy.",
+  "summary_pt": "Marcha do Marquês de Pombal ao Rossio contra a política de habitação do Governo.",
+  "source": "https://observador.pt/2026/02/18/plataforma-casa-para-viver-convoca-manifestacao-nacional-em-lisboa-para-21-de-marco/",
+  "extra_sources": [
+   "https://pt.euronews.com/2026/03/21/casa-para-viver-manifestantes-saem-a-rua-pelo-direito-a-habitacao"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2026-04-06",
+  "category": "al",
+  "title_pt": "Lisboa reclassifica áreas de contenção do AL após 'limpeza' de 6.765 registos",
+  "title_en": "Lisbon reclassifies AL containment after purging 6,765 registrations",
+  "summary_en": "6,765 registrations cancelled, mostly for missing insurance proof; 11,774 remain active. Absolute containment parishes now Santa Maria Maior, Misericórdia, Santo António; relative: São Vicente, Arroios, Estrela (moved down); Avenidas Novas out. 22 bairros in absolute and 11 in relative containment.",
+  "summary_pt": "Foram cancelados 6765 registos, sobretudo por falta de prova de seguro; mantêm-se ativos 11 774. As freguesias em contenção absoluta passam a ser Santa Maria Maior, Misericórdia e Santo António; em contenção relativa ficam São Vicente, Arroios e Estrela (que desceram de nível); as Avenidas Novas saem. Há 22 bairros em contenção absoluta e 11 em contenção relativa.",
+  "numbers": {
+   "cancelled": 6765,
+   "active": 11774,
+   "absolute_parishes": 3,
+   "relative_parishes": 3,
+   "absolute_bairros": 22,
+   "relative_bairros": 11
+  },
+  "source": "https://eco.sapo.pt/2026/04/06/lisboa-ajusta-niveis-de-contencao-do-alojamento-local-apos-limpeza-de-registos/",
+  "confidence": "high"
+ },
+ {
+  "date": "2026-05-20",
+  "category": "tax",
+  "title_pt": "Publicado DL 97/2026: IVA a 6% na construção de habitação a partir de julho",
+  "title_en": "DL 97/2026 published: 6% VAT on housing construction from July 2026",
+  "summary_en": "Reduced 6% VAT on construction/rehab contracts for homes sold up to EUR 660,982 or let up to EUR 2,300/month, for works initiated 25 Sep 2025-31 Dec 2029 (deduction window to 2032), effective from the quarter after entry into force (1 Jul 2026). Also: lower IRS/IRC on rental income from 1 Jan 2026, tenant deduction EUR 900/1,000, 25-year investment contracts for rental (CIA), simplified affordable-rent regime (RSAA) for rents below 80% of the municipal median per m2. Note: the sale cap was EUR 648,000 in the Sept 2025 announcement.",
+  "summary_pt": "IVA reduzido de 6% nas empreitadas de construção e reabilitação de casas vendidas até 660 982 euros ou arrendadas até 2300 euros por mês, para obras iniciadas entre 25 de setembro de 2025 e 31 de dezembro de 2029 (com prazo para dedução até 2032), aplicável a partir do trimestre seguinte à entrada em vigor (1 de julho de 2026). Inclui ainda: IRS e IRC mais baixos sobre os rendimentos prediais a partir de 1 de janeiro de 2026, dedução para inquilinos de 900/1000 euros, contratos de investimento para arrendamento (CIA) a 25 anos e um regime simplificado de arrendamento acessível (RSAA) para rendas abaixo de 80% da mediana municipal por m2. Nota: o teto para venda era de 648 000 euros no anúncio de setembro de 2025.",
+  "numbers": {
+   "vat_pct": 6,
+   "sale_cap_eur": 660982,
+   "rent_cap_eur": 2300,
+   "works_from": "2025-09-25",
+   "works_until": "2029-12-31",
+   "effective": "2026-07-01",
+   "rsaa_rent_limit_pct_of_median": 80
+  },
+  "source": "https://observador.pt/2026/05/20/pacote-fiscal-da-habitacao-ja-publicado-em-diario-da-republica-iva-da-construcao-a-6-valido-para-obras-iniciadas-desde-setembro-de-2025/",
+  "extra_sources": [
+   "https://files.diariodarepublica.pt/1s/2026/05/09700/0001400040.pdf",
+   "https://www.aiccopn.pt/iva-a-6-na-construcao-para-habitacao-entra-em-vigor-a-1-de-julho/"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2026-05-29",
+  "category": "law",
+  "title_pt": "Novo RJUE (DL 108/2026): comunicação prévia passa a declaração de responsabilidade",
+  "title_en": "New planning-permit code (DL 108/2026): prior notice becomes a self-declaration",
+  "summary_en": "Revises the RJUE and urban rehabilitation regime: prior notice no longer involves municipal document checking (works may start once filed and fees paid), global deadlines tied to floor area removed, some reconstruction/energy works exempted, sale deeds must state whether the building has a planning title, clearer land cessions for public/affordable housing. Entry into force postponed from 3 Aug to 1 Oct 2026 by DL 155-B/2026 (31 Jul).",
+  "summary_pt": "Revê o RJUE e o regime da reabilitação urbana: a comunicação prévia deixa de implicar verificação documental pelo município (as obras podem começar depois de apresentada a comunicação e pagas as taxas), são eliminados os prazos globais indexados à área de construção, algumas obras de reconstrução e de melhoria energética ficam isentas, as escrituras de venda passam a ter de indicar se o edifício tem título urbanístico e as cedências de terreno para habitação pública ou acessível ficam mais claras. A entrada em vigor foi adiada de 3 de agosto para 1 de outubro de 2026 pelo DL 155-B/2026 (31 de julho).",
+  "numbers": {
+   "in_force": "2026-10-01"
+  },
+  "source": "https://diariodarepublica.pt/dr/detalhe/decreto-lei/108-2026-1128002421",
+  "extra_sources": [
+   "https://www.ordemdosengenheiros.pt/regiao-sul/pt/noticias/entrada-em-vigor-da-revisao-do-rjue-adiada-para-1-de-outubro-de-2026/",
+   "https://www.aiccopn.pt/wp-content/uploads/2026/06/Info_Resumo_Alterac%CC%A7oes-RJUE_DL-108-2026.pdf"
+  ],
+  "confidence": "medium"
+ },
+ {
+  "date": "2026-06-17",
+  "category": "market",
+  "title_pt": "BCE sobe juros pela primeira vez desde 2023 (taxa de depósito 2,25%)",
+  "title_en": "ECB raises rates for the first time since 2023 (deposit rate 2.25%)",
+  "summary_en": "Effective 17 June 2026 (MRO 2.40%), amid energy-driven inflation.",
+  "summary_pt": "Em vigor a partir de 17 de junho de 2026 (taxa principal de refinanciamento: 2,40%), num contexto de inflação impulsionada pela energia.",
+  "numbers": {
+   "deposit_rate_pct": 2.25,
+   "mro_pct": 2.4
+  },
+  "source": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html",
+  "confidence": "high"
+ },
+ {
+  "date": "2026-06-17",
+  "category": "project",
+  "title_pt": "Câmara aprova demolição do antigo Cinema Paris para prédio com 19 fogos",
+  "title_en": "Council approves demolition of former Cinema Paris for 19-flat building",
+  "summary_en": "Proposal by Vasco Moreira Rato; approved by coalition + Chega, with PS, Livre, BE, PCP against. 1931 cinema (closed 1985) in Estrela; land cessions for affordable housing waived in exchange for compensation; BE protested heritage loss.",
+  "summary_pt": "Proposta de Vasco Moreira Rato, aprovada pela coligação e pelo Chega, com votos contra de PS, Livre, BE e PCP. Cinema de 1931 (encerrado em 1985) na Estrela; as cedências de terreno para habitação acessível foram dispensadas em troca de compensação; o BE protestou contra a perda de património.",
+  "numbers": {
+   "homes": 19,
+   "parking": 37
+  },
+  "source": "https://observador.pt/2026/06/17/camara-municipal-de-lisboa-aprova-demolicao-de-antigo-cinema-paris-para-construir-predio-com-19-fogos/",
+  "confidence": "high"
+ },
+ {
+  "date": "2026-06-30",
+  "category": "programme",
+  "title_pt": "Prazo original do PRR para a habitação (alargado a 31 de agosto)",
+  "title_en": "Original PRR housing deadline (extended to 31 August 2026)",
+  "summary_en": "PRR homes had to be completed by 30 June 2026 for full EU funding (later projects capped at 60% via State budget/EIB). The deadline for the housing milestones was extended to 31 Aug 2026. National target 26,000 homes, later 27,500.",
+  "summary_pt": "As casas do PRR tinham de estar concluídas até 30 de junho de 2026 para receberem o financiamento europeu integral (os projetos posteriores ficam limitados a 60%, através do Orçamento do Estado/BEI). O prazo dos marcos da habitação foi alargado para 31 de agosto de 2026. Meta nacional de 26 000 casas, depois 27 500.",
+  "numbers": {
+   "original_deadline": "2026-06-30",
+   "extended_deadline": "2026-08-31",
+   "national_target_homes": 27500
+  },
+  "source": "https://eco.sapo.pt/2026/07/23/prr-municipios-da-area-metropolitana-de-lisboa-entregaram-12-mil-casas/",
+  "confidence": "high"
+ },
+ {
+  "date": "2026-07-17",
+  "category": "market",
+  "title_pt": "INE: Lisboa é o município mais caro do país (5.292 €/m2 no 1.º trimestre de 2026)",
+  "title_en": "INE: Lisbon is Portugal's most expensive municipality (EUR 5,292/m2, Q1 2026)",
+  "summary_en": "Median price of homes sold in Lisbon in Q1 2026: EUR 5,292/m2 (Cascais 5,000; Oeiras 4,511; national 2,337, +19.8%). Over the 12 months to March 2026 Lisbon's median was EUR 5,082/m2 (+15.2%), with 8,095 transactions; top parishes Santo António 6,986, Parque das Nações 6,407, Avenidas Novas 6,000.",
+  "summary_pt": "Preço mediano das casas vendidas em Lisboa no 1.º trimestre de 2026: 5292 euros/m2 (Cascais 5000; Oeiras 4511; país 2337, +19,8%). Nos 12 meses até março de 2026, a mediana de Lisboa foi de 5082 euros/m2 (+15,2%), com 8095 transações; freguesias com valores mais altos: Santo António 6986, Parque das Nações 6407, Avenidas Novas 6000.",
+  "numbers": {
+   "lisbon_q1_2026_eur_m2": 5292,
+   "lisbon_12m_eur_m2": 5082,
+   "lisbon_12m_yoy_pct": 15.2,
+   "national_q1_2026_eur_m2": 2337,
+   "lisbon_12m_transactions": 8095
+  },
+  "source": "https://www.ine.pt/ngt_server/attachfileu.jsp?look_parentBoui=804178838&att_display=n&att_download=y",
+  "confidence": "high"
+ },
+ {
+  "date": "2026-07-23",
+  "category": "programme",
+  "title_pt": "Municípios da Área Metropolitana de Lisboa entregaram cerca de 12 mil casas do PRR",
+  "title_en": "Lisbon metro municipalities have delivered about 12,000 PRR homes",
+  "summary_en": "Since 2022, ~EUR 1.5bn invested; AML municipalities aimed for ~4,000 more by end of August, and account for 43%+ of national deliveries. No Lisbon-municipality breakdown given.",
+  "summary_pt": "Desde 2022, foram investidos cerca de 1,5 mil milhões de euros; os municípios da AML pretendiam entregar mais cerca de 4000 casas até ao fim de agosto e representam mais de 43% das entregas a nível nacional. Não foi divulgada a repartição relativa ao município de Lisboa.",
+  "numbers": {
+   "aml_homes_delivered": 12000,
+   "aml_investment_eur_bn": 1.5,
+   "aml_extra_planned": 4000
+  },
+  "source": "https://eco.sapo.pt/2026/07/23/prr-municipios-da-area-metropolitana-de-lisboa-entregaram-12-mil-casas/",
+  "confidence": "high"
+ },
+ {
+  "date": "2026-07-29",
+  "category": "project",
+  "title_pt": "Câmara aprova loteamento da Matinha: até 771 casas",
+  "title_en": "Council approves Matinha subdivision: up to 771 homes",
+  "summary_en": "Lot A of the Matinha detailed plan (Marvila, VIC Properties): 22 lots, 123,632 m2; whole plan ~2,000 homes and ~EUR 2bn; works from 2027. PS, Livre and BE against; PCP and Chega abstained.",
+  "summary_pt": "Lote A do plano de pormenor da Matinha (Marvila, VIC Properties): 22 lotes, 123 632 m2; o plano completo prevê cerca de 2000 casas e cerca de 2 mil milhões de euros; obras a partir de 2027. PS, Livre e BE votaram contra; PCP e Chega abstiveram-se.",
+  "numbers": {
+   "homes": 771,
+   "lots": 22,
+   "plan_total_homes_approx": 2000
+  },
+  "source": "https://www.idealista.pt/news/imobiliario/construcao/2026/07/30/76815-camara-de-lisboa-aprova-loteamento-para-771-novos-fogos-em-marvila",
+  "extra_sources": [
+   "https://jornaleconomico.sapo.pt/noticias/vic-properties-recebe-luz-verde-para-771-casas-no-projeto-da-matinha-em-lisboa/"
+  ],
+  "confidence": "high"
+ },
+ {
+  "date": "2026-09-07",
+  "category": "programme",
+  "title_pt": "Câmara faz balanço positivo do PRR: cerca de 584 milhões captados",
+  "title_en": "City hails PRR as positive: about EUR 584M of EU funding",
+  "summary_en": "Vice-mayor Gonçalo Reis said PRR accelerated housing investment and that its end 'also causes problems' for the municipality. Final count of Lisbon homes delivered by 31 Aug not found.",
+  "summary_pt": "O vice-presidente Gonçalo Reis afirmou que o PRR acelerou o investimento em habitação e que o seu fim 'também causa problemas' ao município. Não foi encontrado o número final de casas entregues em Lisboa até 31 de agosto.",
+  "numbers": {
+   "eu_funding_eur_m": 584
+  },
+  "source": "https://www.idealista.pt/news/imobiliario/habitacao/2026/09/07/77492-prr-em-lisboa-foi-positivo-e-acelerou-investimento-na-habitacao",
+  "confidence": "medium"
+ },
+ {
+  "date": "2026-09-16",
+  "category": "market",
+  "title_pt": "BCE volta a subir juros: taxa de depósito 2,50%",
+  "title_en": "ECB hikes again: deposit rate 2.50%",
+  "summary_en": "Effective 16 Sep 2026 (MRO 2.65%).",
+  "summary_pt": "Em vigor a partir de 16 de setembro de 2026 (taxa principal de refinanciamento: 2,65%).",
+  "numbers": {
+   "deposit_rate_pct": 2.5,
+   "mro_pct": 2.65
+  },
+  "source": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html",
+  "confidence": "high"
+ },
+ {
+  "date": "2026-09-22",
+  "category": "market",
+  "title_pt": "INE: preços da habitação sobem 16,5% no 2.º trimestre de 2026",
+  "title_en": "INE: house prices up 16.5% year on year in Q2 2026",
+  "summary_en": "National house price index +16.5% (Q1: +17.8%); 40,142 transactions (-6.4%) worth EUR 10.7bn.",
+  "summary_pt": "Índice de preços da habitação a nível nacional: +16,5% (1.º trimestre: +17,8%); 40 142 transações (-6,4%), no valor de 10,7 mil milhões de euros.",
+  "numbers": {
+   "hpi_yoy_pct": 16.5,
+   "transactions": 40142,
+   "transactions_yoy_pct": -6.4
+  },
+  "source": "https://observador.pt/2026/09/22/precos-das-casas-abrandam-para-subida-de-165-no-segundo-trimestre-com-menos-64-de-transacoes/",
+  "confidence": "high"
+ },
+ {
+  "date": "2026-09-29",
+  "category": "market",
+  "title_pt": "INE: Lisboa com a renda mais alta (17,79 €/m2) no 2.º trimestre de 2026",
+  "title_en": "INE: Lisbon has the highest new-lease rent (EUR 17.79/m2) in Q2 2026",
+  "summary_en": "Lisbon median new-lease rent EUR 17.79/m2 (+5.1% yoy); national EUR 10.17/m2 (+10.2%) on 35,407 new contracts.",
+  "summary_pt": "Renda mediana dos novos contratos em Lisboa: 17,79 euros/m2 (+5,1% em termos homólogos); no país, 10,17 euros/m2 (+10,2%), com base em 35 407 novos contratos.",
+  "numbers": {
+   "lisbon_median_rent_eur_m2": 17.79,
+   "lisbon_yoy_pct": 5.1,
+   "national_median_rent_eur_m2": 10.17,
+   "national_yoy_pct": 10.2
+  },
+  "source": "https://observador.pt/2026/09/29/rendas-medianas-em-portugal-aceleram-para-subida-de-102-em-termos-homologos-diz-ine/",
+  "confidence": "high"
+ },
+ {
+  "date": "2026-09-30",
+  "category": "law",
+  "title_pt": "Parlamento aprova na generalidade revisão da lei do arrendamento",
+  "title_en": "Parliament approves rental-law overhaul in first reading",
+  "summary_en": "Government's legislative-authorisation bill on leases passed (PSD, IL, CDS-PP for; Chega abstained after a PSD-Chega deal on amendments; PS, Livre, PCP, PAN, JPP, BE against). Proposals include eviction after two months' arrears instead of three and up to three deposits. Still in committee stage.",
+  "summary_pt": "Foi aprovada a proposta de lei de autorização legislativa do Governo sobre o arrendamento (a favor PSD, IL e CDS-PP; abstenção do Chega após um acordo PSD-Chega sobre alterações; contra PS, Livre, PCP, PAN, JPP e BE). As propostas incluem o despejo após dois meses de rendas em atraso, em vez de três, e uma caução de até três rendas. Ainda em fase de especialidade.",
+  "source": "https://www.dnoticias.pt/2026/9/30/507386-proposta-do-governo-para-rever-regime-do-arrendamento-aprovada-na-generalidade/",
+  "confidence": "high"
+ },
+ {
+  "date": "2026-10-01",
+  "category": "law",
+  "title_pt": "Entra em vigor o novo RJUE (DL 108/2026)",
+  "title_en": "New planning-permit regime (DL 108/2026) enters into force",
+  "summary_en": "After a postponement by DL 155-B/2026 to let municipalities configure IT platforms.",
+  "summary_pt": "Depois de um adiamento determinado pelo DL 155-B/2026, para permitir aos municípios configurar as plataformas informáticas.",
+  "source": "https://www.ordemdosengenheiros.pt/regiao-sul/pt/noticias/entrada-em-vigor-da-revisao-do-rjue-adiada-para-1-de-outubro-de-2026/",
+  "confidence": "high"
+ }
+]

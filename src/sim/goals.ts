@@ -15,9 +15,9 @@ export const REVIEWS: Review[] = [
   { m: monthOf(2021, 1), kind: 'built', n: 100 },
   { m: monthOf(2023, 1), kind: 'built', n: 350 },
   { m: monthOf(2025, 1), kind: 'built', n: 800 },
-  { m: monthOf(2027, 1), kind: 'built', n: 1500 },
-  { m: monthOf(2029, 1), kind: 'built', n: 2200 },
-  { m: END_MONTH, kind: 'built', n: 2600 },
+  { m: monthOf(2027, 1), kind: 'built', n: 1300 },
+  { m: monthOf(2029, 1), kind: 'built', n: 1900 },
+  { m: END_MONTH, kind: 'built', n: 2300 },
 ];
 
 export const DIFFICULTY: Record<Difficulty, { cash: number; goal: number; strikes: number; label: L; blurb: L }> = {

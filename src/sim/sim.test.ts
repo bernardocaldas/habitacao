@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import geo from '../data/lisboa-freguesias.json';
 import { FREGUESIAS } from '../data/freguesias';
 import { MANDATES } from '../data/politics';
+import { TIMELINE, UNMATCHED_EFFECTS } from '../data/timeline';
 import { SITES } from '../data/sites';
 import { autoplay } from './bot';
 import { landPrice, proForma, unitsOf } from './econ';
@@ -39,6 +40,11 @@ describe('data', () => {
       expect(s.maxFloors, s.id).toBeGreaterThanOrEqual(s.floors);
       expect(unitsOf(s, s.floors), s.id).toBeGreaterThan(1);
     }
+  });
+
+  it('attaches every game effect to a researched, sourced event', () => {
+    expect(UNMATCHED_EFFECTS).toEqual([]);
+    for (const ev of TIMELINE) if (!ev.spec) expect(ev.source, ev.head.pt).toMatch(/^https?:\/\//);
   });
 
   it('seats 17 councillors in every mandate', () => {

@@ -2,9 +2,7 @@
 // month are a scenario, not a forecast, and the game labels them so.
 //
 // EURIBOR  : 12-month Euribor, monthly average, %, at anchor months (EMMI / Banco de Portugal).
-// COST     : construction cost of new housing, 2015 = 1. INE's index of construction costs of
-//            new housing (ICCHN), with a Lisbon labour-shortage premium layered on top in
-//            rules (labour) rather than here.
+// COST     : INE's index of construction costs of new housing (materials and labour), 2015 = 1.
 // AL       : value of a home run as a short let relative to selling it, editorial: the
 //            2016-19 boom, the 2020-21 collapse, the recovery.
 // AFF_RENT : capped "renda acessível" rent, €/m²/month, editorial, after the city's
@@ -28,28 +26,34 @@ export const EURIBOR: Anchor[] = [
   [2024, 7, 3.53],
   [2025, 1, 2.52],
   [2025, 7, 2.08],
-  [2026, 1, 2.25],
+  [2026, 1, 2.35],
+  [2026, 5, 2.7],
+  [2026, 9, 3.05],
   // scenario
-  [2027, 1, 2.3],
-  [2030, 1, 2.3],
+  [2027, 6, 3.0],
+  [2030, 1, 2.7],
 ];
-export const EURIBOR_LAST_DATA: [number, number] = [2026, 1];
+// Monthly anchors chosen to match the ECB's annual averages of the 12-month Euribor
+// (0.168 in 2015 ... 3.869 in 2023, 3.274 in 2024, 2.222 in 2025) and the January to
+// September 2026 average of 2.715 (src/data/fontes/ine.json, source ecb_euribor).
+export const EURIBOR_LAST_DATA: [number, number] = [2026, 9];
 
+// INE 0011748, annual average, base 2015 = 1 (85.30 = 1); 2026 is January-August.
 export const COST: Anchor[] = [
-  [2015, 1, 1.0],
-  [2016, 1, 1.01],
-  [2017, 1, 1.03],
-  [2018, 1, 1.06],
-  [2019, 1, 1.1],
-  [2020, 1, 1.12],
-  [2021, 1, 1.17],
-  [2022, 1, 1.28],
-  [2023, 1, 1.37],
-  [2024, 1, 1.42],
-  [2025, 1, 1.46],
-  [2026, 1, 1.5],
-  // scenario
-  [2030, 1, 1.68],
+  [2015, 7, 1.0],
+  [2016, 7, 1.0121],
+  [2017, 7, 1.0304],
+  [2018, 7, 1.0538],
+  [2019, 7, 1.0784],
+  [2020, 7, 1.1006],
+  [2021, 7, 1.1723],
+  [2022, 7, 1.3149],
+  [2023, 7, 1.366],
+  [2024, 7, 1.4116],
+  [2025, 7, 1.4683],
+  [2026, 5, 1.5495],
+  // scenario: +4% a year
+  [2030, 1, 1.79],
 ];
 
 export const AL: Anchor[] = [

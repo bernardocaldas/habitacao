@@ -13,7 +13,8 @@ function bestProgram(s: GameState, siteId: string, strategy: Strategy): { prog: 
   const rules = rulesAt(s.month);
   let best: { prog: Program; score: number } | null = null;
   for (const scheme of schemesFor(site, rules)) {
-    if (strategy === 'cauteloso' && scheme === 'plano') continue;
+    if (strategy !== 'denso' && scheme === 'plano') continue;
+    if (strategy !== 'denso' && site.mega) continue;
     for (const aff of strategy === 'acessivel' ? [0.25] : [0, 0.25]) {
       if (strategy === 'acessivel' && scheme === 'base' && !site.municipal && schemesFor(site, rules).includes('bonus')) continue;
       const prog: Program = { ...defaultProgram(site, rules), scheme, aff: site.municipal ? defaultProgram(site, rules).aff : aff, pip: strategy === 'cauteloso' };

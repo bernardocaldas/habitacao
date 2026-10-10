@@ -326,6 +326,12 @@ function needed(p: Project, st: Stage, rules: Rules): boolean {
   }
 }
 
+/** The stages this project goes through, in order, under the rules in force now. */
+export function routeStages(p: Project, rules: Rules): Stage[] {
+  const out = ORDER[p.path.route].filter((st) => needed(p, st, rules) || p.once[`did_${st}`]);
+  return [...out, 'obra'];
+}
+
 function nextStage(p: Project, rules: Rules = rulesAt(p.filed)): Stage {
   for (const st of ORDER[p.path.route]) if (!p.once[`did_${st}`] && needed(p, st, rules)) return st;
   return 'fin';
@@ -375,7 +381,7 @@ function carry(p: Project): number {
   return round2((p.landM * 0.003 + 0.008 + Math.min(0.03, p.units * 0.00005)) * mineOf(site) * 1000) / 1000;
 }
 
-function stepProject(s: GameState, p: Project) {
+export function stepProject(s: GameState, p: Project) {
   const rules = rulesAt(s.month);
   const site = SITES_BY_ID[p.site];
   if (usesTeam(p)) {
@@ -697,13 +703,19 @@ function maybeSued(s: GameState, p: Project) {
   const site = SITES_BY_ID[p.site];
   const fr = FREGUESIAS[site.fr];
   const h = heatFor(site, p.prog, p.units, s.standing, p.mult);
-  let pr = clamp((h.opp - 35) / 80, 0, 0.45);
-  if (fr.viz >= 0.75) pr *= 1.3;
-  if (p.path.route === 'plano') pr += 0.12;
-  if ((site.heritage ?? 0) >= 0.6 && h.over > 0.3) pr += 0.08;
+  // Residents and heritage groups sue over height, bulk and protected places; tenants' groups
+  // over evictions and short lets. A plain building that fits its street rarely ends in court.
+  const tall = h.over > 0.15 || (site.heritage ?? 0) >= 0.5 || p.path.route === 'plano';
+  let viz = clamp((h.viz - 30) / 70, 0, 0.4) * (tall ? 1 : 0.25);
+  if (fr.viz >= 0.75) viz *= 1.3;
+  const hab = p.prog.exit === 'al' || p.once.evicted ? clamp((h.hab - 30) / 70, 0, 0.35) : 0;
+  let pr = viz + hab;
+  if (p.path.route === 'plano') pr += 0.1;
+  const mp = (site.heritage ?? 0) >= 0.6 && h.over > 0.3 ? 0.08 : 0;
+  pr += mp;
   if (p.tacit) pr += 0.1;
   if (!chance(s.rng, pr)) return;
-  const by = (site.heritage ?? 0) >= 0.6 && chance(s.rng, 0.3) ? 'mp' : h.viz >= h.hab ? 'viz' : 'hab';
+  const by = mp > 0 && chance(s.rng, mp / pr) ? 'mp' : viz >= hab ? 'viz' : 'hab';
   p.suit = { left: randInt(s.rng, 12, 24), suspends: chance(s.rng, 0.45), by };
   s.stats.lawsuits++;
   const who: L = by === 'mp' ? T('O Ministério Público', 'The public prosecutor') : by === 'viz' ? T('Uma associação de moradores', 'A residents’ association') : T('Uma associação de inquilinos', 'A tenants’ association');

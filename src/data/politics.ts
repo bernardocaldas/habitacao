@@ -74,7 +74,7 @@ export const MANDATES: Mandate[] = [
     note: { pt: 'Moedas ganha sem maioria: 7 de 17 vereadores.', en: 'Moedas wins without a majority: 7 of 17 councillors.' },
   },
   {
-    from: [2025, 10],
+    from: [2025, 11],
     mayor: 'Carlos Moedas',
     mayorBloc: 'ptl',
     seats: { ptl: 8, vl: 6, ch: 2, cdu: 1 },

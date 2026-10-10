@@ -29,7 +29,7 @@ export function heatFor(site: Site, prog: Program, units: number, standing: numb
   const viz = 100 * fr.viz * Math.min(1.2, v) * trustF * mult.viz;
 
   const short = allAff ? 0 : clamp((0.25 - prog.aff) / 0.25, 0, 1);
-  let h = 0.22 + 0.18 * size + 0.4 * short;
+  let h = 0.15 + 0.15 * size + 0.25 * short;
   if (site.tenants) h += 0.35;
   if (prog.exit === 'al') h += 0.45;
   if (fr.centro && prog.exit === 'venda' && !prog.aff) h += 0.08;

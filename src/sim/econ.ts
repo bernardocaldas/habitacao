@@ -67,17 +67,18 @@ export function buildType(site: Site, floors: number): BuildType {
   return { key: 'torre', label: { pt: 'Torre', en: 'Tower' }, costM2: 1060, months: [30, 38] };
 }
 
-/** Land, priced as what is left once a buyer has paid to build and taken a margin. */
+/**
+ * Land, priced as what is left of a plain project (what the plan allows, all sold) once a
+ * buyer has paid to build it and taken the required margin. Competing buyers bid most of
+ * that residual away, so a fair purchase earns a little more than the required margin.
+ */
 export function landPrice(site: Site, month: number, rules: Rules): number {
   if (site.municipal) return 0; // a surface right, not a sale
-  const e = econAt(month);
   if (site.landM != null) return +(site.landM * Math.max(0.8, priceM2(site.fr, yearFrac(month)) / priceM2(site.fr, 2015))).toFixed(2);
-  const abc = abcOf(site, site.floors);
-  const value = saleM2(site, month, site.floors) * NET;
-  const cost = buildType(site, site.floors).costM2 * e.cost * (1.12 + (keepsBuilding(site) ? rules.ivaReab : rules.ivaNew)) + 70 * e.cost;
-  // Competing buyers bid the land up until little more than the required margin is left.
-  const residual = Math.max(value * 0.12, (value / (1 + requiredMargin(e.euribor)) - cost) * 0.9);
-  return +((abc * residual) / 1e6).toFixed(2);
+  const plain: Program = { scheme: 'base', floors: site.floors, aff: 0, exit: 'venda', pip: false };
+  const pf = proForma(site, plain, month, rules, { landM: 0 });
+  const residual = pf.revenueM / (1 + pf.required) - pf.costM;
+  return +Math.max(pf.revenueM * 0.1, residual * 0.95).toFixed(2);
 }
 
 export interface ProForma {
@@ -146,7 +147,8 @@ export function proForma(site: Site, prog: Program, month: number, rules: Rules,
   const netArea = abc * NET;
   const marketArea = netArea * (1 - affShare);
   const affArea = netArea * affShare;
-  const grantM = rules.prrK > 0 ? (affUnits * rules.prrK) / 1000 : 0;
+  // Recovery-plan money only for homes that can be finished before its deadline.
+  const grantM = rules.prrK > 0 && month + months <= rules.prrDeadline ? (affUnits * rules.prrK) / 1000 : 0;
   const revenueM = (marketArea * valueM2 + affArea * affordableM2(e)) / 1e6 + grantM;
 
   const costM = hardM + softM + ivaM + feesM + landM + interestM + sunkM;
