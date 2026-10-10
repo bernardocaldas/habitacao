@@ -226,7 +226,7 @@ export function MapView({ s, selected, onSelect, layer, names }: {
     const ro = new ResizeObserver(measure);
     ro.observe(el);
     return () => ro.disconnect();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   // The browser scrolls the page on a wheel unless the listener is active (not passive).
   useEffect(() => {
