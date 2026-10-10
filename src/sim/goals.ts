@@ -43,7 +43,8 @@ export const targetOf = (r: Review, d: Difficulty) =>
 
 /** Homes licensed, started and built so far. */
 export function progress(s: GameState) {
-  let licensed = 0, started = 0, built = s.stats.homes + s.stats.al;
+  let licensed = 0, started = 0;
+  const built = s.stats.homes + s.stats.al;
   for (const p of s.projects) {
     if (p.licensed != null) licensed++;
     if (p.broke != null) started += p.units;

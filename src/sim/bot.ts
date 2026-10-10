@@ -17,7 +17,7 @@ function bestProgram(s: GameState, siteId: string, strategy: Strategy): { prog: 
     if (strategy !== 'denso' && site.mega) continue;
     for (const aff of strategy === 'acessivel' ? [0.25] : [0, 0.25]) {
       if (strategy === 'acessivel' && scheme === 'base' && !site.municipal && schemesFor(site, rules).includes('bonus')) continue;
-      const prog: Program = { ...defaultProgram(site, rules), scheme, aff: site.municipal ? defaultProgram(site, rules).aff : aff, pip: strategy === 'cauteloso' };
+      const prog: Program = { ...defaultProgram(site), scheme, aff: site.municipal ? defaultProgram(site).aff : aff, pip: strategy === 'cauteloso' };
       const pv = preview(s, siteId, prog);
       if (!pv.canFile) continue;
       const slack = pv.pf.margin - pv.pf.required;

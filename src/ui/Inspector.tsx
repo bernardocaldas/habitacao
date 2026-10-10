@@ -101,7 +101,7 @@ export function SiteSheet({ game, site, onFiled }: { game: Game; site: Site; onF
   const s = game.s!;
   const rules = rulesAt(s.month);
   const fr = FREGUESIAS[site.fr];
-  const [prog0, setProg] = useState<Program>(() => defaultProgram(site, rules));
+  const [prog0, setProg] = useState<Program>(() => defaultProgram(site));
   const prog = normalise(site, prog0, rules);
   const pv = useMemo(() => preview(s, site.id, prog), [s, s.month, site.id, prog.scheme, prog.aff, prog.exit, prog.pip, s.cash, s.standing]); // eslint-disable-line react-hooks/exhaustive-deps
   const fc = useMemo(() => (pv.canFile || pv.why ? forecastProposal(s, site.id, prog, 200) : null), [s.month, site.id, prog.scheme, prog.aff, prog.exit, prog.pip]); // eslint-disable-line react-hooks/exhaustive-deps

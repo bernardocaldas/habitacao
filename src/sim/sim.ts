@@ -119,7 +119,7 @@ export function exitOk(site: Site, exit: Program['exit'], rules: Rules): { ok: b
   return { ok: true };
 }
 
-export function defaultProgram(site: Site, _rules?: Rules): Program {
+export function defaultProgram(site: Site): Program {
   const aff = affOptions(site)[0];
   return {
     scheme: 'base',
@@ -136,7 +136,7 @@ export function normalise(site: Site, prog: Program, rules: Rules): Program {
   const scheme = schemes.includes(prog.scheme) ? prog.scheme : 'base';
   let aff = affOptions(site).includes(prog.aff) ? prog.aff : affOptions(site)[0];
   if (scheme === 'bonus' && aff < 0.25) aff = 0.25;
-  const exit = exitOk(site, prog.exit, rules).ok ? prog.exit : defaultProgram(site, rules).exit;
+  const exit = exitOk(site, prog.exit, rules).ok ? prog.exit : defaultProgram(site).exit;
   return { scheme, floors: floorsFor(site, scheme, rules), aff, exit, pip: prog.pip };
 }
 
