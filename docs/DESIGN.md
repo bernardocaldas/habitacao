@@ -10,8 +10,8 @@ dates, and the game teaches by making you live through it. This is the same idea
 built for estimador.pt's house rule: *uncertainty in view*. Every decision shows its odds,
 every forecast is an interval, and every fact carries a source.
 
-The headline question, in the site's voice: **Quanto tempo demora a construir casas em
-Lisboa?** The game answers it by letting the player find out: in the first playtests, a
+The headline, a statement in the site's voice: **O tempo que leva pôr casas de pé em
+Lisboa.** The game measures it by letting the player find out: in the first playtests, a
 40-home building on an old garage in Arroios takes 12 to 23 months to license and 42 to 66
 months to hand over keys (80% interval).
 
@@ -147,7 +147,7 @@ the way `/populacao/miniatura` did.
    `next/dynamic`, `ssr: false`, since it reads `localStorage` and `window`).
 2. Copy `src/sim`, `src/data` and `src/ui` to `src/lib/habitacao/` and
    `src/components/habitacao/`; copy `habitacao.css` next to them (drop `tokens.css`, the
-   tokens already exist; Manrope is already self-hosted).
+   tokens already exist; IBM Plex Sans is already self-hosted).
 3. Page header: the "Explainer with its own world" kind (`<PageHero>` then the game), and the
    chrome rules (`<SiteFooter>`, `siteTitle()`, `<RevisedDate>`).
 4. Copy: the game's PT/EN strings stay in the module (they are data-heavy); the page title,

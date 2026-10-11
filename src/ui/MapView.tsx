@@ -19,9 +19,20 @@ import { CITY, LAND_D, NEIGHBOURS, PARISHES, PLACE_LABELS, RIVER_LABELS, WORLD, 
 
 const DENSITY: Record<string, number> = Object.fromEntries(PARISHES.map((p) => [p.code, FREGUESIAS[p.code].pop / p.area]));
 
-const WATER = '#d5ddef';
-const LAND = '#ece9dc';
-const RIVER_INK = '#4a5a94';
+// estimador.pt's palette (Instrumento): the same values as BRAND in src/lib/brand and SERIES in
+// src/components/viz/theme.ts, written out so the game stays portable to its own repository.
+// Ink lines on white, greys for the land around the city and the water, and colour only for
+// data: each layer is one SERIES hue, from near-white to the full hue; never the signal
+// yellow, which on the site means a model's margin.
+const C = {
+  paper: '#ffffff', field: '#f4f4f4', rule: '#d9d9d9', grid: '#ececec', scale: '#8a8a8a', graphite: '#5e5e5e', ink: '#111111',
+  terracotta: '#b91c1c', tree: '#15803d',
+  teal: '#159881', ouro: '#a27d27', pervinca: '#697fc5', coral: '#ba6b4f',
+} as const;
+/** The estuary and the sea (the stylesheet's .hab-map-wrap shows the same until the map draws). */
+const WATER = C.rule;
+/** The land around the city: the neighbouring municipalities and the south bank. */
+const LAND = C.field;
 
 export type Layer = 'mapa' | 'preco' | 'pop' | 'al' | 'viz' | 'hab' | 'patrimonio';
 export const LAYERS: { key: Layer; label: L }[] = [
@@ -34,13 +45,22 @@ export const LAYERS: { key: Layer; label: L }[] = [
   { key: 'patrimonio', label: { pt: 'Património', en: 'Heritage' } },
 ];
 
+/** A hue mixed into white at a share from 0 to 1 (sRGB), as a hex colour. */
+const onPaper = (hex: string, share: number) => '#' + [1, 3, 5].map((i) => {
+  const v = Math.round(255 - (255 - parseInt(hex.slice(i, i + 2), 16)) * share);
+  return v.toString(16).padStart(2, '0');
+}).join('');
+const STEPS = [0.06, 0.2, 0.36, 0.54, 0.74, 1];
+const rampOf = (hex: string, top = 1) => STEPS.map((t) => onPaper(hex, t * top));
 const RAMPS: Record<string, string[]> = {
-  teal: ['#eef6f4', '#cfe7e1', '#9dcec1', '#5fae9f', '#2f8577', '#245c68'],
-  coral: ['#fff2ee', '#ffe2d9', '#f3c2b0', '#e29a83', '#c7745b', '#a3543a'],
-  peri: ['#f1f3fb', '#dde3f6', '#bdc7e7', '#a9b9ed', '#7d8fcf', '#4f5f9e'],
-  gold: ['#fffaef', '#fdecc9', '#f9d187', '#e5b958', '#c49536', '#8a6a26'],
-  green: ['#f1fbf5', '#def5e7', '#b9e6cc', '#9ddcb8', '#5d9a78', '#377455'],
+  teal: rampOf(C.teal),
+  coral: rampOf(C.coral),
+  peri: rampOf(C.pervinca),
+  gold: rampOf(C.ouro),
+  grey: rampOf(C.ink, 0.8),
 };
+/** Short lets closed to new registrations: the ouro series at its middle step. */
+const AL_CLOSED = onPaper(C.ouro, 0.54);
 const ramp = (name: string, t: number) => {
   const r = RAMPS[name];
   return r[Math.max(0, Math.min(r.length - 1, Math.floor(t * r.length)))];
@@ -81,8 +101,8 @@ function layerSpec(layer: Layer, s: GameState, lang: 'pt' | 'en'): LayerSpec | n
       const f = (c: string) => DENSITY[c];
       const vals = codes.map(f);
       return {
-        value: f, fill: norm(f, 'green'), fmt: (c) => `${num(f(c), lang)} ${lang === 'pt' ? 'hab./km²' : 'per km²'} · ${num(FREGUESIAS[c].pop, lang)} ${lang === 'pt' ? 'residentes' : 'residents'}`,
-        legend: { ramp: 'green', lo: num(Math.min(...vals), lang), hi: num(Math.max(...vals), lang), title: { pt: 'Residentes por km² de terra, Censos 2021', en: 'Residents per km² of land, 2021 Census' } },
+        value: f, fill: norm(f, 'grey'), fmt: (c) => `${num(f(c), lang)} ${lang === 'pt' ? 'hab./km²' : 'per km²'} · ${num(FREGUESIAS[c].pop, lang)} ${lang === 'pt' ? 'residentes' : 'residents'}`,
+        legend: { ramp: 'grey', lo: num(Math.min(...vals), lang), hi: num(Math.max(...vals), lang), title: { pt: 'Residentes por km² de terra, Censos 2021', en: 'Residents per km² of land, 2021 Census' } },
       };
     }
     case 'al': {
@@ -90,9 +110,9 @@ function layerSpec(layer: Layer, s: GameState, lang: 'pt' | 'en'): LayerSpec | n
       const closed = (c: string) => r.alFrozen || r.alClosed.includes(c);
       return {
         value: (c) => (closed(c) ? 1 : 0),
-        fill: (c) => (closed(c) ? '#e5b958' : '#fcfbf5'),
+        fill: (c) => (closed(c) ? AL_CLOSED : C.paper),
         fmt: (c) => (closed(c) ? (lang === 'pt' ? 'novos registos suspensos' : 'new registrations suspended') : lang === 'pt' ? 'aberto a novos registos' : 'open to new registrations'),
-        legend: { title: { pt: 'Novos registos de alojamento local', en: 'New short-let registrations' }, keys: [{ color: '#fcfbf5', label: { pt: 'Abertos', en: 'Open' } }, { color: '#e5b958', label: { pt: 'Suspensos', en: 'Suspended' } }] },
+        legend: { title: { pt: 'Novos registos de alojamento local', en: 'New short-let registrations' }, keys: [{ color: C.paper, label: { pt: 'Abertos', en: 'Open' } }, { color: AL_CLOSED, label: { pt: 'Suspensos', en: 'Suspended' } }] },
       };
     }
     case 'viz':
@@ -117,22 +137,26 @@ function layerSpec(layer: Layer, s: GameState, lang: 'pt' | 'en'): LayerSpec | n
 
 type SiteView = { site: Site; p?: Project; state: ReturnType<typeof siteState> };
 
+// A site's stage as a square mark: open (white, a cross), in review (ouro), financing (white, a
+// dashed red outline), building (pervinca), built (green), closed (grey, an x).
 const MARK = {
-  open: { fill: '#fcfbf5', stroke: '#234c40' },
-  review: { fill: '#e5b958', stroke: '#8a6a26' },
-  fin: { fill: '#fcfbf5', stroke: '#a3543a' },
-  obra: { fill: '#a9b9ed', stroke: '#2f4277' },
-  done: { fill: '#377455', stroke: '#234c40' },
-  dead: { fill: '#dadccf', stroke: '#7f9284' },
+  open: { fill: C.paper, stroke: C.ink },
+  review: { fill: C.ouro, stroke: C.ink },
+  fin: { fill: C.paper, stroke: C.terracotta },
+  obra: { fill: C.pervinca, stroke: C.ink },
+  done: { fill: C.tree, stroke: C.ink },
+  dead: { fill: C.grid, stroke: C.scale },
 };
 
 // ── Text measurement, for label collisions ───────────────────────────────────────────────
 
-const LABEL_FONT = '600 11px Manrope, system-ui, sans-serif';
-const PLACE_FONT = '700 11px Manrope, system-ui, sans-serif';
+// The stylesheet's font stack (.hab) and the label rules (.fr-label, .place-label, .river-label).
+const FONT = "'IBM Plex Sans Variable', 'IBM Plex Sans', system-ui, sans-serif";
+const LABEL_FONT = `600 11px ${FONT}`;
+const PLACE_FONT = `500 12px ${FONT}`;
 const widthCache = new Map<string, number>();
 let ctx: CanvasRenderingContext2D | null | undefined;
-function textWidth(text: string, font: string, spacing = 0) {
+function textWidth(text: string, font: string) {
   const key = font + '|' + text;
   const hit = widthCache.get(key);
   if (hit != null) return hit;
@@ -141,7 +165,6 @@ function textWidth(text: string, font: string, spacing = 0) {
   }
   let w = text.length * 6.3;
   if (ctx) { ctx.font = font; w = ctx.measureText(text).width; }
-  w += spacing * text.length;
   widthCache.set(key, w);
   return w;
 }
@@ -398,7 +421,7 @@ export function MapView({ s, selected, onSelect, layer, names, inset: sheetH = 0
     const places: { name: string; x: number; y: number }[] = [];
     for (const pl of PLACE_LABELS) {
       const [x, y] = screen(pl.at);
-      const bw = textWidth(pl.name.toUpperCase(), PLACE_FONT, 0.66) + 6;
+      const bw = textWidth(pl.name, PLACE_FONT) + 6;
       const b: Box = { x0: x - bw / 2, y0: y - 8, x1: x + bw / 2, y1: y + 8 };
       if (!inFrame(b) || taken.some((o) => overlaps(o, b))) continue;
       taken.push(b);
@@ -406,7 +429,7 @@ export function MapView({ s, selected, onSelect, layer, names, inset: sheetH = 0
     }
     // The river's name goes in the first stretch of open water inside the frame.
     let river: Pos | null = null;
-    const rw = textWidth(lang === 'pt' ? 'RIO TEJO' : 'RIVER TAGUS', PLACE_FONT, 0.96) + 8;
+    const rw = textWidth(lang === 'pt' ? 'Rio Tejo' : 'River Tagus', PLACE_FONT) + 8;
     for (const at of RIVER_LABELS) {
       const [x, y] = screen(at);
       const b: Box = { x0: x - rw / 2, y0: y - 9, x1: x + rw / 2, y1: y + 9 };
@@ -456,7 +479,7 @@ export function MapView({ s, selected, onSelect, layer, names, inset: sheetH = 0
                 key={code}
                 d={d}
                 className={`fr${hoverFr === code ? ' hover' : ''}`}
-                fill={spec ? spec.fill(code) : FREGUESIAS[code].centro ? '#f7f4e8' : '#fcfbf5'}
+                fill={spec ? spec.fill(code) : FREGUESIAS[code].centro ? C.field : C.paper}
                 onPointerMove={(e) => {
                   if (gesture.current?.moved) return;
                   setHoverFr(code);
@@ -466,9 +489,9 @@ export function MapView({ s, selected, onSelect, layer, names, inset: sheetH = 0
               />
             ))}
           </g>
-          {labels.river && <text className="river-label" x={labels.river[0]} y={labels.river[1] + 4} textAnchor="middle" fill={RIVER_INK}>{lang === 'pt' ? 'RIO TEJO' : 'RIVER TAGUS'}</text>}
+          {labels.river && <text className="river-label" x={labels.river[0]} y={labels.river[1] + 4} textAnchor="middle">{lang === 'pt' ? 'Rio Tejo' : 'River Tagus'}</text>}
           {labels.places.map((pl) => (
-            <text key={pl.name} className="place-label" x={pl.x} y={pl.y + 4} textAnchor="middle">{pl.name.toUpperCase()}</text>
+            <text key={pl.name} className="place-label" x={pl.x} y={pl.y + 4} textAnchor="middle">{pl.name}</text>
           ))}
           {labels.parishes.map((lb) => (
             <text key={lb.code} className="fr-label" x={lb.x} y={lb.y - ((lb.lines.length - 1) * 13) / 2 + 4} textAnchor="middle">
@@ -501,15 +524,15 @@ export function MapView({ s, selected, onSelect, layer, names, inset: sheetH = 0
                 <rect x={x - 14} y={y - 14 - tall} width={28} height={28 + tall} fill="transparent" />
                 {tall > 0 && (
                   <g>
-                    <rect x={x - r * 0.9} y={y - r - tall} width={r * 1.8} height={tall} fill="#fcfbf5" fillOpacity={0.6} stroke={m.stroke} strokeWidth={1} strokeDasharray={kind === 'obra' ? '3 2' : undefined} />
+                    <rect x={x - r * 0.9} y={y - r - tall} width={r * 1.8} height={tall} fill={C.paper} fillOpacity={0.6} stroke={m.stroke} strokeWidth={1} strokeDasharray={kind === 'obra' ? '3 2' : undefined} />
                     <rect x={x - r * 0.9} y={y - r - tall * progress} width={r * 1.8} height={tall * progress} fill={m.fill} opacity={0.92} />
-                    <rect x={x - r * 0.9} y={y - r - tall * progress} width={r * 1.8} height={2} fill={kind === 'done' && p && p.affUnits / p.units >= 0.25 ? '#e5b958' : '#fcfbf5'} />
+                    <rect x={x - r * 0.9} y={y - r - tall * progress} width={r * 1.8} height={2} fill={kind === 'done' && p && p.affUnits / p.units >= 0.25 ? C.ouro : C.paper} />
                   </g>
                 )}
-                {alert && <circle cx={x} cy={y} r={r + 6} fill="none" stroke="#a3543a" strokeWidth={2.5} className="alert" />}
-                <rect className="mark" x={x - r} y={y - r} width={size} height={size} rx={r * 0.35} fill={m.fill} stroke={sel ? '#16362e' : m.stroke} strokeWidth={sel ? 3 : 1.5} strokeDasharray={kind === 'fin' ? '3 2' : undefined} />
-                {kind === 'open' && <path d={`M${x - r * 0.5},${y}H${x + r * 0.5}M${x},${y - r * 0.5}V${y + r * 0.5}`} stroke="#234c40" strokeWidth={1.5} />}
-                {kind === 'dead' && <path d={`M${x - r * 0.5},${y - r * 0.5}L${x + r * 0.5},${y + r * 0.5}M${x + r * 0.5},${y - r * 0.5}L${x - r * 0.5},${y + r * 0.5}`} stroke="#5f7062" strokeWidth={1.5} />}
+                {alert && <circle cx={x} cy={y} r={r + 6} fill="none" stroke={C.terracotta} strokeWidth={2.5} className="alert" />}
+                <rect className="mark" x={x - r} y={y - r} width={size} height={size} fill={m.fill} stroke={sel ? C.ink : m.stroke} strokeWidth={sel ? 3 : 1.5} strokeDasharray={kind === 'fin' ? '3 2' : undefined} />
+                {kind === 'open' && <path d={`M${x - r * 0.5},${y}H${x + r * 0.5}M${x},${y - r * 0.5}V${y + r * 0.5}`} stroke={C.ink} strokeWidth={1.5} />}
+                {kind === 'dead' && <path d={`M${x - r * 0.5},${y - r * 0.5}L${x + r * 0.5},${y + r * 0.5}M${x + r * 0.5},${y - r * 0.5}L${x - r * 0.5},${y + r * 0.5}`} stroke={C.graphite} strokeWidth={1.5} />}
               </g>
             );
           })}

@@ -1,6 +1,6 @@
 # Aguarda parecer
 
-*Quanto tempo demora a construir casas em Lisboa?*
+*O tempo que leva pôr casas de pé em Lisboa*
 
 A Lisbon housing game for [estimador.pt](https://estimador.pt). You run a small developer
 backed by a fund, from January 2015 to the October 2029 local elections. Pick sites, design

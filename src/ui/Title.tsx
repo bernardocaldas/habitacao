@@ -22,7 +22,7 @@ export function Title({ saved, onStart, onResume, lang, setLang }: {
       </div>
       <div style={{ display: 'grid', gap: 12 }}>
         <h1>{str('title')}</h1>
-        <p style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.01em' }}>{str('question')}</p>
+        <p style={{ fontSize: 22, fontWeight: 700 }}>{str('standfirst')}</p>
         <p className="lede">{str('lede')}</p>
       </div>
       <div style={{ display: 'grid', gap: 8 }}>

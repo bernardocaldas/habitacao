@@ -39,8 +39,8 @@ function Meters({ viz, hab }: { viz: number; hab: number }) {
   );
   return (
     <div style={{ display: 'grid', gap: 6 }}>
-      {row(lang === 'pt' ? 'Moradores e património' : 'Residents and heritage', viz, 'var(--color-coral)')}
-      {row(lang === 'pt' ? 'Direito à habitação' : 'Housing movement', hab, 'var(--color-periwinkle)')}
+      {row(lang === 'pt' ? 'Moradores e património' : 'Residents and heritage', viz, 'var(--color-series-4)')}
+      {row(lang === 'pt' ? 'Direito à habitação' : 'Housing movement', hab, 'var(--color-series-3)')}
     </div>
   );
 }

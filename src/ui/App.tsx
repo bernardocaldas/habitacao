@@ -149,7 +149,7 @@ export function App({ lang: hostLang, embedded = false }: { lang?: Lang; embedde
           <header className="hab-ctop" ref={topRef}>
             <CompactTop s={s} speed={game.speed} setSpeed={game.setSpeed} onMenu={() => { setSheet('menu'); setSheetSize('full'); }} />
           </header>
-          <div className="hab-chips" role="group" aria-label={lang === 'pt' ? 'Camada do mapa' : 'Map layer'}>
+          <div className="hab-layer-row" role="group" aria-label={lang === 'pt' ? 'Camada do mapa' : 'Map layer'}>
             {LAYERS.map((l) => <button key={l.key} aria-pressed={layer === l.key} onClick={() => setLayer(l.key)}>{l.label[lang]}</button>)}
             <button aria-pressed={names} onClick={() => setNames(!names)}>{STRINGS.names[lang]}</button>
           </div>

@@ -21,7 +21,7 @@ const S = (pt: string, en: string): L => ({ pt, en });
 export const STRINGS = {
   title: S('Aguarda parecer', 'Awaiting opinion'),
   subtitle: S('Um simulador de habitação em Lisboa', 'A Lisbon housing simulator'),
-  question: S('Quanto tempo demora a construir casas em Lisboa?', 'How long does it take to build homes in Lisbon?'),
+  standfirst: S('O tempo que leva pôr casas de pé em Lisboa', 'The time it takes to get homes built in Lisbon'),
   lede: S(
     'És uma pequena promotora com o apoio de um fundo. De janeiro de 2015 às autárquicas de 2029, tenta pôr casas de pé em Lisboa: escolhe terrenos, desenha projetos e atravessa licenciamentos, pareceres, votações na Câmara, tribunais, juros e custos de construção. As leis mudam nas datas em que mudaram de verdade.',
     'You are a small developer backed by a fund. From January 2015 to the 2029 local elections, try to get homes built in Lisbon: pick sites, design projects and make it through licensing, expert opinions, Câmara votes, courts, interest rates and construction costs. The laws change on the dates they really changed.',
