@@ -434,8 +434,7 @@
 @media (max-width: 380px) {
   .hab-ctop .hab-date { font-size: 15px; }
   .hab-cclock button { min-width: 42px; padding: 0 6px; }
-  .hab-menu-btn span { display: none; }
-  .hab-menu-btn { padding: 0 11px; }
+  .hab-menu-btn { padding: 0 10px; gap: 6px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hab-csheet { transition: none; animation: none; }

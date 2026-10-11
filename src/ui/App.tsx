@@ -63,6 +63,16 @@ export function App({ lang: hostLang, embedded = false }: { lang?: Lang; embedde
     return () => ro.disconnect();
   }, [s != null, compact]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // A game starts at the top of the frame: the title screen is longer than a phone, so
+  // without this the board would open scrolled, its clock under the host's header.
+  useLayoutEffect(() => {
+    const el = rootRef.current;
+    if (!el || !s) return;
+    const off = parseFloat(getComputedStyle(el).getPropertyValue('--hab-offset')) || 0;
+    const top = el.getBoundingClientRect().top;
+    if (Math.abs(top - off) > 1) window.scrollTo({ top: window.scrollY + top - off });
+  }, [s != null, compact]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const decision = s?.decisions[0];
   const showDecision = !!decision && decisionOpen && !modal && game.paper == null;
   useEffect(() => { if (decision) setDecisionOpen(true); }, [decision?.id]); // eslint-disable-line react-hooks/exhaustive-deps

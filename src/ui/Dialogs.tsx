@@ -20,10 +20,10 @@ export function Dialog({ title, onClose, children, wide, tone, label }: { title?
   useEffect(() => {
     const prev = document.activeElement as HTMLElement | null;
     const first = ref.current?.querySelector<HTMLElement>('button, a, [tabindex="0"]');
-    first?.focus();
+    first?.focus({ preventScroll: true });
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape' && onClose) { e.stopPropagation(); onClose(); } };
     window.addEventListener('keydown', onKey, true);
-    return () => { window.removeEventListener('keydown', onKey, true); prev?.focus?.(); };
+    return () => { window.removeEventListener('keydown', onKey, true); prev?.focus?.({ preventScroll: true }); };
   }, [onClose]);
   return (
     <div className="hab-scrim" onMouseDown={(e) => { if (e.target === e.currentTarget && onClose) onClose(); }}>
