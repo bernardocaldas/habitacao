@@ -51,7 +51,7 @@ export function App({ lang: hostLang, embedded = false }: { lang?: Lang; embedde
   useEffect(() => {
     if (embedded) return;
     document.documentElement.lang = lang === 'pt' ? 'pt-PT' : 'en-GB';
-    document.title = `${STRINGS.title[lang]} · estimador.pt`;
+    document.title = STRINGS.docTitle[lang];
   }, [lang, embedded]);
 
   // The main grid fills what the header leaves.

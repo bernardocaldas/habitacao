@@ -2,7 +2,12 @@
 
 *O tempo que leva pôr casas de pé em Lisboa*
 
-A Lisbon housing game for [estimador.pt](https://estimador.pt). You run a small developer
+**Jogar: [bernardocaldas.github.io/habitacao](https://bernardocaldas.github.io/habitacao/)**
+(English: [?lang=en](https://bernardocaldas.github.io/habitacao/?lang=en))
+
+A game about getting homes built in Lisbon. The sites and the characters are invented; the
+laws and the dates they changed are real; the rules are a simplification, and their
+assumptions favour density (see "Balance" in `docs/DESIGN.md`). You run a small developer
 backed by a fund, from January 2015 to the October 2029 local elections. Pick sites, design
 projects, and get them through the licensing procedure (RJUE), heritage opinions, public
 consultation, Câmara votes, the courts, Euribor and construction costs. Laws change on the
@@ -42,6 +47,14 @@ npm run balance      # plays 90 scripted games and prints economics by site and 
 
 `npm install` needs `legacy-peer-deps` (set in `.npmrc`): npm 10.9 trips over Vitest's optional
 peers otherwise.
+
+## Publish
+
+`.github/workflows/pages.yml` runs the tests, builds and publishes `dist/` to GitHub Pages on
+every push to `claude/sharp-cerf-wukco0` (and on demand from the Actions tab). Pages has to be
+switched on once: Settings → Pages → Build and deployment → Source: GitHub Actions. The build
+uses a relative base (`base: './'` in `vite.config.ts`), so it works under `/habitacao/`.
+`public/og.png` is the link preview card that `index.html` names.
 
 ## Layout
 

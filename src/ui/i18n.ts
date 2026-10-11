@@ -26,9 +26,20 @@ export const STRINGS = {
     'És uma pequena promotora com o apoio de um fundo. De janeiro de 2015 às autárquicas de 2029, tenta pôr casas de pé em Lisboa: escolhe terrenos, desenha projetos e atravessa licenciamentos, pareceres, votações na Câmara, tribunais, juros e custos de construção. As leis mudam nas datas em que mudaram de verdade.',
     'You are a small developer backed by a fund. From January 2015 to the 2029 local elections, try to get homes built in Lisbon: pick sites, design projects and make it through licensing, expert opinions, Câmara votes, courts, interest rates and construction costs. The laws change on the dates they really changed.',
   ),
+  // The page's own title (the tab and link previews), as in index.html.
+  docTitle: S('Aguarda parecer: um jogo sobre pôr casas de pé em Lisboa', 'Awaiting opinion: a game about getting homes built in Lisbon'),
+  kicker: S('Um jogo · Lisboa, 2015–2029', 'A game · Lisbon, 2015–2029'),
+  // Said before Start, in plain words: what is invented, what is real, and which way the
+  // rules lean (npm run balance: the dense strategy wins almost every scripted game, the
+  // affordable one is mostly fired by the fund).
+  gameNoteHead: S('Isto é um jogo.', 'This is a game.'),
+  gameNote: S(
+    'Os terrenos, as personagens e as notícias sobre a tua empresa são inventados. As leis e as datas em que mudaram são reais, tal como as freguesias, os lugares de cada lista na Câmara e os preços do INE. As regras do jogo são uma simplificação, e os seus pressupostos favorecem a densidade: construir denso compensa quase sempre, e apostar em casas acessíveis raramente chega às metas do fundo.',
+    'The sites, the characters and the news about your company are invented. The laws and the dates they changed are real, as are the parishes, each list’s seats on the Câmara and INE’s prices. The game’s rules are a simplification, and their assumptions favour density: building dense almost always pays, and betting on affordable homes rarely meets the fund’s targets.',
+  ),
   honesty: S(
-    'Os terrenos e as personagens são inventados. As freguesias, as leis, a composição da Câmara e os preços são reais e têm fonte; a forma como o jogo os combina é uma simplificação, explicada nas regras. As probabilidades que vês são as do próprio jogo.',
-    'The sites and the characters are invented. The parishes, the laws, the make-up of the Câmara and the prices are real and sourced; how the game combines them is a simplification, explained in the rules. The odds you see are the game’s own.',
+    'As regras explicam como o jogo combina os factos e onde estão as fontes. As probabilidades e os intervalos que vês são do próprio jogo, não previsões.',
+    'The rules explain how the game combines the facts and where the sources are. The odds and intervals you see are the game’s own, not forecasts.',
   ),
   newGame: S('Novo jogo', 'New game'),
   continue: S('Continuar', 'Continue'),

@@ -138,6 +138,10 @@ municipal land or a stronger political dividend.
 
 ## Bringing it into estimador-web
 
+*Superseded on 11 October 2026: the game has its own site on GitHub Pages
+(`.github/workflows/pages.yml`), and estimador.pt carries an article with the sourced facts
+behind it, which links here, instead of mounting the game. The plan below is kept as history.*
+
 The simulation is plain TypeScript with no dependencies; the interface is React 19 with one
 scoped stylesheet that uses estimador.pt's own tokens, so it can move across as a section
 the way `/populacao/miniatura` did.

@@ -17,13 +17,16 @@ export function Title({ saved, onStart, onResume, lang, setLang }: {
   return (
     <div className="hab-title">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span className="kicker">estimador.pt · {lang === 'pt' ? 'Habitação' : 'Housing'}</span>
+        <span className="kicker">{str('kicker')}</span>
         {setLang && <button className="hab-btn small" onClick={() => setLang(lang === 'pt' ? 'en' : 'pt')}>{lang === 'pt' ? 'EN, English' : 'PT, Português'}</button>}
       </div>
       <div style={{ display: 'grid', gap: 12 }}>
         <h1>{str('title')}</h1>
         <p style={{ fontSize: 22, fontWeight: 700 }}>{str('standfirst')}</p>
         <p className="lede">{str('lede')}</p>
+      </div>
+      <div className="hab-gamenote" role="note">
+        <p><strong>{str('gameNoteHead')}</strong> {str('gameNote')}</p>
       </div>
       <div style={{ display: 'grid', gap: 8 }}>
         <span className="kicker">{str('difficulty')}</span>
