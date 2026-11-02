@@ -104,7 +104,8 @@ def bayes_factor_model(panel: pd.DataFrame, k: int = 1, dose: Optional[pd.Series
         "tau_mean": _q(tm), "att_exposure_weighted": _q(att),
         "p_tau_mean_negative": float((tm < 0).mean()),
         "tau_dose": _q(post["tau_dose"].values.ravel()) if z is not None else None,
-        "per_parish": per, "diverging": diverging, "rhat_max": rhat_max, "idata": idata,
+        "per_parish": per, "diverging": diverging, "rhat_max": rhat_max,
+        "converged": bool(rhat_max < 1.01 and diverging < 0.01 * draws * chains), "idata": idata,
     }
 
 
@@ -158,6 +159,10 @@ def randomisation_inference(panel: pd.DataFrame, n_perm: int = 5000, seed: int =
         p["group"] = np.where(p["code"].isin(codes[pick]), "frozen", "never")
         draws.append(twfe(p))
     draws = np.array(draws)
+    if not np.isfinite(real) or not np.isfinite(draws).any():
+        return {"twfe": None, "twfe_pct": None, "p_two_sided": None, "perm_lo90": None, "perm_hi90": None,
+                "note": "not computable: no treated window in this panel"}
+    draws = draws[np.isfinite(draws)]
     return {"twfe": real, "twfe_pct": float(np.expm1(real) * 100),
             "p_two_sided": float((np.abs(draws) >= abs(real)).mean()),
             "perm_lo90": float(np.quantile(draws, 0.05)), "perm_hi90": float(np.quantile(draws, 0.95))}
