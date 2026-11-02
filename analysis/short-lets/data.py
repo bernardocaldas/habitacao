@@ -120,6 +120,10 @@ def ine_panel(housing_dir: Path, freq: str = "Q", through: Optional[date] = None
         df = pd.concat([old, new], ignore_index=True)
         through = through or date(2023, 12, 31)
     df = df[df["end"] <= through]
+    dup = df.duplicated(["code", "period"], keep=False)
+    if dup.any():
+        raise ValueError(f"{int(dup.sum())} rows share a parish and period; the file has another "
+                         f"dimension to pick (columns: {list(pd.read_parquet(ine / 'rent_new_leases_median_eur_m2_12m.parquet').columns)})")
     rows = [_rows(r.code, r.geodsg, r.period, r.start, r.end, float(r.value)) for r in df.itertuples()]
     return pd.DataFrame(rows)
 

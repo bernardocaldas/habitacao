@@ -31,8 +31,8 @@ common random-walk year path + K latent random-walk factors with parish loadings
 parish's effect times exposure. Parish effects are partially pooled around `tau_mean`
 (prior Normal(0, 0.1): within about ±20% at 95%, centred on no effect), with a slope on the
 log of the parish's pre-freeze AL ratio (`tau_dose`). Each parish has its own noise level
-(medians from few contracts are noisier). K = 0, 1, 2 (Lisbon) and 1, 2, 3 (national);
-K = 1 is reported first, the others as sensitivity. The factors carry what parish and year
+(medians from few contracts are noisier). K = 0, 1, 2 (Lisbon) and 1, 2, 3 (national), and K = 0 with
+parish-specific linear trends; K = 1 is reported first, the others as sensitivity. The factors carry what parish and year
 effects cannot: above all tourism's COVID collapse and return, which hit the frozen
 parishes hardest and push rents the opposite way from the freeze in 2022.
 
@@ -75,8 +75,14 @@ uv run collect-data export-territories --no-json --no-parquet   # if data/territ
 uv run collect-data housing --source ine --since 2017
 uv run collect-data housing --source rnal
 cd ~/code/habitacao/analysis/short-lets
-python run.py full --housing-dir ~/code/estimador-data/data/housing
+python run.py full --housing-dir ~/code/estimador-data/data/housing \
+    [--rents-dir ~/code/estimador-data-housing/data/housing] [--skip-rents]
 ```
+
+`full` runs the rents model twice: annual 2017-2023 (Metodologia 2021 spliced with 2026,
+every parish with a full series; K = 1, 2, 3, plus parish trends, plus a run with donors
+outside Lisbon only) and 12-month windows by quarter, 2020Q1-2023Q3 (INE's quarterly series
+starts in 2020). The share of homes waits for the Censos table (0012501).
 
 Needs numpy, pandas, pyarrow, pymc (5.x or 6), matplotlib (`requirements.txt`).
 

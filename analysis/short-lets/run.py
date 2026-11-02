@@ -102,7 +102,9 @@ def run_rents(panel, out: Path, label: str, dose, ks=(0, 1, 2), draws=1000, tune
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("mode", choices=["lisbon", "full"])
-    ap.add_argument("--housing-dir", type=Path)
+    ap.add_argument("--housing-dir", type=Path, help="estimador-data's data/housing (register and Censos files)")
+    ap.add_argument("--rents-dir", type=Path, help="where ine/rent_*.parquet live, if not under --housing-dir")
+    ap.add_argument("--skip-rents", action="store_true", help="register parts only")
     ap.add_argument("--quick", action="store_true", help="fewer draws and permutations (smoke test)")
     a = ap.parse_args()
     warnings.filterwarnings("ignore")
@@ -117,34 +119,55 @@ def main():
     else:
         if not a.housing_dir:
             ap.error("full needs --housing-dir")
+        out.mkdir(parents=True, exist_ok=True)
         import register as Rg
         hd = a.housing_dir.expanduser()
-        # 1. the register: share of homes, and the first stage
+        rd = (a.rents_dir or a.housing_dir).expanduser()
+        # 1. the register: the first stage, and the share of homes once the Censos table is in
         rnal = hd / "rnal"
         recs = pd.read_parquet(Rg.latest(rnal, "rnal_live_*.parquet"))
-        dw = Rg.census_dwellings(hd)
-        share = Rg.share_of_homes(recs, dw)
-        share.to_csv(out / "share_of_homes_by_parish.csv", index=False)
         fs = Rg.first_stage(pd.read_parquet(Rg.latest(rnal, "rnal_parish_month_*.parquet")))
         fs["monthly"].to_csv(out / "first_stage_monthly.csv", index=False)
-        results["share_of_homes"] = {
-            "parishes": int(share["in_census"].sum()),
-            "registrations": int(recs.shape[0]),
-            "not_in_census_codes": int((~share["in_census"]).sum()),
-            "national_pct": float(100 * share.loc[share["in_census"], "registrations"].sum()
-                                  / share.loc[share["in_census"], "classic_dwellings_2021"].sum()),
-            "parishes_over_10pct": int((share["share_pct"] >= 10).sum()),
-            "parishes_over_2_5pct": int((share["share_pct"] >= 2.5).sum()),
-        }
         results["first_stage"] = fs["fit"]
-        # 2. rents: Lisbon's parishes against every parish elsewhere with a full quarterly series
-        panel = Dt.complete_units(Dt.ine_panel(hd, "Q"))
-        ratio = share.set_index("code")["share_pct"]
-        results["rents_quarterly"] = run_rents(panel, out, "All parishes with a full series, 12-month windows to 2023Q3",
-                                               ratio, ks=(1, 2, 3), **{k: v for k, v in kw.items() if k != "ks"})
-        lis = panel[panel["municipality"] == "1106"]
-        results["rents_quarterly_lisbon_only"] = run_rents(lis, out, "Lisbon only, 12-month windows to 2023Q3",
-                                                           ratio, ks=(1,), **{k: v for k, v in kw.items() if k != "ks"})
+        ratio = None
+        try:
+            dw = Rg.census_dwellings(hd)
+        except FileNotFoundError as e:
+            results["share_of_homes"] = f"skipped: {e}"
+        else:
+            share = Rg.share_of_homes(recs, dw)
+            share.to_csv(out / "share_of_homes_by_parish.csv", index=False)
+            inc = share["in_census"]
+            results["share_of_homes"] = {
+                "parishes": int(inc.sum()), "registrations": int(recs.shape[0]),
+                "registrations_matched": int(share.loc[inc, "registrations"].sum()),
+                "not_in_census_codes": int((~inc).sum()),
+                "national_pct": float(100 * share.loc[inc, "registrations"].sum()
+                                      / share.loc[inc, "classic_dwellings_2021"].sum()),
+                "parishes_over_10pct": int((share["share_pct"] >= 10).sum()),
+                "parishes_over_2_5pct": int((share["share_pct"] >= 2.5).sum()),
+            }
+            ratio = share.set_index("code")["share_pct"]
+        if ratio is None:  # the dose for the frozen 14 is the ratio published at the freeze
+            ratio = pd.Series({c: float(r) for c, (_, r) in T.FROZEN_APRIL_2022.items()})
+        if not a.skip_rents:
+            sub = {k: v for k, v in kw.items() if k != "ks"}
+            # 2a. annual 2017-2023: every parish with a full series, Lisbon's against the rest
+            pa = Dt.complete_units(Dt.ine_panel(rd, "A"))
+            results["rents_annual"] = run_rents(pa, out, "All parishes with a full series, annual 2017-2023",
+                                                ratio, ks=(1, 2, 3), **sub)
+            # spillover check: donors outside Lisbon only (the never-frozen Lisbon parishes are
+            # neighbours, where displaced short lets would have gone)
+            nout = out / "no_lisbon_controls"
+            nout.mkdir(exist_ok=True)
+            results["rents_annual_no_lisbon_controls"] = run_rents(
+                pa[pa["group"] != "never"], nout, "Annual, donors outside Lisbon only", ratio, ks=(1,), **sub)
+            # 2b. 12-month windows by quarter, 2020Q1-2023Q3 (INE's quarterly series starts in 2020)
+            pq = Dt.complete_units(Dt.ine_panel(rd, "Q"))
+            qout = out / "quarterly"
+            qout.mkdir(exist_ok=True)
+            results["rents_quarterly"] = run_rents(pq, qout, "All parishes with a full series, 12-month windows to 2023Q3",
+                                                   ratio, ks=(1, 2), **sub)
     (out / "results.json").write_text(json.dumps(_clean(results), indent=1, ensure_ascii=False, default=str))
     print(json.dumps(_clean(results), indent=1, ensure_ascii=False, default=str)[:4000])
 

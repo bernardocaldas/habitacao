@@ -164,9 +164,10 @@ def randomisation_inference(panel: pd.DataFrame, n_perm: int = 5000, seed: int =
 
 
 def event_study(panel: pd.DataFrame, base: str = "2021") -> pd.DataFrame:
-    g = panel[panel["group"].isin(["frozen", "never"])]
+    ctrl = "never" if (panel["group"] == "never").any() else "donor"
+    g = panel[panel["group"].isin(["frozen", ctrl])]
     m = g.groupby(["period", "group"])["log_rent"].mean().unstack()
-    gap = m["frozen"] - m["never"]
+    gap = m["frozen"] - m[ctrl]
     gap = gap - gap.get(base, 0.0)
     return pd.DataFrame({"period": gap.index, "gap_log": gap.values, "gap_pct": np.expm1(gap.values) * 100})
 
