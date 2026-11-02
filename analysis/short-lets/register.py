@@ -25,9 +25,14 @@ def latest(directory: Path, pattern: str) -> Path:
     return files[-1]
 
 
-def census_dwellings(housing_dir: Path) -> pd.Series:
-    """Classic family dwellings per parish, Censos 2021 (every occupancy, every building epoch)."""
-    df = pd.read_parquet(housing_dir / "ine" / "census_dwellings_by_occupancy_and_epoch.parquet")
+def census_dwellings(*housing_dirs: Path) -> pd.Series:
+    """Classic family dwellings per parish, Censos 2021 (every occupancy, every building epoch).
+    Looks in each directory's ine/ in turn (the register and INE's files may sit apart)."""
+    name = "census_dwellings_by_occupancy_and_epoch.parquet"
+    found = [d / "ine" / name for d in housing_dirs if (d / "ine" / name).exists()]
+    if not found:
+        raise FileNotFoundError(f"no ine/{name} under {', '.join(map(str, housing_dirs))}")
+    df = pd.read_parquet(found[0])
     labels = [c for c in df.columns if c.startswith("dim_") and c.endswith("_t")]
     for c in labels:
         df = df[df[c].astype(str).str.strip().str.lower() == "total"]

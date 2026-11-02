@@ -131,7 +131,7 @@ def main():
         results["first_stage"] = fs["fit"]
         ratio = None
         try:
-            dw = Rg.census_dwellings(hd)
+            dw = Rg.census_dwellings(hd, rd)
         except FileNotFoundError as e:
             results["share_of_homes"] = f"skipped: {e}"
         else:
