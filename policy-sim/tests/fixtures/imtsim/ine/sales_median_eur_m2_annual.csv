@@ -1,0 +1,13 @@
+indicator_id,period_code,period_label,geocod,geodsg,dim_3,dim_3_t,ind_string,valor,value
+x,S7A2025,2025,1106,Lisboa,T,Total,4500,4500,4500
+x,S7A2024,2024,1106,Lisboa,T,Total,4050.0,4050.0,4050.0
+x,S7A2025,2025,1106,Lisboa,1,Apartamentos,9000,9000,9000
+x,S7A2025,2025,1312,Porto,T,Total,3200,3200,3200
+x,S7A2024,2024,1312,Porto,T,Total,2880.0,2880.0,2880.0
+x,S7A2025,2025,1312,Porto,1,Apartamentos,6400,6400,6400
+x,S7A2025,2025,0808,Loulé,T,Total,3500,3500,3500
+x,S7A2024,2024,0808,Loulé,T,Total,3150.0,3150.0,3150.0
+x,S7A2025,2025,0808,Loulé,1,Apartamentos,7000,7000,7000
+x,S7A2025,2025,1105,Cascais,T,Total,4200,4200,4200
+x,S7A2024,2024,1105,Cascais,T,Total,3780.0,3780.0,3780.0
+x,S7A2025,2025,1105,Cascais,1,Apartamentos,8400,8400,8400

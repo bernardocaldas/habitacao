@@ -1,0 +1,52 @@
+indicator_id,period_code,period_label,geocod,geodsg,dim_3,dim_3_t,dim_4,dim_4_t,ind_string,valor,value
+0012501,S7A2021,2021,1106,Lisboa,1,Residência habitual,T,Total,300000,300000,300000
+0012501,S7A2021,2021,1106,Lisboa,1,Residência habitual,01,Antes de 1919,30000,30000,30000
+0012501,S7A2021,2021,1106,Lisboa,2,Residência secundária,T,Total,40000,40000,40000
+0012501,S7A2021,2021,1106,Lisboa,2,Residência secundária,01,Antes de 1919,4000,4000,4000
+0012501,S7A2021,2021,1106,Lisboa,3,Vago para venda ou arrendamento,T,Total,30000,30000,30000
+0012501,S7A2021,2021,1106,Lisboa,3,Vago para venda ou arrendamento,01,Antes de 1919,3000,3000,3000
+0012501,S7A2021,2021,1106,Lisboa,4,Vago por outros motivos,T,Total,20000,20000,20000
+0012501,S7A2021,2021,1106,Lisboa,4,Vago por outros motivos,01,Antes de 1919,2000,2000,2000
+0012501,S7A2021,2021,1106,Lisboa,T,Total,T,Total,390000,390000,390000
+0012501,S7A2021,2021,110601,Lisboa parish,4,Vago por outros motivos,T,Total,5,5,5
+0012501,S7A2021,2021,1312,Porto,1,Residência habitual,T,Total,130000,130000,130000
+0012501,S7A2021,2021,1312,Porto,1,Residência habitual,01,Antes de 1919,13000,13000,13000
+0012501,S7A2021,2021,1312,Porto,2,Residência secundária,T,Total,15000,15000,15000
+0012501,S7A2021,2021,1312,Porto,2,Residência secundária,01,Antes de 1919,1500,1500,1500
+0012501,S7A2021,2021,1312,Porto,3,Vago para venda ou arrendamento,T,Total,14000,14000,14000
+0012501,S7A2021,2021,1312,Porto,3,Vago para venda ou arrendamento,01,Antes de 1919,1400,1400,1400
+0012501,S7A2021,2021,1312,Porto,4,Vago por outros motivos,T,Total,12000,12000,12000
+0012501,S7A2021,2021,1312,Porto,4,Vago por outros motivos,01,Antes de 1919,1200,1200,1200
+0012501,S7A2021,2021,1312,Porto,T,Total,T,Total,171000,171000,171000
+0012501,S7A2021,2021,131201,Porto parish,4,Vago por outros motivos,T,Total,5,5,5
+0012501,S7A2021,2021,0808,Loulé,1,Residência habitual,T,Total,30000,30000,30000
+0012501,S7A2021,2021,0808,Loulé,1,Residência habitual,01,Antes de 1919,3000,3000,3000
+0012501,S7A2021,2021,0808,Loulé,2,Residência secundária,T,Total,25000,25000,25000
+0012501,S7A2021,2021,0808,Loulé,2,Residência secundária,01,Antes de 1919,2500,2500,2500
+0012501,S7A2021,2021,0808,Loulé,3,Vago para venda ou arrendamento,T,Total,5000,5000,5000
+0012501,S7A2021,2021,0808,Loulé,3,Vago para venda ou arrendamento,01,Antes de 1919,500,500,500
+0012501,S7A2021,2021,0808,Loulé,4,Vago por outros motivos,T,Total,6000,6000,6000
+0012501,S7A2021,2021,0808,Loulé,4,Vago por outros motivos,01,Antes de 1919,600,600,600
+0012501,S7A2021,2021,0808,Loulé,T,Total,T,Total,66000,66000,66000
+0012501,S7A2021,2021,080801,Loulé parish,4,Vago por outros motivos,T,Total,5,5,5
+0012501,S7A2021,2021,0901,Aguiar da Beira,1,Residência habitual,T,Total,2000,2000,2000
+0012501,S7A2021,2021,0901,Aguiar da Beira,1,Residência habitual,01,Antes de 1919,200,200,200
+0012501,S7A2021,2021,0901,Aguiar da Beira,2,Residência secundária,T,Total,1500,1500,1500
+0012501,S7A2021,2021,0901,Aguiar da Beira,2,Residência secundária,01,Antes de 1919,150,150,150
+0012501,S7A2021,2021,0901,Aguiar da Beira,3,Vago para venda ou arrendamento,T,Total,100,100,100
+0012501,S7A2021,2021,0901,Aguiar da Beira,3,Vago para venda ou arrendamento,01,Antes de 1919,10,10,10
+0012501,S7A2021,2021,0901,Aguiar da Beira,4,Vago por outros motivos,T,Total,900,900,900
+0012501,S7A2021,2021,0901,Aguiar da Beira,4,Vago por outros motivos,01,Antes de 1919,90,90,90
+0012501,S7A2021,2021,0901,Aguiar da Beira,T,Total,T,Total,4500,4500,4500
+0012501,S7A2021,2021,090101,Aguiar da Beira parish,4,Vago por outros motivos,T,Total,5,5,5
+0012501,S7A2021,2021,1105,Cascais,1,Residência habitual,T,Total,90000,90000,90000
+0012501,S7A2021,2021,1105,Cascais,1,Residência habitual,01,Antes de 1919,9000,9000,9000
+0012501,S7A2021,2021,1105,Cascais,2,Residência secundária,T,Total,15000,15000,15000
+0012501,S7A2021,2021,1105,Cascais,2,Residência secundária,01,Antes de 1919,1500,1500,1500
+0012501,S7A2021,2021,1105,Cascais,3,Vago para venda ou arrendamento,T,Total,9000,9000,9000
+0012501,S7A2021,2021,1105,Cascais,3,Vago para venda ou arrendamento,01,Antes de 1919,900,900,900
+0012501,S7A2021,2021,1105,Cascais,4,Vago por outros motivos,T,Total,7000,7000,7000
+0012501,S7A2021,2021,1105,Cascais,4,Vago por outros motivos,01,Antes de 1919,700,700,700
+0012501,S7A2021,2021,1105,Cascais,T,Total,T,Total,121000,121000,121000
+0012501,S7A2021,2021,110501,Cascais parish,4,Vago por outros motivos,T,Total,5,5,5
+0012501,S7A2021,2021,PT,Portugal,4,Vago por outros motivos,T,Total,1,1,1
