@@ -76,9 +76,12 @@ _Q = re.compile(r"(\d)\.?\s*º?\s*Trimestre de (\d{4})", re.I)
 
 
 def parish_code(geocod: str) -> Optional[str]:
-    """INE parish geocodes are a 3-character NUTS III prefix and the DICOFRE ('1A0110601')."""
-    g = str(geocod or "")
-    return g[3:] if len(g) == 9 and g[3:].isdigit() else None
+    """The DICOFRE from an INE parish geocode: either a 3-character NUTS III prefix and the
+    DICOFRE ('1A0110601', the rents) or the bare DICOFRE ('110601', the Censos tables).
+    A DICOFRE is six characters, letters allowed (Barcelos's unions are 0302FA to 0302FH)."""
+    g = str(geocod or "").strip().upper()
+    d = g[3:] if len(g) == 9 else g if len(g) == 6 else ""
+    return d if d.isalnum() and d[:4].isdigit() else None
 
 
 def window(label: str, freq: str) -> Optional[tuple]:
