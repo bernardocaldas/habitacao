@@ -1,0 +1,19 @@
+indicator_id,period_code,period_label,geocod,geodsg,dim_3,dim_3_t,dim_4,dim_4_t,ind_string,valor,value
+0012501,S7A2021,2021,1106,Lisboa,1,Residência habitual,T,Total,300000,300000,300000
+0012501,S7A2021,2021,1106,Lisboa,1,Residência habitual,01,Antes de 1919,30000,30000,30000
+0012501,S7A2021,2021,1106,Lisboa,2,Residência secundária,T,Total,40000,40000,40000
+0012501,S7A2021,2021,1106,Lisboa,2,Residência secundária,01,Antes de 1919,4000,4000,4000
+0012501,S7A2021,2021,1106,Lisboa,3,Vago para venda ou arrendamento,T,Total,30000,30000,30000
+0012501,S7A2021,2021,1106,Lisboa,3,Vago para venda ou arrendamento,01,Antes de 1919,3000,3000,3000
+0012501,S7A2021,2021,1106,Lisboa,4,Vago por outros motivos,T,Total,20000,20000,20000
+0012501,S7A2021,2021,1106,Lisboa,4,Vago por outros motivos,01,Antes de 1919,2000,2000,2000
+0012501,S7A2021,2021,1106,Lisboa,T,Total,T,Total,390000,390000,390000
+0012501,S7A2021,2021,1312,Porto,1,Residência habitual,T,Total,130000,130000,130000
+0012501,S7A2021,2021,1312,Porto,1,Residência habitual,01,Antes de 1919,13000,13000,13000
+0012501,S7A2021,2021,1312,Porto,2,Residência secundária,T,Total,15000,15000,15000
+0012501,S7A2021,2021,1312,Porto,2,Residência secundária,01,Antes de 1919,1500,1500,1500
+0012501,S7A2021,2021,1312,Porto,3,Vago para venda ou arrendamento,T,Total,14000,14000,14000
+0012501,S7A2021,2021,1312,Porto,3,Vago para venda ou arrendamento,01,Antes de 1919,1400,1400,1400
+0012501,S7A2021,2021,1312,Porto,4,Vago por outros motivos,T,Total,12000,12000,12000
+0012501,S7A2021,2021,1312,Porto,4,Vago por outros motivos,01,Antes de 1919,1200,1200,1200
+0012501,S7A2021,2021,1312,Porto,T,Total,T,Total,171000,171000,171000

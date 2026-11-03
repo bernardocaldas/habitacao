@@ -19,3 +19,13 @@ uv run python -m pytest -q    # 43 tests, no network
 - `rentsim/calibrate.py`: importance resampling on INE's 2024-2025 rents.
 - `rentsim/report.py`: paired comparisons, sensitivity, the report.
 - `results/`: dated runs kept for comparison. **Prototype: not for publication.**
+
+## imtsim: vacant homes and the IMT-to-IMI swap
+
+```bash
+uv run imtsim out-imt --housing-dir ~/code/estimador-data/data/housing [--tax municipal_tax.csv]
+```
+
+Vacant-homes surcharge policies per munícipio (Censos 2021 vacancy, INE prices and rents) and,
+with municipal tax data, the IMI rate that keeps each munícipio's revenue unchanged when IMT is
+cut. Design: [`../docs/IMT_IMI_SIM.md`](../docs/IMT_IMI_SIM.md). **Prototype: not for publication.**
