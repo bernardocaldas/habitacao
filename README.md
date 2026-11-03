@@ -34,6 +34,14 @@ boundaries (DGT, CC BY 4.0) with the OpenStreetMap shoreline (© OpenStreetMap c
 those three files are offered under the Open Database License 1.0; `docs/GEOMETRIA.md` has the
 sources and how they were built.
 
+## Housing models
+
+The housing models and studies that started here (the rental-bill simulator `rentsim`, the
+IMT/IMI and vacant-homes simulator `imtsim`, and the short-lets study) moved on 3 November
+2026, with their history, to
+[estimadorpt/estimador-housing](https://github.com/estimadorpt/estimador-housing). They read
+copies of this game's sources (`src/data/fontes/`, `src/data/freguesias.ts`).
+
 ## Run it
 
 ```bash
