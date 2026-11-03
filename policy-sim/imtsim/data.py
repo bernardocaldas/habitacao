@@ -35,6 +35,24 @@ def _is_municipio(code: str) -> bool:
     return len(code) == 4 and code.isdigit()
 
 
+def _municipio_code(code: str) -> str:
+    """INE's price and rent extracts prefix the DTMN code with the NUTS III code (``1A01106``
+    is Lisboa 1106, ``11A1312`` Porto 1312); the Censos tables do not."""
+    code = code.strip()
+    return code[-4:] if len(code) == 7 and code[-4:].isdigit() else code
+
+
+def _is_total(r: dict) -> bool:
+    """Every category dimension at its total: code ``T`` or label ``Total`` (the sales extract
+    codes its total ``H1``)."""
+    for k in r:
+        if k.startswith("dim_") and not k.endswith("_t"):
+            code, label = r[k].strip(), (r.get(k + "_t") or "").strip().lower()
+            if code not in ("T", "") and label != "total":
+                return False
+    return True
+
+
 def _float(s: str) -> float | None:
     try:
         return float(s)
@@ -71,10 +89,8 @@ def latest_value(housing_dir: Path, stem: str) -> tuple[dict[str, float], str]:
     """Latest period's value per munícipio, all other categories at their total."""
     best: dict[str, tuple[str, float]] = {}
     for r in _rows(_find(housing_dir, stem)):
-        code = r["geocod"].strip()
-        if not _is_municipio(code):
-            continue
-        if any(r[k].strip() not in ("T", "") for k in r if k.startswith("dim_") and not k.endswith("_t")):
+        code = _municipio_code(r["geocod"])
+        if not _is_municipio(code) or not _is_total(r):
             continue
         v = _float(r.get("value"))
         if v is None:
@@ -157,6 +173,9 @@ def load(housing_dir: Path, tax_csv: Path | None = None, tax_year: int | None = 
             if row["imi_rate"]:
                 rate[i] = row["imi_rate"] if row["imi_rate"] < 0.05 else row["imi_rate"] / 100
                 known[i] = True
+            elif row["imi_eur"]:
+                # No rate communicated: by law the AT applies the 0.3% minimum.
+                rate[i], known[i] = 0.003, True
             imt[i] = row["imt_eur"] if row["imt_eur"] is not None else np.nan
             imi[i] = row["imi_eur"] if row["imi_eur"] is not None else np.nan
     return Municipios(

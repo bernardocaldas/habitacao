@@ -150,8 +150,8 @@ def markdown(s: dict) -> str:
          f"Census 2021: {c['dwellings']:,.0f} classic family dwellings in {s['municipios']} munícipios; "
          f"{c['vacant_other']:,.0f} vacant for other reasons ({c['vacant_other_pre1946']:,.0f} in buildings from before 1946), "
          f"{c['vacant_market']:,.0f} vacant for sale or rent. Prices {s['price_period']} (imputed in {s['price_imputed']}), "
-         f"rents {s['rent_period']} (imputed in {s['rent_imputed']}). IMI rate known for {s['imi_rate_known']} munícipios "
-         "(0.3% assumed elsewhere).", "",
+         f"rents {s['rent_period']} (imputed in {s['rent_imputed']}). IMI rate for {s['imi_rate_known']} munícipios "
+         "(the 0.3% legal minimum where none was communicated; 0.3% assumed where no tax data).", "",
          "## Vacant homes, after three years", "",
          "| Policy | Flagged | Back in use | % of vacant-other | Surcharge, year 1 (M€) | Owners paying who cannot act | Year-1 surcharge, % of a year's rent (median munícipio) |",
          "| --- | --- | --- | --- | --- | --- | --- |"]

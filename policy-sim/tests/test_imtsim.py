@@ -100,3 +100,13 @@ def test_report_runs(tmp_path, m):
 def test_report_without_tax_skips_swap(tmp_path):
     s = run_all(load(FIX), draws=300)
     assert "skipped" in s["swap"]
+
+
+def test_ine_extract_format_and_blank_rate():
+    f = Path(__file__).parent / "fixtures" / "imtsim_ine_format"
+    m = load(f, f / "municipal_tax.csv")
+    assert m.code == ["1106", "1312"]
+    assert m.price_m2.tolist() == [4875, 3347] and not m.price_imputed.any()
+    assert m.rent_m2[0] == 17.5 and m.rent_imputed.tolist() == [False, True]
+    i = m.index("1312")  # no rate communicated: the 0.3% legal minimum
+    assert m.imi_rate[i] == 0.003 and m.imi_rate_known[i]
